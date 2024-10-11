@@ -5,9 +5,14 @@ export const products = [
       id: "64a654593e91b8e73a351e9b",
       name: "Ipsum-Man: The Long Way Home #1",
       description: "Short description",
-      price: 2999,
+      price: 600,
+      discount: .3,
+      hit: true,
+      releaseDate: "",
       brand: "Grim Horse",
-      category: "Печатная книга",
+      digital: false,
+      categories: ["Печатная книга", "Комикс"],
+      cover: "Мягкая обложка",
       inStock: true,
       images: [
         {
@@ -22,8 +27,11 @@ export const products = [
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,
+        discount: .15,
         brand: "Grim Horse",
-        category: "Печатная книга",
+        digital: false,
+        categories: ["Печатная книга", "Комикс"],
+        cover: "Мягкая обложка",
         inStock: true,
         images: [
           {
@@ -37,8 +45,11 @@ export const products = [
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,
+        discount: .20,
         brand: "Grim Horse",
-        category: "Печатная книга",
+        digital: false,
+        categories: ["Печатная книга", "Комикс"],
+        cover: "Мягкая обложка",
         inStock: true,
         images: [
           {
@@ -52,8 +63,11 @@ export const products = [
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,
+        discount: .15,
         brand: "Grim Horse",
-        category: "Печатная книга",
+        digital: true,
+        categories: ["Электронная книга", "Комикс"],
+        cover: null,
         inStock: true,
         images: [
           {
@@ -67,8 +81,11 @@ export const products = [
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,
+        discount: .15,
         brand: "Grim Horse",
-        category: "Печатная книга",
+        digital: true,
+        categories: ["Электронная книга", "Графическая новелла"],
+        cover: null,
         inStock: true,
         images: [
           {

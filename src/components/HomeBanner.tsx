@@ -1,9 +1,12 @@
-import banner1 from "/app/images/banner1.webp"
-
-// import banner1 from "./nav/banner1.png"
+import React, { useState } from 'react'
 import Container from "./Container";
 
 const HomeBanner = () => {
+    const slides = [
+        "/src/images/banner1.webp",
+        "/src/images/banner1.webp",
+        "/src/images/banner1.webp"
+    ]
     return (
     <div>
         <Container>
