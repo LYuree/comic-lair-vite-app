@@ -1,8 +1,10 @@
+import {FC, ReactNode} from "react";
+
 interface FooterListProps {
-    children: React.ReactNode
+    children: ReactNode
 }
 
-const FooterList: React.FC<FooterListProps> = ({children}) => {
+const FooterList: FC<FooterListProps> = ({children}) => {
     return ( <div className="
     w-full
     sm:w-1/2

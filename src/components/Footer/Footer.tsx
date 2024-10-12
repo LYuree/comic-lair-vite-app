@@ -1,6 +1,5 @@
 import Container from "../Container";
-import FooterList from "./FooterList";
-import { LiaTelegramPlane } from "react-icons/lia";
+import FooterList from "./FooterList/FooterList.tsx";
 import { FaTelegramPlane } from "react-icons/fa";
 import { AiFillYoutube } from "react-icons/ai";
 import { SiDiscord, SiVk } from "react-icons/si";
