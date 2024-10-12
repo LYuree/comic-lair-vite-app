@@ -54,7 +54,7 @@ export const products = [
         images: [
           {
             image:
-              "../src/images/ipsum.png",
+              "../src/images/return-of-the-sit-amet-210-326.png",
           },
         ],
         reviews: [],
