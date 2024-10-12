@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Container from "./Container";
 
 const HomeBanner = () => {
@@ -28,5 +27,5 @@ const HomeBanner = () => {
         </Container>
     </div> );
 }
- 
+
 export default HomeBanner;

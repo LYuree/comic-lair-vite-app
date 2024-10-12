@@ -1,8 +1,10 @@
+import {FC, ReactNode} from "react";
+
 interface ContainerProps{
-    children: React.ReactNode
+    children: ReactNode
 }
 
-const Container: React.FC<ContainerProps> = ({children}) => {
+const Container: FC<ContainerProps> = ({children}) => {
     return ( <div
     className="
     max-w-1920px
