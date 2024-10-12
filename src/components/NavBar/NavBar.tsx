@@ -1,8 +1,7 @@
 import { IoSearch } from "react-icons/io5";
 import Container from "../Container";
-import gekkoLogoSVG from "../nav/gekko-logo.svg"
-import gekkoLogoPNG from "./gekko-logo.png"
-import { AiFillShopping, AiOutlineHeart, AiOutlineShopping, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
+
 
 const NavBar = () => {
     return (  <div
