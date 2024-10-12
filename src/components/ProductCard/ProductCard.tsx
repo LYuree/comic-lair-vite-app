@@ -12,16 +12,17 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = (({data, key}) => {
     return (
         <div className="
-    col-span-1
-    cursor-pointer
-    bg-white
-    w-full
-    max-w-[210px]
-    hover:outline
-    hover:outline-violet-300
-    hover:outline-2
-    "
-             key={key}>
+            col-span-1
+            cursor-pointer
+            bg-white
+            w-full
+            max-w-[210px]
+            hover:outline
+            hover:outline-violet-300
+            hover:outline-2
+            mx-auto
+            "
+            key={key}>
             <div className="relative overflow-hidden flex justify-center">
                 <picture>
                     <source/>
@@ -36,7 +37,7 @@ const ProductCard: FC<ProductCardProps> = (({data, key}) => {
                 <div
                     className="text-[gray] text-xs font-semibold mt-2">{data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}</div>
                 <div className="text-lg text-center font-bold">{truncateText(data.name)}</div>
-                <div className="flex flex-col items-center text-sm mt-2 text-[gray] font-semibold">
+                <div className="flex flex-col items-center text-sm mt-2 text-[gray] font-semibold max-w-[210px]">
                     {data.discount ?
                         (
                             <>

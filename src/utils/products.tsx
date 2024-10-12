@@ -58,6 +58,44 @@ export const products = [
           },
         ],
         reviews: [],
+      },
+      {
+        id: "64a65a6158b470c6e06959ee",
+        name: "Ipsum-Man: The Long Way Home #1",
+        description: "Short description",
+        price: 2999,
+        discount: .20,
+        brand: "Grim Horse",
+        digital: false,
+        categories: ["Печатная книга", "Комикс"],
+        cover: "Мягкая обложка",
+        inStock: true,
+        images: [
+          {
+            image:
+              "../src/images/return-of-the-sit-amet-210-326.png",
+          },
+        ],
+        reviews: [],
+      },
+      {
+        id: "64a65a6158b470c6e06959ee",
+        name: "Ipsum-Man: The Long Way Home #1",
+        description: "Short description",
+        price: 2999,
+        discount: .20,
+        brand: "Grim Horse",
+        digital: false,
+        categories: ["Печатная книга", "Комикс"],
+        cover: "Мягкая обложка",
+        inStock: true,
+        images: [
+          {
+            image:
+              "../src/images/return-of-the-sit-amet-210-326.png",
+          },
+        ],
+        reviews: [],
       },{
         id: "648437b38c44d52b9542e340",
         name: "Ipsum-Man: The Long Way Home #1",

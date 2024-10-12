@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import Container from "./Container";
 
 const HomeBanner = () => {
@@ -7,8 +8,7 @@ const HomeBanner = () => {
         "/src/images/banner1.webp"
     ]
     return (
-    <div>
-        <Container>
+    <div className='max-w-[1160px] w-full mx-auto'>
             <div className="mt-4">
                 <a href="#">
                     <picture>
@@ -24,8 +24,7 @@ const HomeBanner = () => {
                     /> */}
                 </a>
             </div>
-        </Container>
     </div> );
 }
-
+ 
 export default HomeBanner;
