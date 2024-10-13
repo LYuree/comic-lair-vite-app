@@ -41,7 +41,7 @@ export const products = [
         ],
         reviews: [],
       },{
-        id: "64a65a6158b470c6e06959ee",
+        id: "64a65a6158b470c6e06959ev",
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,
@@ -60,7 +60,7 @@ export const products = [
         reviews: [],
       },
       {
-        id: "64a65a6158b470c6e06959ee",
+        id: "64a65a6158b470c6e06959ez",
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,
@@ -79,7 +79,7 @@ export const products = [
         reviews: [],
       },
       {
-        id: "64a65a6158b470c6e06959ee",
+        id: "64a65a6158b470c6e06959et",
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,
@@ -115,7 +115,7 @@ export const products = [
         ],
         reviews: [],
       },{
-        id: "6499b4887402b0efd394d8f3",
+        id: "6499b4887402b0efd394d8f2",
         name: "Ipsum-Man: The Long Way Home #1",
         description: "Short description",
         price: 2999,

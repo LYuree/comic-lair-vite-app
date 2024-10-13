@@ -9,7 +9,7 @@ const AppContainer = () => {
             <div>
                 <HomeBanner></HomeBanner>
             </div>
-            <div className="flex flex-col items-center my-8">
+            <div className="flex flex-col items-center my-8 mt-[4.5rem]">
                 <div className="text-4xl border-b-2 border-black mb-2 pb-2">ОТКРОЙТЕ ДЛЯ СЕБЯ</div>
                 <h2 className="text-2xl">НОВЕЙШИЕ РЕЛИЗЫ</h2>
             </div>
