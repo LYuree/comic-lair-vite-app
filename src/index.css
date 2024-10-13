@@ -10,3 +10,12 @@
 * {
     font-family: 'Montserrat', 'Arial', 'sans-serif';
 }
+
+.children-hover-gray a {
+    display: block;
+    margin: .5rem 0 .5rem 0;
+}
+
+.children-hover-gray a:hover {
+    color: gray;
+}

@@ -30,13 +30,8 @@ const NavBar = () => {
                                 src="/src/images/gekko-logo.png"
                                 alt="Comic Lair" />
                         </picture>
-                        {/* <Image
-                        src={gekkoLogoPNG}
-                        alt="Comic Lair"
-                        width={80}
-                        height={80}/> */}
                         <div className="cflex flex-col">
-                            <p className="font-bold text-lg">Comic Lair</p>
+                            <p className="font-bold text-lg">Comic Tradepost</p>
                             <div className="text-xs">
                                 <p>Магазин графических</p>
                                 <p>новелл и комиксов</p>
@@ -70,10 +65,10 @@ const NavBar = () => {
                 justify-between
                 text-lg
                 ">
-                    <li><a href="#" className="hover:underline">Главная</a></li>
+                    <li><a href="/" className="hover:underline">Главная</a></li>
                     <li><a href="#" className="hover:underline">Комиксы</a></li>
                     <li><a href="#" className="hover:underline">Графические новеллы</a></li>
-                    <li><a href="#" className="hover:underline">О нас</a></li>
+                    <li><a href="/about" className="hover:underline">О нас</a></li>
                     <li><a href="#" className="hover:underline">Отзывы</a></li>
                     <li><a href="#" className="hover:underline">Контакты</a></li>
                     <li><a href="#" className="hover:underline">Купим у ВАС!</a></li>

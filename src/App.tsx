@@ -4,7 +4,7 @@ import "./index.css"
 import AppContainer from "./components/AppContainer.tsx";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage.tsx";
-import AboutePage from "./pages/AboutPage.tsx";
+import AboutPage from "./pages/AboutPage.tsx";
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
             <NavBar/>
             <Routes>
                 <Route path="/" element={<HomePage/>}></Route>
-                <Route path="/about" element={<AboutePage/>}></Route>
+                <Route path="/about" element={<AboutPage/>}></Route>
             </Routes>
             <Footer/>
         </div>
