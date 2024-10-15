@@ -21,7 +21,7 @@ const AboutPageTimelineDouble = () => {
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
                 </div>
-                <h2 className="text-3xl font-bold my-16 text-center">And When The Things Were Starting To Look Good...</h2>
+                <h2 className="text-3xl font-bold my-16 text-center bg-white">And When The Things Were Starting To Look Good...</h2>
                 <img src="/src/images/bang.png" alt="" className="w-full h-full"/>
                 <div className="timeline-row">
                     <div className="image">
@@ -50,7 +50,7 @@ const AboutPageTimelineDouble = () => {
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                     </div>
                 </div>
-                <h2 className="text-3xl font-bold my-16 text-center">And At Last...</h2>
+                <h2 className="text-3xl font-bold my-16 text-center bg-white">And At Last...</h2>
                 <img src="/src/images/city.png" alt="" className="w-full h-full"/>
                 <div className="text-center my-16">
                     <p>Our concept is to be your trusted independent seller of back issue comics and classic role playing games. In the long term our ambition is to also sell retro gaming and vinyl.
