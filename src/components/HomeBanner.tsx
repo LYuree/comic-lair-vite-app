@@ -9,32 +9,20 @@ const HomeBanner = () => {
             url: "/src/images/banner1.webp",
         },
         {
-            url: "/src/images/ipsum.webp",
+            url: "/src/images/banner2.png",
         },
         {
-            url: "/src/images/lorem.avif",
+            url: "/src/images/banner3.png",
         }
     ]
 
     const [currentIndex, setCurrentIndex] = useState(0);
-
-    // const prevSlide = () => {
-    //     // const isFirstSlide = currentIndex === 0;
-    //     // const newIndex = (isFirstSlide ? slides.length-1 : currentIndex - 1);
-    //     // setCurrentIndex(newIndex);
-    // }
 
     function prevSlide(){
         setCurrentIndex( currentIndex => {
             return (currentIndex === 0? slides.length - 1 : currentIndex - 1)
         });
     }
-
-    // const nextSlide = () => {
-    //     const isLastSlide = currentIndex === slides.length - 1;
-    //     const newIndex = (isLastSlide ? 0 : currentIndex + 1);
-    //     setCurrentIndex(newIndex);
-    // }
 
     function nextSlide(){
         setCurrentIndex( currentIndex => {
@@ -60,7 +48,7 @@ const HomeBanner = () => {
                 {slides.map( (_, slideIndex) => (
                     <div key={slideIndex} onClick={() => goToSlide(slideIndex)}
                         className="text-6xl">
-                            {slideIndex === currentIndex ? <RxDotFilled className='text-violet-700'/> : <RxDot />}
+                            {slideIndex === currentIndex ? <RxDotFilled className='text-[maroon]'/> : <RxDot />}
                     </div>
                 ))}
             </div>

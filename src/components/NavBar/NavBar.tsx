@@ -22,11 +22,11 @@ const NavBar = () => {
                 items-center
                 justify-between
                 gap-3">
-                    <a href="/" className="flex items-center gap-3">
+                    <a href="/" className="flex items-center gap-3 p-2">
                         <picture>
                             <source />
                             <img
-                                src="/src/images/gekko-logo.png"
+                                src="/src/images/noveltown_logo_v2.png"
                                 alt="Comic Lair" />
                         </picture>
                         <div className="cflex flex-col">
@@ -61,8 +61,8 @@ const NavBar = () => {
                 <ul className="flex
                 flex-row
                 items-center
-                justify-between
-                text-lg
+                justify-around
+                text-sm
                 ">
                     <li><a href="/" className="hover:underline">Главная</a></li>
                     <li><a href="#" className="hover:underline">Комиксы</a></li>

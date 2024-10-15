@@ -11,6 +11,10 @@
     font-family: 'Montserrat', 'Arial', 'sans-serif';
 }
 
+.text-drop-shadow {
+    filter: drop-shadow(0 8px 8px rgba(135, 98, 4, 0.75));
+}
+
 /* body {
     height: 100%;
 } */
@@ -61,7 +65,7 @@
     top: 0;
     width: 0;
     height: 100%;
-    border-left: 2px solid #ca238d;
+    border-left: 2px dashed #ca238d;
 }
 
 .bound-layout {
@@ -93,15 +97,22 @@
     content: '';
     display: block;
     position: absolute;
-    top: 10px;
-    left: calc(50% - 13px);
+    top: 38px;
+    left: calc(50% - 12px); /*минус половина ширины, но это оказалось многовато, на мой вкус*/
     width: 26px;
     height: 26px;
     border-radius: 13px;
-    border: 1px solid #cacaca;
+    border: 2px solid #97057c;
     background: linear-gradient(#ca238d, #ffbc13);
 }
 
 .timeline-row > * {
     flex-basis: 43%;
+}
+
+h2.timeline-header {
+    border-top: 2px solid #97057c;
+    border-bottom: 2px solid #97057c;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
 }
