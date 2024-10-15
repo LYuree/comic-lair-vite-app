@@ -15,7 +15,6 @@ const NavBar = () => {
     ">
         <div className="
         py-4
-        border-b-[1px]
         ">
             <Container>
                 <div className="flex
@@ -31,7 +30,7 @@ const NavBar = () => {
                                 alt="Comic Lair" />
                         </picture>
                         <div className="cflex flex-col">
-                            <p className="font-bold text-lg">Comic Tradepost</p>
+                            <p className="font-bold text-lg">The Novel Town</p>
                             <div className="text-xs">
                                 <p>Магазин графических</p>
                                 <p>новелл и комиксов</p>

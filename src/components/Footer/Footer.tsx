@@ -11,10 +11,10 @@ const Footer = () => {
     text-sm
     mt-16
     ">
-            <div className="bg-violet-900">
+            <div className="bg-[maroon]">
             <Container>
                 <div className="flex justify-between items-center py-8">
-                    <div className="text-6xl font-bold">COMIC LAIR</div>
+                    <div className="text-6xl font-bold">THE NOVEL TOWN</div>
                     <div className="flex items-center gap-3">
                             <a href="#">
                                 <SiDiscord size={48}></SiDiscord>
@@ -53,7 +53,7 @@ const Footer = () => {
                     </div>
                 </FooterList>
                 <FooterList>
-                    <h3 className="font-bold text-3xl mb-3">COMIC LAIR</h3>
+                    <h3 className="font-bold text-3xl mb-3">THE NOVEL TOWN</h3>
                     <div className="children-hover-gray">
                         <a href="#">О нас</a>
                         <a href="#">Контакты</a>
@@ -67,8 +67,8 @@ const Footer = () => {
                     </div>
                 </FooterList>
             </div>
-            <div className="mt-4 mb-4 border-solid border-white border-t pt-4">
-                Копирование материалов без разрешения запрещено &copy; ООО "Comic Lair", {new Date().getFullYear()}
+            <div className="mt-4 border-solid border-white border-t pt-4">
+                Копирование материалов без разрешения запрещено &copy; ООО "The Novel Town", {new Date().getFullYear()}
                 </div>
         </Container>
     </footer>)
