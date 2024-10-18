@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
-import Container from "./Container";
+import { useState } from 'react'
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDot, RxDotFilled } from 'react-icons/rx';
 
 const HomeBanner = () => {
     const slides = [
         {
-            url: "/src/images/banner1.webp",
+            src: "/src/images/banner1.png",
+            url: "/products"
         },
         {
-            url: "/src/images/banner2.png",
+            src: "/src/images/banner2.png",
+            url: "/products"
         },
         {
-            url: "/src/images/banner3.png",
+            src: "/src/images/banner3.png",
+            url: "/products"
         }
     ]
 
@@ -36,13 +38,23 @@ const HomeBanner = () => {
     
     return (
     <div className='max-w-[1160px] w-full h-[475px] mx-auto mt-4 relative
-        group duration-500'>
-            <div style={{backgroundImage: `url(${slides[currentIndex].url})`}} className="relative w-full h-full bg-center bg-cover"></div>
-            <button className='hidden group-hover:block absolute top-[50%] -translate-y-[50%] text-white bg-black/20 rounded-full border-2 border-white cursor-pointer -left-10'>
-                <BsChevronCompactLeft size={45} onClick={prevSlide}/>
+        duration-500'>
+            <a href={slides[currentIndex].url}>
+                <div style={{backgroundImage: `url(${slides[currentIndex].src})`}} className="relative w-full h-full bg-center bg-cover"></div>
+            </a>
+            {/* <button className="relative inline-block font-medium group py-2 px-4">
+                    <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-[#ffbc13] group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                    <span className="absolute inset-0 w-full h-full bg-black border-2 border-[#ffbc13]"></span>
+                    <span className="relative text-white">ПОДПИСАТЬСЯ</span>
+            </button> */}
+            <button className='group absolute top-[50%] -translate-y-[50%] text-black bg-white border-2 border-black cursor-pointer -left-10'>
+            <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                <BsChevronCompactLeft size={45} className='relative bg-white' onClick={prevSlide}/>
             </button>
-            <button className='hidden group-hover:block absolute top-[50%] -translate-y-[50%] text-white bg-black/20 rounded-full border-2 border-white cursor-pointer -right-10'>
-                <BsChevronCompactRight size={45} onClick={nextSlide}/>
+            <button className='group absolute top-[50%] -translate-y-[50%] text-black bg-white border-2 border-black cursor-pointer -right-10'>
+                <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                {/* <span className="absolute inset-0 w-full h-full bg-black border-2 border-[#ffbc13]"></span> */}
+                <BsChevronCompactRight size={45} className='relative bg-white' onClick={nextSlide}/>
             </button>
             <div className="flex relative justify-center py-2 cursor-pointer">
                 {slides.map( (_, slideIndex) => (

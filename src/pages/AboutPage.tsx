@@ -1,6 +1,5 @@
 import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 import Container from "../components/Container";
-import AboutPageTimeline from "./AboutPageTimeline";
 import AboutPageTimelineDouble from "./AboutPageTimelineDouble";
 
 const AboutPage = () => {

@@ -15,6 +15,20 @@
     filter: drop-shadow(0 8px 8px rgba(135, 98, 4, 0.75));
 }
 
+.underlined-caption::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid black;
+}
+
+.homepage-discount-pic {
+    /* filter: drop-shadow(4px 4px 4px rgba(59, 59, 59, 0.5)); */
+    filter: drop-shadow(4px 4px 4px #76000066);
+    /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
+}
+
 /* body {
     height: 100%;
 } */
