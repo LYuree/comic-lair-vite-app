@@ -6,7 +6,6 @@ import ProductCard from "../components/ProductCard/ProductCard";
 const HomePage = () => {
     return ( 
         <>
-        {/* <div className="background"> */}
             <Container>
                 <div>
                     <HomeBanner></HomeBanner>
@@ -22,7 +21,6 @@ const HomePage = () => {
                         </div>
                 </div>
             </Container>
-        {/* </div> */}
             <Container>
             <div className="relative bg-black flex justify-between items-center p-8 my-8">
                 <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">СКИДКА ДО 15% ЗА ПЕРВУЮ ПОКУПКУ</div>
