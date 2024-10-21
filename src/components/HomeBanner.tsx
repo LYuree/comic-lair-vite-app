@@ -48,7 +48,6 @@ const HomeBanner = () => {
             </button>
             <button className='group absolute top-[50%] -translate-y-[50%] text-black bg-white border-2 border-black cursor-pointer -right-10'>
                 <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:translate-x-0 group-hover:translate-y-0"></span>
-                {/* <span className="absolute inset-0 w-full h-full bg-black border-2 border-[#ffbc13]"></span> */}
                 <BsChevronCompactRight size={45} className='relative bg-white' onClick={nextSlide}/>
             </button>
             <div className="flex relative justify-center py-2 cursor-pointer">
