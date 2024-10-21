@@ -42,11 +42,6 @@ const HomeBanner = () => {
             <a href={slides[currentIndex].url}>
                 <div style={{backgroundImage: `url(${slides[currentIndex].src})`}} className="relative w-full h-full bg-center bg-cover"></div>
             </a>
-            {/* <button className="relative inline-block font-medium group py-2 px-4">
-                    <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-[#ffbc13] group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                    <span className="absolute inset-0 w-full h-full bg-black border-2 border-[#ffbc13]"></span>
-                    <span className="relative text-white">ПОДПИСАТЬСЯ</span>
-            </button> */}
             <button className='group absolute top-[50%] -translate-y-[50%] text-black bg-white border-2 border-black cursor-pointer -left-10'>
             <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:translate-x-0 group-hover:translate-y-0"></span>
                 <BsChevronCompactLeft size={45} className='relative bg-white' onClick={prevSlide}/>
