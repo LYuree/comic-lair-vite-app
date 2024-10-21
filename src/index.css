@@ -29,23 +29,6 @@
     /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
 }
 
-/* body {
-    height: 100%;
-} */
-
-/* .background::after {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    opacity: .3;
-    z-index: -1;
-    background: url('/src/images/backgr-avg2_opac30.jpg') repeat;
-    background-size: contain;
-} */
-
 .background {
     /* content: ' ';
     position: absolute;
