@@ -20,13 +20,13 @@ const HomeBanner = () => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    function prevSlide(){
+    const prevSlide() => {
         setCurrentIndex( currentIndex => {
             return (currentIndex === 0? slides.length - 1 : currentIndex - 1)
         });
     }
 
-    function nextSlide(){
+    const nextSlide = () => {
         setCurrentIndex( currentIndex => {
             return (currentIndex === slides.length-1? 0 : currentIndex + 1)
         });
