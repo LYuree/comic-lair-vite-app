@@ -10,7 +10,6 @@ function App() {
 
     return (
         <div className="app">
-            {/* <div className="background"> */}
                 <NavBar/>
                 <Routes>
                     <Route path="/" element={<HomePage/>}></Route>
@@ -18,7 +17,6 @@ function App() {
                     <Route path="/products" element={<ProductsPage/>}></Route>
                 </Routes>
                 <Footer/>
-            {/* </div> */}
         </div>
     )
 }
