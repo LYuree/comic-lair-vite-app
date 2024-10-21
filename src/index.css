@@ -1,3 +1,115 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face{
+    font-family: 'Montserrat';
+    src: url("fonts/Montserrat-VariableFont_wght.ttf");
+}
+
+* {
+    font-family: 'Montserrat', 'Arial', 'sans-serif';
+}
+
+.text-drop-shadow {
+    filter: drop-shadow(0 8px 8px rgba(135, 98, 4, 0.75));
+}
+
+.underlined-caption::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid black;
+}
+
+.homepage-discount-pic {
+    /* filter: drop-shadow(4px 4px 4px rgba(59, 59, 59, 0.5)); */
+    filter: drop-shadow(4px 4px 4px #76000066);
+    /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
+}
+
+.background {
+    /* content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    opacity: .3; */
+    z-index: -1;
+    background: url('/src/images/backgr-avg2_opac30-2.jpg') repeat;
+    background-size: contain;
+}
+
+.children-hover-gray a {
+    display: block;
+    margin: .5rem 0 .5rem 0;
+}
+
+.children-hover-gray a:hover {
+    color: gray;
+}
+
+.timeline {
+    position: relative;
+}
+.timeline::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0;
+    height: 100%;
+    border-left: 2px dashed #ca238d;
+}
+
+.bound-layout {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    width: calc(100% - 60px);
+    max-width: 1080px;
+}
+
+.bound-layout::before,
+.bound-layout::after {
+    display: table;
+}
+
+.timeline-row {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 5rem 0;
+}
+
+.timeline-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.timeline-row::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 38px;
+    left: calc(50% - 12px); /*минус половина ширины, но это оказалось многовато, на мой вкус*/
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    border: 2px solid #97057c;
+    background: linear-gradient(#ca238d, #ffbc13);
+}
+
+.timeline-row > * {
+    flex-basis: 43%;
+}
+
+h2.timeline-header {
+    border-top: 2px solid #97057c;
+    border-bottom: 2px solid #97057c;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+}

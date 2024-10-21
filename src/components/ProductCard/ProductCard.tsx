@@ -12,16 +12,17 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = (({data, key}) => {
     return (
         <div className="
-    col-span-1
-    cursor-pointer
-    bg-white
-    w-full
-    max-w-[210px]
-    hover:outline
-    hover:outline-violet-300
-    hover:outline-2
-    "
-             key={key}>
+            col-span-1
+            cursor-pointer
+            bg-white
+            w-full
+            max-w-[210px]
+            hover:outline
+            hover:outline-violet-300
+            hover:outline-2
+            mx-auto
+            "
+            key={key}>
             <div className="relative overflow-hidden flex justify-center">
                 <picture>
                     <source/>
@@ -36,7 +37,7 @@ const ProductCard: FC<ProductCardProps> = (({data, key}) => {
                 <div
                     className="text-[gray] text-xs font-semibold mt-2">{data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}</div>
                 <div className="text-lg text-center font-bold">{truncateText(data.name)}</div>
-                <div className="flex flex-col items-center text-sm mt-2 text-[gray] font-semibold">
+                <div className="flex flex-col items-center text-sm mt-2 text-[gray] font-semibold max-w-[210px]">
                     {data.discount ?
                         (
                             <>
@@ -50,13 +51,13 @@ const ProductCard: FC<ProductCardProps> = (({data, key}) => {
                         )}
                 </div>
                 <div className="w-full mt-2 flex flex-row justify-between items-center mb-2 px-2">
-                    <TbHeartPlus className="text-3xl mr-4 ml-2 hover:text-[#6207da] grow-0"/>
+                    <TbHeartPlus className="text-3xl mr-4 ml-2 hover:text-[maroon] grow-0"/>
                     <button type="submit"
                             className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5">
                         <span
-                            className="w-56 h-48 bg-[#6207da] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                            className="w-56 h-48 bg-[maroon] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                         <span
-                            className="relative w-full text-center text-[#6207da] transition-colors duration-300 ease-in-out group-hover:text-white">В КОРЗИНУ</span>
+                            className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white">В КОРЗИНУ</span>
                     </button>
                 </div>
             </div>
