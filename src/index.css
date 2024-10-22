@@ -24,9 +24,7 @@
 }
 
 .homepage-discount-pic {
-    /* filter: drop-shadow(4px 4px 4px rgba(59, 59, 59, 0.5)); */
     filter: drop-shadow(4px 4px 4px #76000066);
-    /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
 }
 
 .background {
