@@ -3,9 +3,10 @@ import {FC} from "react";
 import {TbHeartPlus} from "react-icons/tb";
 import {truncateText} from "../../utils/truncateText.ts";
 import {formatPrice} from "../../utils/formatPrice.ts";
+import {IProductItem} from "../../api/products/fetchProducts.ts";
 
 interface ProductCardProps {
-    data: any
+    data: IProductItem
     key: number | string;
 }
 
