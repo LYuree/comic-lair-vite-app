@@ -113,3 +113,26 @@ h2.timeline-header {
     padding: 2rem 0;
     margin-bottom: 1rem;
 }
+
+
+.products-page-grid {
+    --border-color: #c4b5fd;
+    --border-size: 2px;
+    display: grid;
+    margin: 0 auto;
+    justify-content: center;
+    grid-template-columns: repeat(4, minmax(0, 211px));
+    grid-template-rows: repeat(auto-fill, 600px);
+    grid-gap: 1px;
+    display: grid;
+    max-width:800px;
+    border-top: var(--border-size) solid var(--border-color);
+    border-left: var(--border-size) solid var(--border-color);
+}
+
+.products-page-grid > div {
+    padding: 15px;
+    text-align: center;
+    border-bottom: var(--border-size) solid var(--border-color);
+    border-right: var(--border-size) solid var(--border-color);
+  }
