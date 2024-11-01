@@ -47,9 +47,9 @@ export const products =
         },
         {
           id: "64a65a6158b470c6e06959ev",
-          name: "Ipsum-Man: The Long Way Home #1",
+          name: "A Ipsum-Man: The Long Way Home #1",
           description: "Short description",
-          price: 2999,
+          price: 2800,
           discount: .20,
           hit: null,
           releaseDate: null,
@@ -70,7 +70,7 @@ export const products =
           id: "64a65a6158b470c6e06959ez",
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
-          price: 2999,
+          price: 2750,
           discount: .20,
           hit: null,
           releaseDate: null,
@@ -91,7 +91,7 @@ export const products =
           id: "64a65a6158b470c6e06959et",
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
-          price: 2999,
+          price: 2600,
           discount: .20,
           hit: null,
           releaseDate: null,
@@ -112,7 +112,7 @@ export const products =
           id: "64a4ebe300900d44bb50628c",
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
-          price: 2999,
+          price: 2400,
           discount: .15,
           hit: null,
           releaseDate: null,
@@ -130,10 +130,10 @@ export const products =
           reviews: null,
         },
         {
-          id: "64a4ebe300900d44bb50628a",
+          id: "64a4ebe300900d44bb50628hep",
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
-          price: 2999,
+          price: 2450,
           discount: .15,
           hit: null,
           releaseDate: null,
@@ -150,43 +150,133 @@ export const products =
           ],
           reviews: null,
         },
-        // {
-        //   id: "648437b38c44d52b9542e340",
-        //   name: "Ipsum-Man: The Long Way Home #1",
-        //   description: "Short description",
-        //   price: 2999,
-        //   discount: .15,
-        //   brand: "Grim Horse",
-        //   digital: true,
-        //   categories: ["Электронная книга", "Комикс"],
-        //   cover: null,
-        //   inStock: true,
-        //   images: [
-        //     {
-        //       image:
-        //           "../src/images/free comic cover 210-326.png",
-        //     },
-        //   ],
-        //   reviews: [],
-        // },
-        // {
-        //   id: "6499b4887402b0efd394d8f2",
-        //   name: "Ipsum-Man: The Long Way Home #1",
-        //   description: "Short description",
-        //   price: 2999,
-        //   discount: .15,
-        //   brand: "Grim Horse",
-        //   digital: true,
-        //   categories: ["Электронная книга", "Графическая новелла"],
-        //   cover: null,
-        //   inStock: true,
-        //   images: [
-        //     {
-        //       image:
-        //           "../src/images/ipsum.png",
-        //     },
-        //   ],
-        //   reviews: [],
-        // },
+
+
+        {
+          id: "64a4ebe300900d44bb50628nene",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2450,
+          discount: .15,
+          hit: null,
+          releaseDate: null,
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          inStock: true,
+          images: [
+            {
+              image:
+                  "../src/images/free comic cover 210-326.png",
+            },
+          ],
+          reviews: null,
+        },
+        {
+          id: "64a4ebe300900d44bb50628argn",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2450,
+          discount: .15,
+          hit: null,
+          releaseDate: null,
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          inStock: true,
+          images: [
+            {
+              image:
+                  "../src/images/free comic cover 210-326.png",
+            },
+          ],
+          reviews: null,
+        },
+        {
+          id: "64a4ebe300900d44bb50628zyzz",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2450,
+          discount: .15,
+          hit: null,
+          releaseDate: null,
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          inStock: true,
+          images: [
+            {
+              image:
+                  "../src/images/free comic cover 210-326.png",
+            },
+          ],
+          reviews: null,
+        },
+        {
+          id: "64a4ebe300900d44bb50628mehm",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2450,
+          discount: .15,
+          hit: null,
+          releaseDate: null,
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          inStock: true,
+          images: [
+            {
+              image:
+                  "../src/images/free comic cover 210-326.png",
+            },
+          ],
+          reviews: null,
+        },
+        {
+          id: "64a4ebe300900d44bb50628qaq",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2450,
+          discount: .15,
+          hit: null,
+          releaseDate: null,
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          inStock: true,
+          images: [
+            {
+              image:
+                  "../src/images/free comic cover 210-326.png",
+            },
+          ],
+          reviews: null,
+        },
+        {
+          id: "64a4ebe300900d44bb50628pyp",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2450,
+          discount: .15,
+          hit: null,
+          releaseDate: null,
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          inStock: true,
+          images: [
+            {
+              image:
+                  "../src/images/free comic cover 210-326.png",
+            },
+          ],
+          reviews: null,
+        }
       ]
     }
