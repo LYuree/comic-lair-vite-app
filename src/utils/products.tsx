@@ -76,7 +76,7 @@ export const products =
           releaseDate: null,
           brand: "Grim Horse",
           digital: false,
-          categories: ["Печатная книга", "Комикс"],
+          categories: ["Электронная книга", "Комикс"],
           cover: "Мягкая обложка",
           inStock: true,
           images: [
