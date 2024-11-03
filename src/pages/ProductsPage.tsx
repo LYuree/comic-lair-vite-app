@@ -7,7 +7,7 @@ import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { TbArrowsSort } from "react-icons/tb";
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ItemsPerPageRange } from "../store/gridPageStore"
 import { DisplayedProductsStore } from "../store/displayedProductsStore";
 
@@ -36,9 +36,20 @@ const ProductPage = observer(() => {
     const numberOfPages = Math.ceil(displayedProducts.length / itemsPerPage);
     const itemCategories = products.data.map(item => item.categories).flat();
     const uniqueCategories = [...new Set(itemCategories)];
-
-    const handlePageChange = (newPage : number) => {
+    const coverTypes = ["Твердая обложка", "Мягкая обложка"];
+    
+    const handlePageChange = function(newPage : number){
         setCurrentPage(newPage);
+    }
+
+    const checkboxesRef = useRef(Array(uniqueCategories.length)); // массив ссылок на элементы
+                                                // checkbox - фильтры по категориям (длина массива
+                                                // равна числу уникальных категорий)
+    const clearFilters = function () {
+        for (const ref of checkboxesRef.current)
+            if(ref !== null && ref !== undefined) ref.checked = false;
+            // в массиве ссылок откуда-то появляются null -
+            // увы, пока не разобрался, откуда
     }
 
     return ( 
@@ -55,8 +66,7 @@ const ProductPage = observer(() => {
                         />
                 </label>
             </div>
-            <div className="grid-controls flex flex-row w-full gap-24 my-6">
-                <div className="text-2xl font-bold">ОЧИСТИТЬ</div>
+            <div className="grid-controls flex flex-row w-full gap-24 my-6 items-center">
                 <div>Найдено {products.data.length} результатов</div>
                     <div className="flex flex-row ml-auto">
                         <div className="flex flex-row items-center mx-8">
@@ -94,25 +104,33 @@ const ProductPage = observer(() => {
                 </div>
             <div className="flex flex-row content-center">
                 <div className="flex flex-col filters gap-2"> {/*inline-flex?*/}
+                <div className="filter-controls">
+                    <div className="text-2xl font-bold cursor-pointer my-2 hover:text-[maroon] duration-500" onClick={() => clearFilters()}>ПРИМЕНИТЬ </div>
+                    <div className="text-2xl font-bold cursor-pointer text-[maroon]" onClick={() => clearFilters()}>ОЧИСТИТЬ</div>
+                </div>
                     <div className="flex flex-col gap-1">
                         <h2 className="font-bold">КАТЕГОРИИ</h2>
-                        {uniqueCategories.map((category) => 
+                        {uniqueCategories.map((category, i) => 
                             <label htmlFor="" className="block">
-                                <input type="checkbox" name="" id="" />
+                                <input type="checkbox" name="" id=""
+                                key={crypto.randomUUID()}
+                                ref={element => checkboxesRef.current.push(element)}
+                                    />
                                     {category}
                             </label>
                         )}
                     </div>
                     <div className="flex flex-col gap-1">
                         <h2 className="font-bold">ОБЛОЖКА</h2>
-                        <label htmlFor="" className="block">
-                            <input type="checkbox" name="" id="" />
-                            Твёрдая обложка
-                        </label>
-                        <label htmlFor="" className="block">
-                            <input type="checkbox" name="" id="" />
-                            Мягкая обложка
-                        </label>
+                        {coverTypes.map((coverType, i) => 
+                            <label htmlFor="" className="block">
+                                <input type="checkbox" name="" id=""
+                                key={crypto.randomUUID()}
+                                ref={element => checkboxesRef.current.push(element)}
+                                    />
+                                    {coverType}
+                            </label>
+                        )}
                     </div>
                 </div>
                 <div className="bg-white ml-16">
