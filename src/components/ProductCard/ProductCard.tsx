@@ -10,7 +10,7 @@ interface ProductCardProps {
     key: number | string;
 }
 
-const ProductCard: FC<ProductCardProps> = (({data, key}) => {
+const ProductCard: FC<ProductCardProps> = (({data}) => {
     return (
         <div className="
             col-span-1
@@ -23,7 +23,7 @@ const ProductCard: FC<ProductCardProps> = (({data, key}) => {
             hover:outline-2
             mx-auto
             "
-            key={key}>
+            key={data.id}>
             <div className="relative overflow-hidden flex justify-center">
                 <picture>
                     <source/>

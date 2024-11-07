@@ -21,8 +21,9 @@ const ProductPage = observer(() => {
     // для этого мы импортируем и productsStore тоже
 
     const {
-        productsStore: {products, fetchProducts, productsLoading, sortingMethod, setSortingMethod},
-        gridPageStore : {currentPage, itemsPerPage, gridLoading, setItemsPerPage, setCurrentPage
+        productsStore: {products, fetchProducts, productsLoading, sortingMethod, setSortingMethod,
+            displayedProducts, setDisplayedProducts},
+        gridPageStore : {currentPage, itemsPerPage, gridLoading, setItemsPerPage, setCurrentPage,
             // numberOfPages
         },
     } = rootStore;
@@ -32,8 +33,8 @@ const ProductPage = observer(() => {
     }, []);
 
     // if (productsLoading || gridLoading) return <div>Loading</div>
-    const displayedProducts = products.data.slice(0, products.data.length);
-    const numberOfPages = Math.ceil(displayedProducts.length / itemsPerPage);
+    const numberOfPages = Math.ceil(displayedProducts.data.length / itemsPerPage);
+    // console.log(displayedProducts.data);
     const itemCategories = products.data.map(item => item.categories).flat();
     const uniqueCategories = [...new Set(itemCategories)];
     const coverTypes = ["Твердая обложка", "Мягкая обложка"];
@@ -52,6 +53,19 @@ const ProductPage = observer(() => {
             // увы, пока не разобрался, откуда
     }
 
+    const applyFilters = function() {
+        const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+        for (const ref of checkboxesRef.current){
+            if(ref !== null && ref !== undefined && ref.checked === true)
+                if(ref.name === "category") {
+                    newDisplayedProducts.data = newDisplayedProducts.data.filter(
+                        (product: IProductItem) => (product.categories.includes(ref.value))
+                    );
+                    setDisplayedProducts(newDisplayedProducts);
+                }
+        }
+    }
+
     return ( 
         <Container>
             <div className="grow relative flex items-center my-12">
@@ -67,7 +81,7 @@ const ProductPage = observer(() => {
                 </label>
             </div>
             <div className="grid-controls flex flex-row w-full gap-24 my-6 items-center">
-                <div>Найдено {products.data.length} результатов</div>
+                <div>Найдено {displayedProducts.data.length} результатов</div>
                     <div className="flex flex-row ml-auto">
                         <div className="flex flex-row items-center mx-8">
                             <TfiLayoutGrid3 />
@@ -105,37 +119,41 @@ const ProductPage = observer(() => {
             <div className="flex flex-row content-center">
                 <div className="flex flex-col filters gap-2"> {/*inline-flex?*/}
                 <div className="filter-controls">
-                    <div className="text-2xl font-bold cursor-pointer my-2 hover:text-[maroon] duration-500" onClick={() => clearFilters()}>ПРИМЕНИТЬ </div>
+                    <div className="text-2xl font-bold cursor-pointer my-2 hover:text-[maroon] duration-500" onClick={() => applyFilters()}>ПРИМЕНИТЬ</div>
                     <div className="text-2xl font-bold cursor-pointer text-[maroon]" onClick={() => clearFilters()}>ОЧИСТИТЬ</div>
                 </div>
-                    <div className="flex flex-col gap-1">
-                        <h2 className="font-bold">КАТЕГОРИИ</h2>
+                    <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
+                        <h2 className="font-bold" key={crypto.randomUUID()}>КАТЕГОРИИ</h2>
                         {uniqueCategories.map((category, i) => 
-                            <label htmlFor="" className="block">
-                                <input type="checkbox" name="" id=""
+                            <label htmlFor="" className="block" key={crypto.randomUUID()}>
+                                <input type="checkbox" name="category"
+                                id={category}
                                 key={crypto.randomUUID()}
-                                ref={element => checkboxesRef.current.push(element)}
+                                // ref={element => checkboxesRef.current.push(element)}
+                                ref={element => checkboxesRef.current[i] = element}
+                                value={category}
                                     />
                                     {category}
                             </label>
                         )}
                     </div>
-                    <div className="flex flex-col gap-1">
-                        <h2 className="font-bold">ОБЛОЖКА</h2>
+                    <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
+                        <h2 className="font-bold" key={crypto.randomUUID()}>ОБЛОЖКА</h2>
                         {coverTypes.map((coverType, i) => 
-                            <label htmlFor="" className="block">
+                            <label htmlFor="" className="block" key={crypto.randomUUID()}>
                                 <input type="checkbox" name="" id=""
                                 key={crypto.randomUUID()}
-                                ref={element => checkboxesRef.current.push(element)}
+                                // ref={element => checkboxesRef.current[checkboxesRef.current.length+i] = element}
                                     />
                                     {coverType}
                             </label>
                         )}
                     </div>
                 </div>
+                
                 <div className="bg-white ml-16">
                     <div className="products-page-grid">
-                        {products.data.slice(
+                        {displayedProducts.data.slice(
                                 (currentPage-1)*itemsPerPage,
                                 currentPage*itemsPerPage
                             )
@@ -145,6 +163,7 @@ const ProductPage = observer(() => {
                     </div>
                 </div>
             </div>
+            
             {(numberOfPages > 1 ?
                 <div className="flex flex-row justify-center my-12">
                     <ul className="grid-pagination-controls flex gap-6 text-2xl">
@@ -152,7 +171,7 @@ const ProductPage = observer(() => {
                         <li className="page-item" onClick={() => handlePageChange(currentPage-1)}><a>{"<"}</a></li>
                         {(currentPage > 3 ? <li className="page-item">...</li> : "")}
                         
-                        {[...Array(Math.ceil(displayedProducts.length / itemsPerPage))].map((_, i) => (
+                        {[...Array(Math.ceil(displayedProducts.data.length / itemsPerPage))].map((_, i) => (
                             <li
                             className={`page__number ${
                                 currentPage === i + 1 ? "selected__page__number" : ""
@@ -163,8 +182,6 @@ const ProductPage = observer(() => {
                             <a>{i + 1}</a>
                             </li>
                         ))}
-                        
-
                         {/* {(currentPage < numberOfPages - 2 ? <li className="page-item">...</li> : <li className="page-item"><a>{numberOfPages}</a></li>)} */}
                         <li className="page-item" onClick={() => handlePageChange(currentPage+1)}><a>{">"}</a></li>
                         <li className="page-item" onClick={() => handlePageChange(numberOfPages)}><a>{">>"}</a></li>

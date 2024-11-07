@@ -7,7 +7,6 @@ export class GridPageStore {
 
     currentPage: number = 1;
     itemsPerPage: number = 12;
-    // numberOfPages: number = 0; //0?
     gridLoading: boolean = false;
     gridError: null | string = null;
 

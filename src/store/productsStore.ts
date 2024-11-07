@@ -15,6 +15,9 @@ export class ProductsStore {
     products: ProductsData = {
         data: []
     };
+    displayedProducts : ProductsData = {
+        data: []
+    };
     productsLoading: boolean = false; // Loader при загрузке комиксов
     sortingMethod: string = "newest_first"; // для сортировки
                         // по популярности - у нас пока не предусмотрено
@@ -27,6 +30,7 @@ export class ProductsStore {
 
     /*Сеттеры*/
     setProducts = (products: ProductsData) => (this.products = products);
+    setDisplayedProducts = (displayedProducts: ProductsData) => (this.displayedProducts = displayedProducts);
     setError = (error: string) => (this.error = error);
     setFieldsLoading = (loading: boolean) => (this.productsLoading = loading);
     setSortingMethod = (sortingMethod: string) => {
@@ -76,12 +80,14 @@ export class ProductsStore {
             // вариант с рабочим бэком
             // const productsData = await fetchProducts();
             // this.setProducts(productsData);
+            // this.setDisplayedProducts(productsData);
             // this.setFieldsLoading(false);
 
             // вариант на моках
             setTimeout(async ()=> {
                 const productsData = await fetchProducts();
                 this.setProducts(productsData);
+                this.setDisplayedProducts(JSON.parse(JSON.stringify(productsData)));
                 this.setFieldsLoading(false);
             }, 2000)
 
