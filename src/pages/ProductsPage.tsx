@@ -49,7 +49,7 @@ const ProductPage = observer(() => {
 
     useEffect(() => {
         setCategoryCheckboxes(uniqueCategoryCheckboxes);
-    }, [])
+    }, [products])
     
     const handlePageChange = function(newPage : number){
         setCurrentPage(newPage);
@@ -66,15 +66,38 @@ const ProductPage = observer(() => {
     }
 
     const applyFilters = function() {
-        const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+        const newDisplayedProducts = JSON.parse(JSON.stringify(products)); //stringify displayProducts?
+        // const checkedCategories = [];
         for (const ref of checkboxesRef.current){
             if(ref !== null && ref !== undefined && ref.checked === true)
                 if(ref.name === "category") {
+                    // checkedCategories.push(ref.value);
                     newDisplayedProducts.data = newDisplayedProducts.data.filter(
                         (product: IProductItem) => (product.categories.includes(ref.value))
                     );
                     setDisplayedProducts(newDisplayedProducts);
                 }
+        }
+        // хотел написать более оптимальным способом, но почему-то все продукты удаляются...
+
+        // if (Array.isArray(checkedCategories) && checkedCategories.length !== 0){
+        //     console.log(newDisplayedProducts.data, checkedCategories);
+        //     for (const category in checkedCategories) {
+        //         newDisplayedProducts.data = newDisplayedProducts.data.filter(
+        //                 (product: IProductItem) => (product.categories.includes(category))
+        //             );
+        //     }
+        //     setDisplayedProducts(newDisplayedProducts);
+        // }
+    }
+
+    const handleSearch = function(textInput: string){
+        const newDisplayedProducts = JSON.parse(JSON.stringify(displayedProducts));
+        if (textInput) {
+            newDisplayedProducts.data = newDisplayedProducts.data.filter(
+                (product: IProductItem) => (product.categories.includes(ref.value))
+            );
+            setDisplayedProducts(newDisplayedProducts);
         }
     }
 

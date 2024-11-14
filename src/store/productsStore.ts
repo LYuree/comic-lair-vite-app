@@ -40,7 +40,7 @@ export class ProductsStore {
         }
         // фокусы с JSON здесь заменяют функцию structuredClone,
         // которая почему-то не работает
-        const sortedProducts = JSON.parse(JSON.stringify((this.products)));
+        const sortedProducts = JSON.parse(JSON.stringify((this.displayedProducts)));
         switch (sortingMethod){
             case "popular_first" :
                 console.log("Сортировка по популярности ещё не внедрена...");
@@ -70,7 +70,7 @@ export class ProductsStore {
                 this.setError("Ошибка в типе сортировки (выполнен вход в ветку switch).")
                 break;
         }
-        this.setProducts(sortedProducts);
+        this.setDisplayedProducts(sortedProducts);
     }
 
     // Получение и запись комиксов
