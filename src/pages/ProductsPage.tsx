@@ -24,6 +24,7 @@ const ProductPage = observer(() => {
         productsStore: {products, fetchProducts, productsLoading, sortingMethod, setSortingMethod,
             displayedProducts, setDisplayedProducts},
         gridPageStore : {currentPage, itemsPerPage, gridLoading, setItemsPerPage, setCurrentPage,
+            categoryCheckboxes, setCategoryCheckboxes, toggleCategoryCheckbox
             // numberOfPages
         },
     } = rootStore;
@@ -37,7 +38,18 @@ const ProductPage = observer(() => {
     // console.log(displayedProducts.data);
     const itemCategories = products.data.map(item => item.categories).flat();
     const uniqueCategories = [...new Set(itemCategories)];
+    const uniqueCategoryCheckboxes = uniqueCategories.map(category => {
+        return {
+            id: crypto.randomUUID(),
+            categoryName: category,
+            checked: false
+        }
+    })
     const coverTypes = ["Твердая обложка", "Мягкая обложка"];
+
+    useEffect(() => {
+        setCategoryCheckboxes(uniqueCategoryCheckboxes);
+    }, [])
     
     const handlePageChange = function(newPage : number){
         setCurrentPage(newPage);
@@ -124,16 +136,17 @@ const ProductPage = observer(() => {
                 </div>
                     <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
                         <h2 className="font-bold" key={crypto.randomUUID()}>КАТЕГОРИИ</h2>
-                        {uniqueCategories.map((category, i) => 
+                        {categoryCheckboxes.map((categoryCheckbox, i) => 
                             <label htmlFor="" className="block" key={crypto.randomUUID()}>
                                 <input type="checkbox" name="category"
-                                id={category}
-                                key={crypto.randomUUID()}
-                                // ref={element => checkboxesRef.current.push(element)}
+                                id={categoryCheckbox.id}
+                                key={categoryCheckbox.id}
                                 ref={element => checkboxesRef.current[i] = element}
-                                value={category}
+                                value={categoryCheckbox.categoryName}
+                                checked={categoryCheckbox.checked}
+                                onChange={e => {toggleCategoryCheckbox(categoryCheckbox.id, e.target.checked)}}
                                     />
-                                    {category}
+                                    {categoryCheckbox.categoryName}
                             </label>
                         )}
                     </div>
