@@ -16,6 +16,7 @@ export class GridPageStore {
     gridLoading: boolean = false;
     gridError: null | string = null;
     categoryCheckboxes: categoryCheckbox[] = [];
+    searchFormValue: string = "";
 
     constructor () {
         makeAutoObservable(this);
@@ -33,6 +34,8 @@ export class GridPageStore {
     setCategoryCheckboxes = (categoryCheckboxes: categoryCheckbox[]) => {
         this.categoryCheckboxes = categoryCheckboxes;
     };
+
+    setSearchFormValue = (textInput: string) => {this.searchFormValue = textInput};
 
     toggleCategoryCheckbox = (id: string, checkedValue: boolean) => {
         this.setCategoryCheckboxes(this.categoryCheckboxes.map(checkbox => {

@@ -24,7 +24,8 @@ const ProductPage = observer(() => {
         productsStore: {products, fetchProducts, productsLoading, sortingMethod, setSortingMethod,
             displayedProducts, setDisplayedProducts},
         gridPageStore : {currentPage, itemsPerPage, gridLoading, setItemsPerPage, setCurrentPage,
-            categoryCheckboxes, setCategoryCheckboxes, toggleCategoryCheckbox
+            categoryCheckboxes, setCategoryCheckboxes, toggleCategoryCheckbox,
+            searchFormValue, setSearchFormValue
             // numberOfPages
         },
     } = rootStore;
@@ -66,7 +67,14 @@ const ProductPage = observer(() => {
     }
 
     const applyFilters = function() {
-        const newDisplayedProducts = JSON.parse(JSON.stringify(products)); //stringify displayProducts?
+        //почему не stringify(displayProducts)?
+        // при смене набора фильтров
+        // новый набор отображаемых продуктов
+        // будет формировать не из всех
+        // доступных на сайте,
+        // а из предыдущего результата
+        // фильтрации
+        const newDisplayedProducts = JSON.parse(JSON.stringify(products));
         // const checkedCategories = [];
         for (const ref of checkboxesRef.current){
             if(ref !== null && ref !== undefined && ref.checked === true)
@@ -91,14 +99,22 @@ const ProductPage = observer(() => {
         // }
     }
 
-    const handleSearch = function(textInput: string){
-        const newDisplayedProducts = JSON.parse(JSON.stringify(displayedProducts));
-        if (textInput) {
-            newDisplayedProducts.data = newDisplayedProducts.data.filter(
-                (product: IProductItem) => (product.categories.includes(ref.value))
+    const handleSearch = function(inputText: string){
+        // toLocaleLowerCase лучше?
+        setSearchFormValue(inputText);
+        const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+        if (inputText !== null && inputText !== undefined) {
+            // автора тоже надо бы учитывать при сортировке, но мы пока не завели такое поле
+            newDisplayedProducts.data = newDisplayedProducts.data.filter(                
+                (product: IProductItem) => {
+                    console.log()
+                    return (product.name.toLowerCase().indexOf(inputText.toLowerCase()) !== -1);
+                }
             );
+            console.log(newDisplayedProducts.data.length);
             setDisplayedProducts(newDisplayedProducts);
-        }
+        } 
+        // else setDisplayedProducts(products);
     }
 
     return ( 
@@ -108,6 +124,8 @@ const ProductPage = observer(() => {
                     className="relative outline-none bg-transparent border-2 border-black
                     w-full py-1 px-2
                     cursor-pointer"
+                    value={searchFormValue}
+                    onChange={e => handleSearch(e.target.value)}
                     />
                 <label htmlFor="grid-search-form" className="absolute right-0 mr-2">
                     <IoSearch className="relative right-0
