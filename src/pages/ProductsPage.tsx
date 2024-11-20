@@ -26,7 +26,6 @@ const ProductPage = observer(() => {
         gridPageStore : {currentPage, itemsPerPage, gridLoading, setItemsPerPage, setCurrentPage,
             categoryCheckboxes, setCategoryCheckboxes, toggleCategoryCheckbox,
             searchFormValue, setSearchFormValue
-            // numberOfPages
         },
     } = rootStore;
 
@@ -36,7 +35,6 @@ const ProductPage = observer(() => {
 
     // if (productsLoading || gridLoading) return <div>Loading</div>
     const numberOfPages = Math.ceil(displayedProducts.data.length / itemsPerPage);
-    // console.log(displayedProducts.data);
     const itemCategories = products.data.map(item => item.categories).flat();
     const uniqueCategories = [...new Set(itemCategories)];
     const uniqueCategoryCheckboxes = uniqueCategories.map(category => {
@@ -75,11 +73,9 @@ const ProductPage = observer(() => {
         // а из предыдущего результата
         // фильтрации
         const newDisplayedProducts = JSON.parse(JSON.stringify(products));
-        // const checkedCategories = [];
         for (const ref of checkboxesRef.current){
             if(ref !== null && ref !== undefined && ref.checked === true)
                 if(ref.name === "category") {
-                    // checkedCategories.push(ref.value);
                     newDisplayedProducts.data = newDisplayedProducts.data.filter(
                         (product: IProductItem) => (product.categories.includes(ref.value))
                     );
@@ -174,7 +170,7 @@ const ProductPage = observer(() => {
                     </div>
                 </div>
             <div className="flex flex-row content-center">
-                <div className="flex flex-col filters gap-2"> {/*inline-flex?*/}
+                <div className="flex flex-col filters gap-2">
                 <div className="filter-controls">
                     <div className="text-2xl font-bold cursor-pointer my-2 hover:text-[maroon] duration-500" onClick={() => applyFilters()}>ПРИМЕНИТЬ</div>
                     <div className="text-2xl font-bold cursor-pointer text-[maroon]" onClick={() => clearFilters()}>ОЧИСТИТЬ</div>
@@ -201,7 +197,6 @@ const ProductPage = observer(() => {
                             <label htmlFor="" className="block" key={crypto.randomUUID()}>
                                 <input type="checkbox" name="" id=""
                                 key={crypto.randomUUID()}
-                                // ref={element => checkboxesRef.current[checkboxesRef.current.length+i] = element}
                                     />
                                     {coverType}
                             </label>
@@ -245,7 +240,6 @@ const ProductPage = observer(() => {
                             <a>{i + 1}</a>
                             </li>
                         ))}
-                        {/* {(currentPage < numberOfPages - 2 ? <li className="page-item">...</li> : <li className="page-item"><a>{numberOfPages}</a></li>)} */}
                         <li className="page-item"
                             onClick={() => {
                                 if(currentPage < numberOfPages) handlePageChange(currentPage+1)}
