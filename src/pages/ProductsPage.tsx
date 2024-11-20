@@ -139,7 +139,10 @@ const ProductPage = observer(() => {
                         <div className="flex flex-row items-center mx-8">
                             <TfiLayoutGrid3 />
                             <select className="product-grid-page-select" name="" id=""
-                                onChange={ e => {setItemsPerPage(+e.target.value)}}
+                                onChange={ e => {
+                                    setItemsPerPage(+e.target.value);
+                                    handlePageChange(1);
+                                }}
                                 value={itemsPerPage}
                                 >
                                 <option value="3">3</option> {/* опция для отладки */}
@@ -156,6 +159,7 @@ const ProductPage = observer(() => {
                                 value={sortingMethod}
                                 onChange={e => {
                                     setSortingMethod(e.target.value);
+                                    handlePageChange(1);
                                 }}
                                 >
                                 <option value="popular_first">По популярности</option>
