@@ -23,11 +23,11 @@ const NavBar = () => {
                 justify-between
                 gap-3">
                     <a href="/" className="flex items-center gap-3 p-2">
-                        <picture>
+                        <picture className="relative logo-shadow border-2 border-white">
                             <source />
                             <img
                                 src="/src/images/noveltown_logo_v2.png"
-                                alt="Comic Lair" />
+                                alt="The Novel Town Logo" />
                         </picture>
                         <div className="cflex flex-col">
                             <p className="font-bold text-lg">The Novel Town</p>

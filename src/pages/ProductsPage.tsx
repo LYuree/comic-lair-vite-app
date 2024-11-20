@@ -113,7 +113,7 @@ const ProductPage = observer(() => {
             );
             console.log(newDisplayedProducts.data.length);
             setDisplayedProducts(newDisplayedProducts);
-        } 
+        }
         // else setDisplayedProducts(products);
     }
 
@@ -222,7 +222,12 @@ const ProductPage = observer(() => {
                 <div className="flex flex-row justify-center my-12">
                     <ul className="grid-pagination-controls flex gap-6 text-2xl">
                         <li className="page-item" onClick={() => handlePageChange(1)}><a href="#">{"<<"}</a></li>
-                        <li className="page-item" onClick={() => handlePageChange(currentPage-1)}><a>{"<"}</a></li>
+                        <li className="page-item"
+                            onClick={() => {
+                                if(currentPage > 1) handlePageChange(currentPage-1)}
+                            }>
+                                <a>{"<"}</a>
+                        </li>
                         {(currentPage > 3 ? <li className="page-item">...</li> : "")}
                         
                         {[...Array(Math.ceil(displayedProducts.data.length / itemsPerPage))].map((_, i) => (
@@ -237,7 +242,12 @@ const ProductPage = observer(() => {
                             </li>
                         ))}
                         {/* {(currentPage < numberOfPages - 2 ? <li className="page-item">...</li> : <li className="page-item"><a>{numberOfPages}</a></li>)} */}
-                        <li className="page-item" onClick={() => handlePageChange(currentPage+1)}><a>{">"}</a></li>
+                        <li className="page-item"
+                            onClick={() => {
+                                if(currentPage < numberOfPages) handlePageChange(currentPage+1)}
+                                }>
+                                <a>{">"}</a>
+                            </li>
                         <li className="page-item" onClick={() => handlePageChange(numberOfPages)}><a>{">>"}</a></li>
                     </ul>
                 </div>

@@ -73,6 +73,40 @@ export class ProductsStore {
         this.setDisplayedProducts(sortedProducts);
     }
 
+    sortProducts = () => {
+        const sortedProducts = JSON.parse(JSON.stringify((this.displayedProducts)));
+        switch (this.sortingMethod){
+            case "popular_first" :
+                console.log("Сортировка по популярности ещё не внедрена...");
+                break;
+            case "cheapest_first" :
+                sortedProducts.data.sort((a: IProductItem, b: IProductItem) => a['price'] - b['price']);
+                break;
+            case "expensive_first" :
+                sortedProducts.data.sort((a: IProductItem, b: IProductItem) => b['price'] - a['price']);
+                break;
+            case "A_Z":
+                sortedProducts.data.sort((a: IProductItem, b: IProductItem) => a['name'].localeCompare(b['name']));
+                break;
+            case "Z_A":
+                sortedProducts.data.sort((a: IProductItem, b: IProductItem) => a['name'].localeCompare(b['name'])).reverse();
+                break;
+            // сортировку по дате пока не сделал,
+            // нужно определиться с форматом строки даты
+            // (я думаю, не имеет смысла учитывать
+            // часы и тайм-зоны при рассмотрении
+            // даты выхода комикса)
+
+            // case "oldest_first":
+                // sortedProducts.data.sort((a: IProductItem, b: IProductItem) => new Date(a['releaseDate']) -  new Date(b['releaseDate'])).reverse();
+                // break;
+            default:
+                this.setError("Ошибка в типе сортировки (выполнен вход в ветку switch).")
+                break;
+        }
+        this.setDisplayedProducts(sortedProducts);
+    }
+
     // Получение и запись комиксов
     fetchProducts = async (): Promise<void> => {
         try {
