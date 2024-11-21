@@ -9,7 +9,6 @@ import { observer } from "mobx-react";
 import { rootStore } from "../store";
 import { useEffect, useRef } from "react";
 import { ItemsPerPageRange } from "../store/gridPageStore"
-import { DisplayedProductsStore } from "../store/displayedProductsStore";
 
 const ProductPage = observer(() => {
 

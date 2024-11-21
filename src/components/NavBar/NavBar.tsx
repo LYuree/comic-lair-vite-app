@@ -51,7 +51,9 @@ const NavBar = () => {
                     </div>
                     <div className="flex items-center gap-3">
                         <AiOutlineHeart className="cursor-pointer text-2xl hover:text-slate-400" />
-                        <AiOutlineShopping className="cursor-pointer text-2xl hover:text-slate-400"/>
+                        <a href="/cart">
+                            <AiOutlineShopping className="cursor-pointer text-2xl hover:text-slate-400"/>
+                        </a>
                         <a href="mailto:comiclairsales@gmail.com"
                             className="hover:underline font-bold text-lg">
                             comiclairsales@gmail.com

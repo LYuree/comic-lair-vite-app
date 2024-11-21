@@ -15,7 +15,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -36,7 +36,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -57,7 +57,7 @@ export const products =
           digital: true,
           categories: ["Электронная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -78,7 +78,7 @@ export const products =
           digital: true,
           categories: ["Электронная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -99,7 +99,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -120,7 +120,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -141,7 +141,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -164,7 +164,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -185,7 +185,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -206,7 +206,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -227,7 +227,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -248,7 +248,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
@@ -269,7 +269,7 @@ export const products =
           digital: false,
           categories: ["Печатная книга", "Комикс"],
           cover: "Мягкая обложка",
-          inStock: true,
+          amount: 100,
           images: [
             {
               image:
