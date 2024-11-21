@@ -20,8 +20,7 @@ import axios from "axios";
 //     }
 
     // вариант на моках
-    export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<void> => {
-        await new Promise(resolve => {
-            resolve(`Запрос на удаление товара из корзины, userId: ${userId}, itemId: ${cartProductId}`);
-        })
+    export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<boolean> => {
+        console.log(`Запрос на удаление товара из корзины, userId: ${userId}, itemId: ${cartProductId}`);
+        return new Promise(resolve => resolve(true));
     }

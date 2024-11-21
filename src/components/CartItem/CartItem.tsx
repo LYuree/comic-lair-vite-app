@@ -56,6 +56,8 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
                 <div className="w-full mt-2 flex flex-row justify-between items-center mb-2 px-2">
                     <TbHeartPlus className="text-3xl mr-4 ml-2 hover:text-[maroon] grow-0"/>
                     <input type="number" name="" id="" value={data.amount}
+                    min={1}
+                    // max={}
                         className="max-w-[50px] mr-2 border-0
                         outline outline-1 outline-grey px-1"
                         onChange={e => setAmount(data.id, e.target.value)}
