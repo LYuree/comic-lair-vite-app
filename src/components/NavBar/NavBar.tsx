@@ -1,8 +1,18 @@
 import { IoSearch } from "react-icons/io5";
 import Container from "../Container";
 import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
+    const redirectToSignIn = () => {
+        // (Cookies.get('oauth'))
+    }
+
+
+
     return (  <div
     className="
     sticky

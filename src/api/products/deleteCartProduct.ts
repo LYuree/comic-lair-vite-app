@@ -19,8 +19,8 @@ import axios from "axios";
 //         return Promise.resolve(`${error}`); //или reject? и нужен ли вообще этот промис...
 //     }
 
-    // вариант на моках
-    export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<boolean> => {
-        console.log(`Запрос на удаление товара из корзины, userId: ${userId}, itemId: ${cartProductId}`);
-        return new Promise(resolve => resolve(true));
-    }
+// вариант на моках
+export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<boolean> => {
+    console.log(`Запрос на удаление товара из корзины, userId: ${userId}, itemId: ${cartProductId}`);
+    return new Promise(resolve => resolve(true));
+}
