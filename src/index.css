@@ -24,19 +24,10 @@
 }
 
 .homepage-discount-pic {
-    /* filter: drop-shadow(4px 4px 4px rgba(59, 59, 59, 0.5)); */
     filter: drop-shadow(4px 4px 4px #76000066);
-    /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
 }
 
 .background {
-    /* content: ' ';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    opacity: .3; */
     z-index: -1;
     background: url('/src/images/backgr-avg2_opac30-2.jpg') repeat;
     background-size: contain;
@@ -112,4 +103,52 @@ h2.timeline-header {
     border-bottom: 2px solid #97057c;
     padding: 2rem 0;
     margin-bottom: 1rem;
+}
+
+
+.products-page-grid {
+    --border-color: #c4b5fd;
+    --border-size: 2px;
+    display: grid;
+    margin: 0 auto;
+    justify-content: center;
+    grid-template-columns: repeat(4, minmax(0, 211px));
+    grid-template-rows: repeat(auto-fill, 600px);
+    grid-gap: 1px;
+    display: grid;
+    max-width:800px;
+    border-top: var(--border-size) solid var(--border-color);
+    border-left: var(--border-size) solid var(--border-color);
+}
+
+.products-page-grid > div {
+    padding: 15px;
+    text-align: center;
+    border-bottom: var(--border-size) solid var(--border-color);
+    border-right: var(--border-size) solid var(--border-color);
+  }
+
+.product-grid-page-select {
+    padding: .25rem .5rem;
+    margin: 0 .5rem;
+    outline: 1px solid gray;
+}
+
+.filters input {
+    margin: 0 .25rem 0 0;
+}
+
+.grid-pagination-controls .page__number {
+    padding: 0 .75rem;
+}
+
+.grid-pagination-controls > li:hover {
+    color: maroon;
+    cursor: pointer;
+}
+
+.grid-pagination-controls .selected__page__number {
+    background-color: maroon;
+    color: white;
+    font-weight: bold;
 }

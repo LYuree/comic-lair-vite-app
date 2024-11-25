@@ -5,12 +5,12 @@ import {truncateText} from "../../utils/truncateText.ts";
 import {formatPrice} from "../../utils/formatPrice.ts";
 import {IProductItem} from "../../api/products/fetchProducts.ts";
 
-interface ProductCardProps {
+interface GridProductCardProps {
     data: IProductItem
     key: number | string;
 }
 
-const ProductCard: FC<ProductCardProps> = (({data}) => {
+const GridProductCard: FC<GridProductCardProps> = (({data, key}) => {
     return (
         <div className="
             col-span-1
@@ -23,7 +23,7 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
             hover:outline-2
             mx-auto
             "
-            key={data.id}>
+            key={key}>
             <div className="relative overflow-hidden flex justify-center">
                 <picture>
                     <source/>
@@ -66,4 +66,4 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
     );
 });
 
-export default ProductCard;
+export default GridProductCard;

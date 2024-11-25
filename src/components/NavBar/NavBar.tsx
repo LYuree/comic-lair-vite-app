@@ -23,11 +23,11 @@ const NavBar = () => {
                 justify-between
                 gap-3">
                     <a href="/" className="flex items-center gap-3 p-2">
-                        <picture>
+                        <picture className="relative logo-shadow border-2 border-white">
                             <source />
                             <img
                                 src="/src/images/noveltown_logo_v2.png"
-                                alt="Comic Lair" />
+                                alt="The Novel Town Logo" />
                         </picture>
                         <div className="cflex flex-col">
                             <p className="font-bold text-lg">The Novel Town</p>
@@ -65,12 +65,10 @@ const NavBar = () => {
                 text-sm
                 ">
                     <li><a href="/" className="hover:underline">Главная</a></li>
-                    <li><a href="#" className="hover:underline">Комиксы</a></li>
-                    <li><a href="#" className="hover:underline">Графические новеллы</a></li>
+                    <li><a href="/products" className="hover:underline">Товары</a></li>
                     <li><a href="/about" className="hover:underline">О нас</a></li>
-                    <li><a href="#" className="hover:underline">Отзывы</a></li>
-                    <li><a href="#" className="hover:underline">Контакты</a></li>
                     <li><a href="#" className="hover:underline">Купим у ВАС!</a></li>
+                    <li><a href="/sign_in" className="font-bold hover:underline">ВОЙТИ</a></li>
                 </ul>
                 
             </Container>
