@@ -1,8 +1,6 @@
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
-import { DiVim } from "react-icons/di";
 import { useEffect } from "react";
-import { IProductItem } from "../api/products/fetchProducts";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
 import { checkout } from "../api/products/checkout";
