@@ -38,8 +38,6 @@ export class GridPageStore {
     setSearchFormValue = (textInput: string) => {this.searchFormValue = textInput};
 
     toggleCategoryCheckbox = (id: string, checkedValue: boolean) => {
-        this.setCategoryCheckboxes(this.categoryCheckboxes.map(checkbox => {
-            return (checkbox.id === id ? {...checkbox, checked: checkedValue} : checkbox)
-        }));
+        this.setCategoryCheckboxes(this.categoryCheckboxes.map(checkbox => (checkbox.id === id ? {...checkbox, checked: checkedValue} : checkbox) ));
     }
 }

@@ -58,7 +58,7 @@ const ProductPage = observer(() => {
                                                 // равна числу уникальных категорий)
     const clearFilters = function () {
         for (const ref of checkboxesRef.current)
-            if(ref !== null && ref !== undefined) ref.checked = false;
+            if(ref) ref.checked = false;
             // в массиве ссылок откуда-то появляются null -
             // увы, пока не разобрался, откуда
     }
@@ -73,7 +73,7 @@ const ProductPage = observer(() => {
         // фильтрации
         const newDisplayedProducts = JSON.parse(JSON.stringify(products));
         for (const ref of checkboxesRef.current){
-            if(ref !== null && ref !== undefined && ref.checked === true)
+            if(ref && ref.checked)
                 if(ref.name === "category") {
                     newDisplayedProducts.data = newDisplayedProducts.data.filter(
                         (product: IProductItem) => (product.categories.includes(ref.value))
