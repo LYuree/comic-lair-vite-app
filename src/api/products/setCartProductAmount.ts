@@ -20,6 +20,12 @@ import authHeader from "../../services/auth-header";
 
 //         } catch (error) {
 //             console.error(`Error updating cart product amount: ${error}`);
+//              if(error.response.status === 401){
+//                  AuthService.logout();
+//                  setShowModeratorBoard(false);
+//                  setShowAdminBoard(false);
+//                  setCurrentUser(undefined);     
+//              }
 //             return new Promise(resolve => resolve(false));
 //         }
 // };

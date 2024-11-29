@@ -23,6 +23,12 @@ import authHeader from "../../services/auth-header";
 //     catch(error){
 //         console.log(`Произошла ошибка при попытке добавления товара в корзину: ${error}
 //             userId: ${userId}, itemId: ${itemId}, amount: ${amount}`);
+//         if(error.response.status === 401){
+//              AuthService.logout();
+//              setShowModeratorBoard(false);
+//              setShowAdminBoard(false);
+//              setCurrentUser(undefined);     
+//         }
 //         return false;
 //     }
 // }

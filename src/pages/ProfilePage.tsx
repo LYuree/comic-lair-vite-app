@@ -1,7 +1,16 @@
 import { FC } from "react";
-import { logout } from "../services/auth.service";
+import { getCurrentUser, logout } from "../services/auth.service";
+
+
+interface IOrderItem {
+    id: string,
+    date: string,
+    status: string,
+}
 
 const ProfilePage: FC = () => {
+    const currentUser = getCurrentUser();
+
     return (
         <>
         <div className="container mx-auto p-4">
@@ -10,8 +19,12 @@ const ProfilePage: FC = () => {
                 <div className="w-full md:w-1/2 p-2">
                     <div className="bg-white shadow-md rounded p-4">
                         <h2 className="text-2xl font-semibold mb-4">История заказов</h2>
-                        {/* Здесь можно добавить компоненты или элементы для отображения истории заказов */}
                         <ul>
+                            {/* для версии с бэкендом */}
+                            {/* {currentUser.orders.map((order: IOrderItem) => {
+                                <li className="mb-2">{`Заказ ${order.id} - Дата: ${order.date} - Статус: ${order.status}`}</li>    
+                            })} */}
+
                             <li className="mb-2">Заказ #1 - Дата: 01.01.2023 - Статус: Завершен</li>
                             <li className="mb-2">Заказ #2 - Дата: 15.01.2023 - Статус: В обработке</li>
                             <li className="mb-2">Заказ #3 - Дата: 20.01.2023 - Статус: Отменен</li>
@@ -22,9 +35,9 @@ const ProfilePage: FC = () => {
                     <div className="bg-white shadow-md rounded p-4">
                         <h2 className="text-2xl font-semibold mb-4">Общая информация о пользователе</h2>
                         {/* Здесь можно добавить компоненты или элементы для отображения информации о пользователе */}
-                        <p><strong>Имя:</strong> Иван Иванов</p>
-                        <p><strong>Электронная почта:</strong> ivan.ivanov@example.com</p>
-                        <p><strong>Телефон:</strong> +7 (999) 123-45-67</p>
+                        <p><strong>Имя:</strong> {/*currentUser.name*/} Иван Иванов</p>
+                        <p><strong>Электронная почта:</strong> {/*currentUser.email*/} ivan.ivanov@example.com</p>
+                        <p><strong>Телефон:</strong> {/*currentUser.phone*/}+7 (999) 123-45-67</p>
                     </div>
                 </div>
             </div>

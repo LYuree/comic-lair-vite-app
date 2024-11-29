@@ -17,7 +17,7 @@ import authHeader from "../../services/auth-header";
 //     }
 //     catch(error){
 //         console.log(`Error deleting a cart product: ${error}`)
-//         return Promise.resolve(`${error}`); //или reject? и нужен ли вообще этот промис...
+//         return Promise.reject(error);
 //     }
 
 // вариант на моках

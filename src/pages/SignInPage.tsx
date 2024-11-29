@@ -60,7 +60,7 @@ const SignInPage: React.FC<Props> = () => {
           onSubmit={handleLogin}
         >
           <Form>
-            <div className="form-group mb-4">
+            <div className="form-group">
               <label htmlFor="username" className="block text-gray-700">Логин</label>
               <Field name="username" type="text" className="form-control" />
               <ErrorMessage
@@ -81,7 +81,7 @@ const SignInPage: React.FC<Props> = () => {
             </div>
 
             <div className="form-group">
-              <button type="submit" className="w-full bg-[#bd0000] text-white p-2 mt-8  hover:bg-[maroon]" disabled={loading}>
+              <button type="submit" className="w-full bg-[#bd0000] text-white p-2 mt-4 hover:bg-[maroon]" disabled={loading}>
                 {loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}

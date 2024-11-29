@@ -1,4 +1,7 @@
+// возвращает заголовок для axiosConfig.headers для отправки запросов на сервер
+
 export default function authHeader() {
+  // взять данные о пользователя (включая токен) из localStorage
   const userStr = localStorage.getItem("user");
   let user = null;
   if (userStr)
