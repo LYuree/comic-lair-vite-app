@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "../../services/auth-header";
 
 // export const deleteCartProducts = async (userId: string, cartProductId: string) : Promise<string|undefined> => {
 //     // вариант с бэкендом - VSCode требует указание <string | UNDEFINED>...

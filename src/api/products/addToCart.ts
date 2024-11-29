@@ -1,15 +1,21 @@
 import axios from "axios"
 import { cartProducts } from "../../utils/cartProducts"
+import authHeader from "../../services/auth-header";
+
+
 
 // вариант с рабочим бэкендом
 // export const addToCart = async(userId: string, itemId: string, amount: number = 1): Promise<boolean> => {
 //     try{
 //         await axios.post(
 //             'https://backend.example/api/cart/add',
-//             {
+//             data: {
 //                 userId,
 //                 itemId,
 //                 amount
+//             },
+//             axiosConfig: {
+//              headers: authHeader(),
 //             }
 //         )
 //         return true;

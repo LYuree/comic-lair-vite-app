@@ -1,7 +1,8 @@
 import { IoSearch } from "react-icons/io5";
 import Container from "../Container";
 import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaRegUser } from "react-icons/fa";
 
 
 const NavBar = () => {
@@ -32,7 +33,7 @@ const NavBar = () => {
                 items-center
                 justify-between
                 gap-3">
-                    <a href="/" className="flex items-center gap-3 p-2">
+                    <Link to={"/"} className="flex items-center gap-3 p-2">
                         <picture className="relative logo-shadow border-2 border-white">
                             <source />
                             <img
@@ -46,7 +47,7 @@ const NavBar = () => {
                                 <p>новелл и комиксов</p>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                     <div className="grow relative flex items-center">
                         <input type="text" name="search-form" id="search-form" placeholder="Поиск..."
                             className="relative outline-none bg-transparent border-2 border-white
@@ -61,13 +62,16 @@ const NavBar = () => {
                     </div>
                     <div className="flex items-center gap-3">
                         <AiOutlineHeart className="cursor-pointer text-2xl hover:text-slate-400" />
-                        <a href="/cart">
+                        <Link to={"/cart"}>
                             <AiOutlineShopping className="cursor-pointer text-2xl hover:text-slate-400"/>
-                        </a>
-                        <a href="mailto:comiclairsales@gmail.com"
+                        </Link>
+                        <Link to={"/profile"}>
+                            <FaRegUser className="cursor-pointer text-2xl hover:text-slate-400"/>
+                        </Link>
+                        <Link to={"mailto:comiclairsales@gmail.com"}
                             className="hover:underline font-bold text-lg">
                             comiclairsales@gmail.com
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <ul className="flex
@@ -76,11 +80,11 @@ const NavBar = () => {
                 justify-around
                 text-sm
                 ">
-                    <li><a href="/" className="hover:underline">Главная</a></li>
-                    <li><a href="/products" className="hover:underline">Товары</a></li>
-                    <li><a href="/about" className="hover:underline">О нас</a></li>
-                    <li><a href="#" className="hover:underline">Купим у ВАС!</a></li>
-                    <li><a href="/sign_in" className="font-bold hover:underline">ВОЙТИ</a></li>
+                    <li><Link to={"/"} className="hover:underline">Главная</Link></li>
+                    <li><Link to={"/products"} className="hover:underline">Товары</Link></li>
+                    <li><Link to={"/about"} className="hover:underline">О нас</Link></li>
+                    <li><Link to={"#"} className="hover:underline">Купим у ВАС!</Link></li>
+                    <li><Link to={"/sign_in"} className="font-bold hover:underline">ВОЙТИ</Link></li>
                 </ul>
                 
             </Container>

@@ -1,7 +1,9 @@
 import { FC } from "react";
+import { logout } from "../services/auth.service";
 
-const AccountPage: FC = () => {
+const ProfilePage: FC = () => {
     return (
+        <>
         <div className="container mx-auto p-4">
             <h1 className="text-3xl font-bold mb-6 text-center">Личный кабинет</h1>
             <div className="flex flex-wrap justify-between">
@@ -27,7 +29,17 @@ const AccountPage: FC = () => {
                 </div>
             </div>
         </div>
-    );
-};
+        <div className="w-full flex justfy-center">
+            <button className="w-[50vw] mx-auto bg-blue-500 text-white p-2  hover:bg-blue-600"
+                type="submit"
+                onClick={logout}
+            >
+                Выйти
+            </button>
+        </div>
+        </>
 
-export default AccountPage;
+    )
+}
+ 
+export default ProfilePage;
