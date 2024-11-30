@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { rootStore } from "../store";
 import { observer } from "mobx-react";
 import { InputMask } from "@react-input/mask";
+import PhoneNumberInput from "../components/PhoneNumberInput/PhoneNumberInput";
 
 const oath = "";
 // const oath = "asdasdas";
@@ -28,10 +29,17 @@ const CheckOutPage = observer(() => {
                         <label className="block text-gray-700 pt-4" htmlFor="email">E-mail</label>
                         <input className="mt-1 block w-full p-2 border border-gray-300 " type="text" id="email" placeholder="Введите e-mail" required/>
                     </div>
+
                     <div className="mb-6">
+                        <PhoneNumberInput/>
+                    </div>
+
+                    {/* <div className="mb-6">
                         <label className="block text-gray-700" htmlFor="phone">Номер телефона</label>
                         <InputMask mask="+0 (___) ___-__-__" replacement={{ _: /\d/ }} className="mt-1 block w-full p-2 border border-gray-300 " type="tel" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="+0 (888) 888 88 88" required/>                        
-                    </div>
+                    </div> */}
+
+
                     <button className="w-full text-white p-2 bg-[#bd0000] duration-500 hover:bg-[maroon]" type="submit">ОФОРМИТЬ ЗАКАЗ</button>
                 </form>
             </div>
