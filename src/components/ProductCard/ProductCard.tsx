@@ -4,6 +4,8 @@ import {TbHeartPlus} from "react-icons/tb";
 import {truncateText} from "../../utils/truncateText.ts";
 import {formatPrice} from "../../utils/formatPrice.ts";
 import {IProductItem} from "../../api/products/fetchProducts.ts";
+import { addToCart } from "../../api/products/addToCart.ts";
+import { getCurrentUser } from "../../services/auth.service.ts";
 
 interface ProductCardProps {
     data: IProductItem
@@ -54,7 +56,8 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                 <div className="w-full mt-2 flex flex-row justify-between items-center mb-2 px-2">
                     <TbHeartPlus className="text-3xl mr-4 ml-2 hover:text-[maroon] grow-0"/>
                     <button type="submit"
-                            className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5">
+                            className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
+                            onClick={() => addToCart(getCurrentUser(), data.id, 1)}>
                         <span
                             className="w-56 h-48 bg-[maroon] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                         <span

@@ -5,6 +5,7 @@ import * as AuthService from "../../services/auth.service";
 // Версия для работы с бэком
 // export const fetchCartProducts = async (): Promise<ProductsData> => {
 //     try {
+//         await validateSession();
 //         await axios.get<ProductsData>(
 //             'https://backend.example/api/cart/get',
 //              axiosConfig: {

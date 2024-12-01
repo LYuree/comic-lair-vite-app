@@ -1,12 +1,13 @@
 import axios from "axios"
-import { cartProducts } from "../../utils/cartProducts"
 import authHeader from "../../services/auth-header";
+import validateSession from "../../services/jwtDecode";
 
 
 
 // вариант с рабочим бэкендом
 // export const addToCart = async(userId: string, itemId: string, amount: number = 1): Promise<boolean> => {
 //     try{
+//         await validateSession();
 //         await axios.post(
 //             'https://backend.example/api/cart/add',
 //             data: {
@@ -16,6 +17,7 @@ import authHeader from "../../services/auth-header";
 //             },
 //             axiosConfig: {
 //              headers: authHeader(),
+//              withCredentials: true
 //             }
 //         )
 //         return true;

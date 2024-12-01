@@ -84,7 +84,7 @@ const NavBar = () => {
                     <li><Link to={"/products"} className="hover:underline">Товары</Link></li>
                     <li><Link to={"/about"} className="hover:underline">О нас</Link></li>
                     <li><Link to={"#"} className="hover:underline">Купим у ВАС!</Link></li>
-                    <li><Link to={"/sign_in"} className="font-bold hover:underline">ВОЙТИ</Link></li>
+                    <li><Link to={"/signin"} className="font-bold hover:underline">ВОЙТИ</Link></li>
                 </ul>
                 
             </Container>

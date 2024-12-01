@@ -70,6 +70,7 @@ export class CartStore {
             }, 2000)
 
         } catch (error) {
+            console.log(error);
             this.setError("error");
             this.setCartLoading(false);
         }

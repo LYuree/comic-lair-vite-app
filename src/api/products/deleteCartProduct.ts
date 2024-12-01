@@ -1,9 +1,12 @@
 import axios from "axios";
 import authHeader from "../../services/auth-header";
+import validateSession from "../../services/jwtDecode";
 
-// export const deleteCartProducts = async (userId: string, cartProductId: string) : Promise<string|undefined> => {
+
+// export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<string|undefined> => {
 //     // вариант с бэкендом - VSCode требует указание <string | UNDEFINED>...
 //     try {
+//         await validateSession();
 //         await axios.delete<string>(
 //             `https://backend.example/api/cart/delete`,
 //             {
@@ -17,6 +20,12 @@ import authHeader from "../../services/auth-header";
 //     }
 //     catch(error){
 //         console.log(`Error deleting a cart product: ${error}`)
+//         if(error.response.status === 401){
+//              AuthService.logout();
+//              setShowModeratorBoard(false);
+//              setShowAdminBoard(false);
+//              setCurrentUser(undefined);     
+//         }
 //         return Promise.reject(error);
 //     }
 

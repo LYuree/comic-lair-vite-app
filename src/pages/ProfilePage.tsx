@@ -1,5 +1,7 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { getCurrentUser, logout } from "../services/auth.service";
+import { useNavigate } from "react-router-dom";
+import validateSession from "../services/jwtDecode";
 
 
 interface IOrderItem {
@@ -9,7 +11,18 @@ interface IOrderItem {
 }
 
 const ProfilePage: FC = () => {
-    const currentUser = getCurrentUser();
+    const navigate = useNavigate();   
+
+    useEffect(() => {
+        try{
+            validateSession();
+        }
+        catch(error: any){
+            if(error.response.status === 401){
+                logout();
+            }
+        }
+    }, []);
 
     return (
         <>

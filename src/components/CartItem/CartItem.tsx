@@ -5,6 +5,7 @@ import {formatPrice} from "../../utils/formatPrice.ts";
 import {IProductItem} from "../../api/products/fetchProducts.ts";
 import { TbHeartPlus } from "react-icons/tb";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { getCurrentUser } from "../../services/auth.service.ts";
 
 interface CartItemProps {
     data: IProductItem,
@@ -64,7 +65,7 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
                         />
                     <button type="submit"
                             className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
-                            onClick={_ => deleteItem("", data.id)}
+                            onClick={_ => deleteItem(getCurrentUser().id, data.id)}
                             >
                         <span
                             className="w-56 h-48 bg-[maroon] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>

@@ -1,10 +1,12 @@
 import axios from "axios";
 import { ProductsData } from "./fetchProducts"
 import authHeader from "../../services/auth-header";
+import validateSession from "../../services/jwtDecode";
 
 // версия для бэкенда
 // export const checkout = async (userId: string, cartProducts: ProductsData): Promise<boolean> => {
 //     try {
+//         await validateSession();
 //         await axios.post(
 //             'https://backend.example/api/cart/checkout',
 //             data: {

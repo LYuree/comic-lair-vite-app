@@ -8,8 +8,8 @@ function PhoneNumberInput() {
   const [value, setValue] = useState()
   return (
     <PhoneInput
-      placeholder="Enter phone number"
-      international
+      placeholder="+0 (___) ___-__-__"
+      international  
       withCountryCallingCode={true}
       value={value}
       onChange={() => setValue(value)}

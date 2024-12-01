@@ -5,10 +5,27 @@ import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
 import { checkout } from "../api/products/checkout";
 import formatPrice from "../utils/formatPrice";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../services/auth.service";
+import validateSession from "../services/jwtDecode";
 
 const userId = "asdasdads010101";
 
 const CartPage = observer(() => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        try{
+            validateSession();
+        }
+        catch(error: any){
+            if(error.response.status === 401){
+                logout();
+                navigate("/signin");
+            }
+        }
+    }, []);
+
     const {
         cartStore : {cartProducts, fetchCartProducts, setCartProductAmount,
             deleteCartProduct, totalCost}

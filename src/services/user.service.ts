@@ -3,8 +3,9 @@ import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/api/test/";
 
+// использовать в ProfilePage.tsx?
 export const getUserBoard = () => {
-  return axios.get(API_URL + "user", { headers: authHeader() });
+  return axios.get(API_URL + "user", { headers: authHeader(), withCredentials: true });
 };
 
 // ===============================================================
@@ -18,10 +19,10 @@ export const getUserBoard = () => {
 // ===============================================================
 // на будущее:
 
-// export const getModeratorBoard = () => {
-//   return axios.get(API_URL + "mod", { headers: authHeader() });
-// };
+export const getModeratorBoard = () => {
+  return axios.get(API_URL + "mod", { headers: authHeader(), withCredentials: true });
+};
 
-// export const getAdminBoard = () => {
-//   return axios.get(API_URL + "admin", { headers: authHeader() });
-// };
+export const getAdminBoard = () => {
+  return axios.get(API_URL + "admin", { headers: authHeader(), withCredentials: true });
+};

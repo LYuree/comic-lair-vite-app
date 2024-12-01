@@ -1,10 +1,12 @@
 import axios from "axios";
-import { cartProducts } from "../../utils/cartProducts";
 import authHeader from "../../services/auth-header";
+import validateSession from "../../services/jwtDecode";
+
 
 // export const setCartProductAmount = async (userId: string, itemId: string, newAmount: number): Promise<boolean> => {
 //     // Версия для работы с бэком
 //         try {
+//             await validateSession();
 //             await axios.put(
 //                 'https://backend.example/api/cart/put',
 //                 data: {
