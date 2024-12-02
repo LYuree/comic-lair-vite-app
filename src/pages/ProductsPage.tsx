@@ -2,13 +2,11 @@ import { IoSearch } from "react-icons/io5";
 import { IProductItem } from "../api/products/fetchProducts";
 import Container from "../components/Container";
 import ProductCard from "../components/ProductCard/ProductCard";
-import { products } from "../utils/products";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { TbArrowsSort } from "react-icons/tb";
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
 import { useEffect, useRef } from "react";
-import { ItemsPerPageRange } from "../store/gridPageStore"
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 
 const ProductPage = observer(() => {
@@ -23,7 +21,7 @@ const ProductPage = observer(() => {
     const {
         productsStore: {products, fetchProducts, productsLoading, sortingMethod, setSortingMethod,
             displayedProducts, setDisplayedProducts},
-        gridPageStore : {currentPage, itemsPerPage, gridLoading, setItemsPerPage, setCurrentPage,
+        gridPageStore : {currentPage, itemsPerPage, setItemsPerPage, setCurrentPage,
             categoryCheckboxes, setCategoryCheckboxes, toggleCategoryCheckbox,
             searchFormValue, setSearchFormValue
         },

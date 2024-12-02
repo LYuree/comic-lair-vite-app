@@ -109,16 +109,22 @@ h2.timeline-header {
 .products-page-grid {
     --border-color: #c4b5fd;
     --border-size: 2px;
-    display: grid;
     margin: 0 auto;
     justify-content: center;
     grid-template-columns: repeat(4, minmax(0, 211px));
-    grid-template-rows: repeat(auto-fill, 600px);
+    grid-template-rows: repeat(auto-fill);
     grid-gap: 1px;
     display: grid;
     max-width:800px;
     border-top: var(--border-size) solid var(--border-color);
     border-left: var(--border-size) solid var(--border-color);
+}
+
+@media screen and (max-width: 1100px) {
+    .products-page-grid{
+        grid-template-columns: repeat(3, minmax(0, 211px));
+
+    }
 }
 
 .products-page-grid > div {

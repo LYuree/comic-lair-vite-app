@@ -76,7 +76,7 @@ const SignUpPage: React.FC = () => {
             {!successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="username"> Username </label>
+                  <label htmlFor="username"> Имя пользователя </label>
                   <Field name="username" type="text" className="form-control" />
                   <ErrorMessage
                     name="username"
@@ -86,7 +86,7 @@ const SignUpPage: React.FC = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email"> Email </label>
+                  <label htmlFor="email"> E-mail </label>
                   <Field name="email" type="email" className="form-control" />
                   <ErrorMessage
                     name="email"
@@ -111,6 +111,9 @@ const SignUpPage: React.FC = () => {
 
                 <div className="form-group">
                   <button className="w-full mt-4 bg-[#bd0000] text-white p-2  hover:bg-[maroon]" type="submit">Зарегистрироваться</button>
+                </div>
+                <div className="mt-4 text-center">
+                  <Link to={"/signin"} className="text-[maroon] hover:underline">Уже есть аккаунт? Войти</Link>
                 </div>
               </div>
             )}

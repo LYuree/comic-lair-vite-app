@@ -1,6 +1,6 @@
 import { CartStore } from "./cartStore.ts";
 import { GridPageStore } from "./gridPageStore.ts";
-import { ProfileStore } from "./loaderStore.ts";
+import { ProfileStore } from "./profileStore.ts";
 import { ProductsStore } from "./productsStore.ts";
 
 class store {

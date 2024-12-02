@@ -8,7 +8,6 @@ import formatPrice from "../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../services/auth.service";
 import validateSession from "../services/jwtDecode";
-import { AxiosError } from "axios";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 
 const userId = "asdasdads010101";

@@ -99,7 +99,7 @@ const SignInPage: React.FC<Props> = () => {
           </Form>
         </Formik>
         <div className="mt-4 text-center">
-          <Link to={"/sign_up"} className="text-[maroon] hover:underline">Зарегистрироваться</Link>
+          <Link to={"/signup"} className="text-[maroon] hover:underline">Зарегистрироваться</Link>
           <span className="mx-2">|</span>
           <Link to={"*"} className="text-[maroon] hover:underline">Восстановить пароль</Link>
         </div>
