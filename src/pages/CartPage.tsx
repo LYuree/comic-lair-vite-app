@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
 import { checkout } from "../api/products/checkout";
@@ -8,22 +8,38 @@ import formatPrice from "../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../services/auth.service";
 import validateSession from "../services/jwtDecode";
+import { AxiosError } from "axios";
 
 const userId = "asdasdads010101";
 
 const CartPage = observer(() => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        try{
-            validateSession();
-        }
-        catch(error: any){
-            if(error.response.status === 401){
+    useLayoutEffect(() => {
+        // пытался реализовать валидацию токена пользователя
+        // через try-catch и async-await 
+        // (при возврате ошибки с сервера в validateSession
+        // пользователя должно было бы выбрасывать на страницу логина,
+        // но ошибка в validateSession почему-то не отлавливалась
+        // блоком catch в этом useLayoutEffect)
+        // так что пока сделал просто через промис + catch
+        validateSession().catch(error => {
+            // если с сервера пришла ошибка
+            //  с кодом 401 (не авторизован)
+            if(error.response &&
+                error.response.status &&
+                error.response.status === 401){
                 logout();
                 navigate("/signin");
             }
-        }
+            else {
+                // вариант с рандомной ошибкой без бэкенда,
+                // нужно было протестить переход на страницу авторизации
+                console.log("Some error has arised...");
+                logout();
+                navigate("/signin");
+            }
+        });
     }, []);
 
     const {

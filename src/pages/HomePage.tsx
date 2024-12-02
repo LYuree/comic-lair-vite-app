@@ -5,6 +5,7 @@ import {rootStore} from "../store";
 import {IProductItem} from "../api/products/fetchProducts.ts";
 import {useEffect} from "react";
 import {observer} from "mobx-react";
+import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 
 const HomePage = observer(() => {
     const {
@@ -16,7 +17,7 @@ const HomePage = observer(() => {
     }, []);
 
     // TODO: Сделать лоудер
-    if (productsLoading) return <div>Loading</div>
+    if (productsLoading) return <LoadingScreen/>
 
     return (
         <>
@@ -28,7 +29,6 @@ const HomePage = observer(() => {
                     <div className="text-center text-5xl mt-24 pb-8 border-b-2 border-black w-3/4 mx-auto">ОТКРОЙТЕ ДЛЯ
                         СЕБЯ
                     </div>
-                    {/*border-b-2 border-black*/}
                     <h2 className="text-4xl text-center mb-16 mt-8">НОВЕЙШИЕ РЕЛИЗЫ</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
                             2xl:grid-cols-6 gap-8">

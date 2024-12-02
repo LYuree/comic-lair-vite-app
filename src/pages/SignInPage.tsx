@@ -22,8 +22,8 @@ const SignInPage: React.FC<Props> = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("This field is required!"),
-    password: Yup.string().required("This field is required!"),
+    username: Yup.string().required("Заполните это поле!"),
+    password: Yup.string().required("Заполните это поле!"),
   });
 
   const handleLogin = (formValue: { username: string; password: string }) => {
@@ -106,128 +106,5 @@ const SignInPage: React.FC<Props> = () => {
     </div>
   );
 };
-
-
-
-// trash
-
-
-// function Login() {
-
-//   const handleSubmit = (email: string, password: string) => {
-//     //reqres registered sample user
-//     const loginPayload = {
-//       email: 'eve.holt@reqres.in',
-//       password: 'cityslicka'
-//     }
-
-//     axios.post("https://reqres.in/api/login", loginPayload)
-//       .then(response => {
-//         //get token from response
-//         const token = response.data.token;
-
-//         //set JWT token to local
-//         localStorage.setItem("token", token);
-
-//         //set token to axios common header
-//         setAuthToken(token);
-
-//         //redirect user to home page
-//         window.location.href = '/'
-
-//       })
-//       .catch(err => console.log(err));
-//   };
-
-//   const emailInput = useRef(null);
-//   const passwordInput = useRef(null);
-
-//   return (
-//     <form
-//       onSubmit={(event) => {
-//         event.preventDefault();
-//         // const [email, password] = event.target.children;
-//         handleSubmit(email, password);
-//       }}
-//     >
-//       <label htmlFor="email">Email</label><br />
-//       <input type="email" id="email" name="email"/><br />
-//       <label htmlFor="password">Password</label><br />
-//       <input type="password" id="password" name="password"/><br></br>
-//       <input type="submit" value="Submit" />
-//     </form>
-//   );
-// }
-
-
-//  v1
-
-// const SignInPage = () => {
-
-//     const handleSubmit = (email: string, password: string) => {
-//         console.log(email, password);
-//         const loginPayload = {
-//           email,
-//           password
-//         };
-    
-//         axios.post("https://backend.example//api/login", loginPayload)
-//           .then(response => {
-//             //запрос по данным пользователя
-//             const userExists = response.data.user_exists;
-    
-//             // данные найдены
-//             (userExists ? localStorage.setItem("token", token) : "");
-    
-//             //set token to axios common header
-//             setAuthToken(token);
-    
-//             //redirect user to home page
-//             window.location.href = '/'
-    
-//           })
-//           .catch(err => console.log(err));
-//       };
-    
-//       const emailInput = useRef<HTMLInputElement>(null);
-//       const passwordInput = useRef<HTMLInputElement>(null);
-
-//     return ( 
-//         <div className="bg-white w-96 mx-auto pt-16">
-//             <h2 className="text-2xl font-bold mb-6 text-center">Вход в аккаунт</h2>
-//             <form onSubmit={(event) => {
-//                     event.preventDefault();
-//                     if(emailInput.current && passwordInput.current){
-//                         const email = emailInput.current.value;
-//                         const password = passwordInput.current.value;
-//                         handleSubmit(email, password);
-//                     }
-//                 }}>
-//                 <div className="mb-4">
-//                     <label className="block text-gray-700" htmlFor="username">Логин</label>
-//                     <input className="mt-1 block w-full p-2 border border-gray-300 "
-//                         type="text" id="username"
-//                         placeholder="Введите логин"
-//                         ref={emailInput}
-//                         required/>
-//                 </div>
-//                 <div className="mb-6">
-//                     <label className="block text-gray-700" htmlFor="password">Пароль</label>
-//                     <input className="mt-1 block w-full p-2 border border-gray-300"
-//                         type="password" id="password"
-//                         placeholder="Введите пароль"
-//                         ref={passwordInput}
-//                         required/>
-//                 </div>
-//                 <button className="w-full bg-blue-500 text-white p-2  hover:bg-blue-600" type="submit">Войти</button>
-//             </form>
-            // <div className="mt-4 text-center">
-            //     <a className="text-blue-500 hover:underline" href="/sign_up" >Зарегистрироваться</a>
-            //     <span className="mx-2">|</span>
-            //     <a className="text-blue-500 hover:underline" href="*">Восстановить пароль</a>
-            // </div>
-//         </div>
-//      );
-// }`
  
 export default SignInPage;

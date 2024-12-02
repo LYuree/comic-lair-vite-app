@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useLayoutEffect } from "react";
 import { getCurrentUser, logout } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import validateSession from "../services/jwtDecode";
@@ -13,15 +13,32 @@ interface IOrderItem {
 const ProfilePage: FC = () => {
     const navigate = useNavigate();   
 
-    useEffect(() => {
-        try{
-            validateSession();
-        }
-        catch(error: any){
-            if(error.response.status === 401){
+    useLayoutEffect(() => {
+        // как и в CartPage.tsx:
+        // пытался реализовать валидацию токена пользователя
+        // через try-catch и async-await 
+        // (при возврате ошибки с сервера в validateSession
+        // пользователя должно было бы выбрасывать на страницу логина,
+        // но ошибка в validateSession почему-то не отлавливалась
+        // блоком catch в этом useLayoutEffect)
+        // так что пока сделал просто через промис + catch
+        validateSession().catch(error => {
+            // если с сервера пришла ошибка
+            //  с кодом 401 (не авторизован)
+            if(error.response &&
+                error.response.status &&
+                error.response.status === 401){
                 logout();
+                navigate("/signin");
             }
-        }
+            else {
+                // вариант с рандомной ошибкой без бэкенда,
+                // нужно было протестить переход на страницу авторизации
+                console.log("Some error has arised...");
+                logout();
+                navigate("/signin");
+            }
+        });
     }, []);
 
     return (
