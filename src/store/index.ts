@@ -15,6 +15,10 @@ class store {
         this.gridPageStore = new GridPageStore();
         this.loaderStore = new LoaderStore();
     }
+
+    // setLoading = (isLoading) => {
+    //     this.loaderStore.loading = 
+    // }
 }
 
 export const rootStore = new store();

@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import {fetchProducts, IProductItem, ProductsData} from "../api/products/fetchProducts.ts";
+import { rootStore } from "./index.ts";
 
 enum SortingMethod {
     "popular_first",

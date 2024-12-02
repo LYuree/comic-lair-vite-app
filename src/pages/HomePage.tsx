@@ -17,10 +17,12 @@ const HomePage = observer(() => {
     }, []);
 
     // TODO: Сделать лоудер
-    if (productsLoading) return <LoadingScreen/>
+    // if (productsLoading) return <LoadingScreen/>
 
     return (
         <>
+            {productsLoading ? <LoadingScreen/> :
+            <>
             <Container>
                 <div>
                     <HomeBanner></HomeBanner>
@@ -104,7 +106,8 @@ const HomePage = observer(() => {
                     </button>
                 </div>
             </Container>
-
+            </>
+            }
 
         </>
     )

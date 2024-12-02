@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../services/auth.service";
 import validateSession from "../services/jwtDecode";
 import { AxiosError } from "axios";
+import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 
 const userId = "asdasdads010101";
 
@@ -44,14 +45,15 @@ const CartPage = observer(() => {
 
     const {
         cartStore : {cartProducts, fetchCartProducts, setCartProductAmount,
-            deleteCartProduct, totalCost}
+            deleteCartProduct, totalCost},
+        loaderStore : {loading, setLoading},
     }  = rootStore;
 
     useEffect(() => {
         fetchCartProducts();
     }, []);
 
-    // if (cartProductsLoading) return <div>Loading</div>
+    if (loading) return <LoadingScreen/>
     
     return (
         <Container>

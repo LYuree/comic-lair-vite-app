@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import { rootStore } from "../store";
 import { useEffect, useRef } from "react";
 import { ItemsPerPageRange } from "../store/gridPageStore"
+import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 
 const ProductPage = observer(() => {
 
@@ -27,12 +28,11 @@ const ProductPage = observer(() => {
             searchFormValue, setSearchFormValue
         },
     } = rootStore;
-
+    
     useEffect(() => {
         fetchProducts();
     }, []);
 
-    // if (productsLoading || gridLoading) return <div>Loading</div>
     const numberOfPages = Math.ceil(displayedProducts.data.length / itemsPerPage);
     const itemCategories = products.data.map(item => item.categories).flat();
     const uniqueCategories = [...new Set(itemCategories)];
@@ -112,146 +112,152 @@ const ProductPage = observer(() => {
         // else setDisplayedProducts(products);
     }
 
-    return ( 
-        <Container>
-            <div className="grow relative flex items-center my-12">
-                <input type="text" name="grid-search-form" id="grid-search-form" placeholder="Поиск..."
-                    className="relative outline-none bg-transparent border-2 border-black
-                    w-full py-1 px-2
-                    cursor-pointer"
-                    value={searchFormValue}
-                    onChange={e => handleSearch(e.target.value)}
-                    />
-                <label htmlFor="grid-search-form" className="absolute right-0 mr-2">
-                    <IoSearch className="relative right-0
-                        cursor-pointer text-xl"
-                        />
-                </label>
-            </div>
-            <div className="grid-controls flex flex-row w-full gap-24 my-6 items-center">
-                <div>Найдено {displayedProducts.data.length} результатов</div>
-                    <div className="flex flex-row ml-auto">
-                        <div className="flex flex-row items-center mx-8">
-                            <TfiLayoutGrid3 />
-                            <select className="product-grid-page-select" name="" id=""
-                                onChange={ e => {
-                                    setItemsPerPage(+e.target.value);
-                                    handlePageChange(1);
-                                }}
-                                value={itemsPerPage}
-                                >
-                                <option value="3">3</option> {/* опция для отладки */}
-                                <option value="12">12</option>
-                                <option value="24">24</option>
-                                <option value="36">36</option>
-                            </select>
-                        </div>
-                        <div className="flex flex-row items-center mx-8">
-                            <div>
-                                <TbArrowsSort />
+    return (
+        <>
+            {productsLoading ? <LoadingScreen/> : 
+                <> 
+                <Container>
+                    <div className="grow relative flex items-center my-12">
+                        <input type="text" name="grid-search-form" id="grid-search-form" placeholder="Поиск..."
+                            className="relative outline-none bg-transparent border-2 border-black
+                            w-full py-1 px-2
+                            cursor-pointer"
+                            value={searchFormValue}
+                            onChange={e => handleSearch(e.target.value)}
+                            />
+                        <label htmlFor="grid-search-form" className="absolute right-0 mr-2">
+                            <IoSearch className="relative right-0
+                                cursor-pointer text-xl"
+                                />
+                        </label>
+                    </div>
+                    <div className="grid-controls flex flex-row w-full gap-24 my-6 items-center">
+                        <div>Найдено {displayedProducts.data.length} результатов</div>
+                            <div className="flex flex-row ml-auto">
+                                <div className="flex flex-row items-center mx-8">
+                                    <TfiLayoutGrid3 />
+                                    <select className="product-grid-page-select" name="" id=""
+                                        onChange={ e => {
+                                            setItemsPerPage(+e.target.value);
+                                            handlePageChange(1);
+                                        }}
+                                        value={itemsPerPage}
+                                        >
+                                        <option value="3">3</option> {/* опция для отладки */}
+                                        <option value="12">12</option>
+                                        <option value="24">24</option>
+                                        <option value="36">36</option>
+                                    </select>
+                                </div>
+                                <div className="flex flex-row items-center mx-8">
+                                    <div>
+                                        <TbArrowsSort />
+                                    </div>
+                                    <select className="product-grid-page-select" name="" id=""
+                                        value={sortingMethod}
+                                        onChange={e => {
+                                            setSortingMethod(e.target.value);
+                                            handlePageChange(1);
+                                        }}
+                                        >
+                                        <option value="popular_first">По популярности</option>
+                                        <option value="cheapest_first">От самых дешёвых</option>
+                                        <option value="expensive_first">От самых дорогих</option>
+                                        <option value="A_Z">По алфавиту А-Я</option>
+                                        <option value="Z_A">По алфавиту Я-А</option>
+                                        <option value="newest_first">От самых новых</option>
+                                        <option value="oldest_first">От самых старых</option>
+                                    </select>
+                                </div>
                             </div>
-                            <select className="product-grid-page-select" name="" id=""
-                                value={sortingMethod}
-                                onChange={e => {
-                                    setSortingMethod(e.target.value);
-                                    handlePageChange(1);
-                                }}
-                                >
-                                <option value="popular_first">По популярности</option>
-                                <option value="cheapest_first">От самых дешёвых</option>
-                                <option value="expensive_first">От самых дорогих</option>
-                                <option value="A_Z">По алфавиту А-Я</option>
-                                <option value="Z_A">По алфавиту Я-А</option>
-                                <option value="newest_first">От самых новых</option>
-                                <option value="oldest_first">От самых старых</option>
-                            </select>
+                        </div>
+                    <div className="flex flex-row content-center">
+                        <div className="flex flex-col filters gap-2">
+                        <div className="filter-controls">
+                            <div className="text-2xl font-bold cursor-pointer my-2 hover:text-[maroon] duration-500" onClick={() => applyFilters()}>ПРИМЕНИТЬ</div>
+                            <div className="text-2xl font-bold cursor-pointer text-[maroon]" onClick={() => clearFilters()}>ОЧИСТИТЬ</div>
+                        </div>
+                            <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
+                                <h2 className="font-bold" key={crypto.randomUUID()}>КАТЕГОРИИ</h2>
+                                {categoryCheckboxes.map((categoryCheckbox, i) => 
+                                    <label htmlFor="" className="block" key={crypto.randomUUID()}>
+                                        <input type="checkbox" name="category"
+                                        id={categoryCheckbox.id}
+                                        key={categoryCheckbox.id}
+                                        ref={element => checkboxesRef.current[i] = element}
+                                        value={categoryCheckbox.categoryName}
+                                        checked={categoryCheckbox.checked}
+                                        onChange={e => {toggleCategoryCheckbox(categoryCheckbox.id, e.target.checked)}}
+                                            />
+                                            {categoryCheckbox.categoryName}
+                                    </label>
+                                )}
+                            </div>
+                            <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
+                                <h2 className="font-bold" key={crypto.randomUUID()}>ОБЛОЖКА</h2>
+                                {coverTypes.map((coverType, i) => 
+                                    <label htmlFor="" className="block" key={crypto.randomUUID()}>
+                                        <input type="checkbox" name="" id=""
+                                        key={crypto.randomUUID()}
+                                            />
+                                            {coverType}
+                                    </label>
+                                )}
+                            </div>
+                        </div>
+                        
+                        <div className="bg-white ml-16">
+                            <div className="products-page-grid">
+                                {displayedProducts.data.slice(
+                                        (currentPage-1)*itemsPerPage,
+                                        currentPage*itemsPerPage
+                                    )
+                                    .map((product: IProductItem) => {
+                                    return (<ProductCard key={product.id} data={product}></ProductCard>)
+                                })}
+                            </div>
                         </div>
                     </div>
-                </div>
-            <div className="flex flex-row content-center">
-                <div className="flex flex-col filters gap-2">
-                <div className="filter-controls">
-                    <div className="text-2xl font-bold cursor-pointer my-2 hover:text-[maroon] duration-500" onClick={() => applyFilters()}>ПРИМЕНИТЬ</div>
-                    <div className="text-2xl font-bold cursor-pointer text-[maroon]" onClick={() => clearFilters()}>ОЧИСТИТЬ</div>
-                </div>
-                    <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
-                        <h2 className="font-bold" key={crypto.randomUUID()}>КАТЕГОРИИ</h2>
-                        {categoryCheckboxes.map((categoryCheckbox, i) => 
-                            <label htmlFor="" className="block" key={crypto.randomUUID()}>
-                                <input type="checkbox" name="category"
-                                id={categoryCheckbox.id}
-                                key={categoryCheckbox.id}
-                                ref={element => checkboxesRef.current[i] = element}
-                                value={categoryCheckbox.categoryName}
-                                checked={categoryCheckbox.checked}
-                                onChange={e => {toggleCategoryCheckbox(categoryCheckbox.id, e.target.checked)}}
-                                    />
-                                    {categoryCheckbox.categoryName}
-                            </label>
-                        )}
-                    </div>
-                    <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
-                        <h2 className="font-bold" key={crypto.randomUUID()}>ОБЛОЖКА</h2>
-                        {coverTypes.map((coverType, i) => 
-                            <label htmlFor="" className="block" key={crypto.randomUUID()}>
-                                <input type="checkbox" name="" id=""
-                                key={crypto.randomUUID()}
-                                    />
-                                    {coverType}
-                            </label>
-                        )}
-                    </div>
-                </div>
-                
-                <div className="bg-white ml-16">
-                    <div className="products-page-grid">
-                        {displayedProducts.data.slice(
-                                (currentPage-1)*itemsPerPage,
-                                currentPage*itemsPerPage
-                            )
-                            .map((product: IProductItem) => {
-                            return (<ProductCard key={product.id} data={product}></ProductCard>)
-                        })}
-                    </div>
-                </div>
-            </div>
-            
-            {(numberOfPages > 1 ?
-                <div className="flex flex-row justify-center my-12">
-                    <ul className="grid-pagination-controls flex gap-6 text-2xl">
-                        <li className="page-item" onClick={() => handlePageChange(1)}><a href="#">{"<<"}</a></li>
-                        <li className="page-item"
-                            onClick={() => {
-                                if(currentPage > 1) handlePageChange(currentPage-1)}
-                            }>
-                                <a>{"<"}</a>
-                        </li>
-                        {(currentPage > 3 ? <li className="page-item">...</li> : "")}
-                        
-                        {[...Array(Math.ceil(displayedProducts.data.length / itemsPerPage))].map((_, i) => (
-                            <li
-                            className={`page__number ${
-                                currentPage === i + 1 ? "selected__page__number" : ""
-                            }`}
-                            key={i + 1}
-                            onClick={() => handlePageChange(i + 1)}
-                            >
-                            <a>{i + 1}</a>
-                            </li>
-                        ))}
-                        <li className="page-item"
-                            onClick={() => {
-                                if(currentPage < numberOfPages) handlePageChange(currentPage+1)}
-                                }>
-                                <a>{">"}</a>
-                            </li>
-                        <li className="page-item" onClick={() => handlePageChange(numberOfPages)}><a>{">>"}</a></li>
-                    </ul>
-                </div>
-                :
-                "") //пагинация отключена, кнопки страниц не отображаем
+                    
+                    {(numberOfPages > 1 ?
+                        <div className="flex flex-row justify-center my-12">
+                            <ul className="grid-pagination-controls flex gap-6 text-2xl">
+                                <li className="page-item" onClick={() => handlePageChange(1)}><a href="#">{"<<"}</a></li>
+                                <li className="page-item"
+                                    onClick={() => {
+                                        if(currentPage > 1) handlePageChange(currentPage-1)}
+                                    }>
+                                        <a>{"<"}</a>
+                                </li>
+                                {(currentPage > 3 ? <li className="page-item">...</li> : "")}
+                                
+                                {[...Array(Math.ceil(displayedProducts.data.length / itemsPerPage))].map((_, i) => (
+                                    <li
+                                    className={`page__number ${
+                                        currentPage === i + 1 ? "selected__page__number" : ""
+                                    }`}
+                                    key={i + 1}
+                                    onClick={() => handlePageChange(i + 1)}
+                                    >
+                                    <a>{i + 1}</a>
+                                    </li>
+                                ))}
+                                <li className="page-item"
+                                    onClick={() => {
+                                        if(currentPage < numberOfPages) handlePageChange(currentPage+1)}
+                                        }>
+                                        <a>{">"}</a>
+                                    </li>
+                                <li className="page-item" onClick={() => handlePageChange(numberOfPages)}><a>{">>"}</a></li>
+                            </ul>
+                        </div>
+                        :
+                        "") //пагинация отключена, кнопки страниц не отображаем
+                    }
+                </Container>
+                </>
             }
-        </Container>
+        </>
      );
 })
  
