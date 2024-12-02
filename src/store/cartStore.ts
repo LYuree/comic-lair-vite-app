@@ -8,7 +8,6 @@ export class CartStore {
     cartProducts: ProductsData = {
         data: []
     };
-    fieldsLoading: boolean = false;
     cartLoading: boolean = false;
     error: string | null = null;
     
