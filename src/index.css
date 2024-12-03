@@ -116,8 +116,6 @@ h2.timeline-header {
     grid-gap: 1px;
     display: grid;
     max-width:800px;
-    border-top: var(--border-size) solid var(--border-color);
-    border-left: var(--border-size) solid var(--border-color);
 }
 
 @media screen and (max-width: 1100px) {
@@ -130,8 +128,7 @@ h2.timeline-header {
 .products-page-grid > div {
     padding: 15px;
     text-align: center;
-    border-bottom: var(--border-size) solid var(--border-color);
-    border-right: var(--border-size) solid var(--border-color);
+    box-shadow: 0 0 0 1px var(--border-color);
   }
 
 .product-grid-page-select {
