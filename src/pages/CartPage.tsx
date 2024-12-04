@@ -10,6 +10,7 @@ import { logout } from "../services/auth.service";
 import validateSession from "../services/validateSession";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import Slider from "../components/Slider/Slider";
+import PhoneNumberInput from "../components/PhoneNumberInput/PhoneNumberInput";
 
 const userId = "asdasdads010101";
 
@@ -18,7 +19,7 @@ const CartPage = observer(() => {
 
     const {
         cartStore : {cartProducts, cartLoading, setCartLoading, fetchCartProducts, setCartProductAmount,
-            deleteCartProduct, totalCost},
+            deleteCartProduct, checkout, totalCost},
     }  = rootStore;
 
 
@@ -92,10 +93,10 @@ const CartPage = observer(() => {
                                     />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <div className="total my-2 text-2xl font-semibold">
-                                СУММА ЗАКАЗА: {formatPrice(totalCost)}
+                            <div className="total my-2 text-2xl font-semibold py-8 border-y-2 border-[gray]">
+                                СУММА ЗАКАЗА: <span className="text-[green]">{formatPrice(totalCost)}</span>
                             </div>
-                            <a href="/checkout" className="inline">
+                            {/* <a href="/checkout" className="inline">
                                 <button type="submit"
                                     className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                                     onClick={() => checkout(userId, cartProducts)}
@@ -105,14 +106,33 @@ const CartPage = observer(() => {
                                     <span
                                     className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white">ОФОРМИТЬ ЗАКАЗ</span>
                                 </button>
-                            </a>
-                            <div className="mt-8">
-                                <div className="">
-                                    <h2 className="text-2xl font-semibold mb-4">Ваши данные</h2>
-                                    {/* Здесь можно добавить компоненты или элементы для отображения информации о пользователе */}
-                                    <p><strong>Имя:</strong> {/*currentUser.name*/} Иван Иванов</p>
-                                    <p><strong>Электронная почта:</strong> {/*currentUser.email*/} ivan.ivanov@example.com</p>
-                                    <p><strong>Телефон:</strong> {/*currentUser.phone*/}+7 (999) 123-45-67</p>
+                            </a> */}
+                            <div className="flex py-8">
+                                <div className="bg-white w-96">
+                                    <h2 className="text-2xl font-bold mb-6 text-start">Оформление заказа</h2>
+                                    <div className="text-start">
+                                        Пожалуйста, укажите Вашу почту и контактный номер телефона для оформления заказа. Заказ будет рассмотрен, после чего на указанный адрес почты будет выслано письмо с деталями.
+                                    </div>
+                                    <form>
+                                        <div className="mb-4">
+                                            <label className="block text-gray-700 pt-4" htmlFor="email">E-mail</label>
+                                            <input className="mt-1 block w-full p-2 border border-gray-300 " type="text" id="email" placeholder="Введите e-mail" required/>
+                                        </div>
+
+                                        <div className="mb-6">
+                                            <PhoneNumberInput/>
+                                        </div>
+                                        {/* <button className="w-full text-white p-2 bg-[#bd0000] duration-500 hover:bg-[maroon]" type="submit">ОФОРМИТЬ ЗАКАЗ</button> */}
+                                        <button type="submit"
+                                            className="btn w-full relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
+                                            onClick={() => checkout(userId, cartProducts)}
+                                            >
+                                            <span
+                                            className="w-full h-48 bg-[maroon] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                            <span
+                                            className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white">ОФОРМИТЬ ЗАКАЗ</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

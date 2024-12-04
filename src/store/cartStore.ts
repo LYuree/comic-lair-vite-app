@@ -3,6 +3,7 @@ import { ProductsData } from "../api/products/fetchProducts.ts";
 import { IProductItem } from "../api/products/fetchProducts";
 import { fetchCartProducts } from "../api/products/fetchCartProducts.ts";
 import { deleteCartProduct } from "../api/products/deleteCartProduct.ts";
+import { checkout } from "../api/products/checkout.ts";
 
 export class CartStore {
     cartProducts: ProductsData = {
@@ -47,6 +48,21 @@ export class CartStore {
             console.log(this.cartProducts === newCartProducts);
             this.setCartProducts(newCartProducts);
             await deleteCartProduct(userId, id); //
+            this.setCartLoading(false);
+        }, 500);
+    }
+    checkout = (userId: string, cartProducts: ProductsData) => {
+        // проверка на успешное удаление...
+        this.setCartLoading(true);
+        // вариант с рабочим бэком
+        // await checkout(userId, cartProducts);
+        // this.setCartProducts({data: []});
+        // this.setCartLoading(false);
+
+        // вариант на моках
+        setTimeout(async () => {
+            await checkout(userId, cartProducts);
+            this.setCartProducts({data: []});
             this.setCartLoading(false);
         }, 500);
     }
