@@ -14,11 +14,12 @@ import { FC, ReactNode } from 'react';
 
 interface ISwiperProps{
     slides: ReactNode[],
-    slidesPerVP: number
+    slidesPerVP: number,
+    breakPoints: {},
 }
 
 // export default
-const Slider: FC<ISwiperProps> = ({slides, slidesPerVP}) => {
+const Slider: FC<ISwiperProps> = ({slides, slidesPerVP, breakPoints}) => {
   return (
     <Swiper
       // install Swiper modules
@@ -30,14 +31,17 @@ const Slider: FC<ISwiperProps> = ({slides, slidesPerVP}) => {
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
-      breakpoints={{        
-        368: {
-            slidesPerView: 1,
-        },
-        900: {
-            slidesPerView: 2,
-        }
-      }}
+      breakpoints={
+        breakPoints
+        // {        
+        // 368: {
+        //     slidesPerView: 1,
+        // },
+        // 900: {
+        //     slidesPerView: 2,
+        // }
+        //   }
+    }
     >
         {slides.map(slide => {
             return <SwiperSlide>{slide}</SwiperSlide>

@@ -19,14 +19,13 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
             col-span-1
             cursor-pointer
             bg-white
-            w-full
-            max-w-[210px]
-            hover:outline
-            hover:outline-violet-300
-            hover:outline-2
-            mx-auto
+            flex flex-row
+            pl-16
             "
             key={data.id}>
+            {/*hover:outline
+            hover:outline-violet-300
+            hover:outline-2 */}
             <div className="relative overflow-hidden flex justify-center">
                 <picture>
                     <source/>
@@ -37,7 +36,7 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
                     />
                 </picture>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="max-w-[211px] ml-4 flex flex-col items-center justify-center">
                 <div
                     className="text-[gray] text-xs font-semibold mt-2">{data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}</div>
                 <div className="text-lg text-center font-bold">{truncateText(data.name)}</div>
@@ -54,7 +53,7 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
                             <span>{formatPrice(data.price)}</span>
                         )}
                 </div>
-                <div className="w-full mt-2 flex flex-row justify-between items-center mb-2 px-2">
+                <div className="mt-2 flex flex-row items-center mb-2 px-2">
                     <TbHeartPlus className="text-3xl mr-4 ml-2 hover:text-[maroon] grow-0"/>
                     <input type="number" name="" id="" value={data.amount}
                     min={1}
@@ -72,8 +71,9 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
                         <span
                             className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white"><RiDeleteBinLine /></span>
                     </button>
-                </div>
             </div>
+            </div>
+            
         </div>
     );
 });

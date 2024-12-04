@@ -188,3 +188,10 @@ div.form-control {
     position: relative !important;
     margin-top: 1rem;
 }
+
+@media screen and (min-width: 900px){
+    .swiper {
+        /* width: 470px !important; */
+        max-width: 60vw;
+    }
+}

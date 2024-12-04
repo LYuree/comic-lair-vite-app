@@ -71,23 +71,38 @@ const CartPage = observer(() => {
                 :
             <>
                 <Container>
-                    <div className="flex-col">
-                        <Slider slides={slides} slidesPerVP={3}></Slider>
-                        <div className="total my-2">
-                            СУММА ЗАКАЗА: {formatPrice(totalCost)}
+                    <div className="flex flex-col lg:flex-row justify-between px-4 py-4">
+                        <div>
+                            <Slider slides={slides}
+                                    slidesPerVP={3}
+                                    breakPoints={{
+                                        368: {
+                                            width: 600,
+                                            slidesPerView: 1,
+                                        },
+                                        900: {
+                                            slidesPerView: 1,
+                                        }
+                                    }}
+                                    />
+                        </div>
+                        <div className="flex flex-col">
+                            <div className="total my-2 basis-1 inline">
+                                СУММА ЗАКАЗА: {formatPrice(totalCost)}
+                            </div>
+                            <a href="/checkout" className="inline">
+                                <button type="submit"
+                                    className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
+                                    onClick={() => checkout(userId, cartProducts)}
+                                    >
+                                    <span
+                                    className="w-56 h-48 bg-[maroon] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
+                                    <span
+                                    className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white">ОФОРМИТЬ ЗАКАЗ</span>
+                                </button>
+                            </a>
                         </div>
                     </div>
-                    <a href="/checkout">
-                        <button type="submit"
-                            className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
-                            onClick={() => checkout(userId, cartProducts)}
-                            >
-                            <span
-                            className="w-56 h-48 bg-[maroon] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
-                            <span
-                            className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white">ОФОРМИТЬ ЗАКАЗ</span>
-                        </button>
-                    </a>
                 </Container>
             </>
         }
