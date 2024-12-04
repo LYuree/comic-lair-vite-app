@@ -183,3 +183,8 @@ div.form-control {
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
+
+.swiper-pagination {
+    position: relative !important;
+    margin-top: 1rem;
+}

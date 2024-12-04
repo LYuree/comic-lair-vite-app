@@ -1,6 +1,6 @@
 import axios from "axios";
 import authHeader from "../../services/auth-header";
-import validateSession from "../../services/jwtDecode";
+import validateSession from "../../services/validateSession";
 
 
 // export const setCartProductAmount = async (userId: string, itemId: string, newAmount: number): Promise<boolean> => {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import authHeader from "../../services/auth-header";
-import validateSession from "../../services/jwtDecode";
+import validateSession from "../../services/validateSession";
 
 
 // export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<string|undefined> => {

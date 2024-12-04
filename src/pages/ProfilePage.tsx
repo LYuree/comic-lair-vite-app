@@ -1,7 +1,7 @@
 import { FC, useEffect, useLayoutEffect } from "react";
 import { getCurrentUser, logout } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
-import validateSession from "../services/jwtDecode";
+import validateSession from "../services/validateSession";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 

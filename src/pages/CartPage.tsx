@@ -7,8 +7,9 @@ import { checkout } from "../api/products/checkout";
 import formatPrice from "../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../services/auth.service";
-import validateSession from "../services/jwtDecode";
+import validateSession from "../services/validateSession";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
+import Slider from "../components/Slider/Slider";
 
 const userId = "asdasdads010101";
 
@@ -29,32 +30,38 @@ const CartPage = observer(() => {
         // но ошибка в validateSession почему-то не отлавливалась
         // блоком catch в этом useLayoutEffect)
         // так что пока сделал просто через промис + catch
-        setCartLoading(true);
-        validateSession()
-            .then(() => setCartLoading(false))
-            .catch(error => {
-            // если с сервера пришла ошибка
-            //  с кодом 401 (не авторизован)
-            if(error.response &&
-                error.response.status &&
-                error.response.status === 401){
-                logout();
-                navigate("/signin");
-            }
-            else {
-                // вариант с рандомной ошибкой без бэкенда,
-                // нужно было протестить переход на страницу авторизации
-                console.log("Some error has arised...");
-                logout();
-                navigate("/signin");
-            }
-        });
+        
+        // setCartLoading(true);
+        // validateSession()
+        //     .then(() => setCartLoading(false))
+        //     .catch(error => {
+        //     // если с сервера пришла ошибка
+        //     //  с кодом 401 (не авторизован)
+        //     if(error.response &&
+        //         error.response.status &&
+        //         error.response.status === 401){
+        //         logout();
+        //         navigate("/signin");
+        //     }
+        //     else {
+        //         // вариант с рандомной ошибкой без бэкенда,
+        //         // нужно было протестить переход на страницу авторизации
+        //         console.log("Some error has arised...");
+        //         logout();
+        //         navigate("/signin");
+        //     }
+        // });
     }, []);
 
 
     useEffect(() => {
         fetchCartProducts();
     }, []);
+    
+    const slides = cartProducts.data.map(item => <CartItem key={item.id}
+        data={item}
+        setAmount={setCartProductAmount}
+        deleteItem={deleteCartProduct}/>);
 
    
     return (
@@ -65,11 +72,7 @@ const CartPage = observer(() => {
             <>
                 <Container>
                     <div className="flex-col">
-                        {cartProducts.data.map(item => <CartItem key={item.id}
-                            data={item}
-                            setAmount={setCartProductAmount}
-                            deleteItem={deleteCartProduct}/>)
-                        }
+                        <Slider slides={slides} slidesPerVP={3}></Slider>
                         <div className="total my-2">
                             СУММА ЗАКАЗА: {formatPrice(totalCost)}
                         </div>

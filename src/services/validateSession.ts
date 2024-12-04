@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
-import { getCurrentUser, logout } from './auth.service';
-import axios, { AxiosError } from 'axios';
+import { getCurrentUser } from './auth.service';
+import axios from 'axios';
 
 
 const validateSession = async () => {
@@ -18,18 +18,17 @@ const validateSession = async () => {
             // иначе - выбросить пользователя из аккаунта
             
             
-            // console.log("Entering try-block in validateSession")
-            // const userRefreshed = await axios.post(
-            //     'https://backend.example/api/jwt',
-            //     {
-            //         user
-            //     },
-            //     {
-            //         withCredentials: true
-            //     }
-            // )
-            // return userRefreshed;
-            throw new Error("unauthorized");
+            const userRefreshed = await axios.post(
+                'https://backend.example/api/jwt',
+                {
+                    user
+                },
+                {
+                    withCredentials: true
+                }
+            )
+            return userRefreshed;
+            // throw new Error("unauthorized");
         }
         catch (error: any){
             console.log("Entering catch-block in validateSession");

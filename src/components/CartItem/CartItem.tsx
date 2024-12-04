@@ -7,7 +7,7 @@ import { TbHeartPlus } from "react-icons/tb";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { getCurrentUser } from "../../services/auth.service.ts";
 
-interface CartItemProps {
+export interface CartItemProps {
     data: IProductItem,
     setAmount: Function,
     deleteItem: Function

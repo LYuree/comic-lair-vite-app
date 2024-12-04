@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ProductsData } from "./fetchProducts"
 import authHeader from "../../services/auth-header";
-import validateSession from "../../services/jwtDecode";
+import validateSession from "../../services/validateSession";
 
 // версия для бэкенда
 // export const checkout = async (userId: string, cartProducts: ProductsData): Promise<boolean> => {

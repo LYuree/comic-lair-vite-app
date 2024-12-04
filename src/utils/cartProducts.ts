@@ -45,5 +45,89 @@ export const cartProducts =
           ],
           reviews: null,
         },
+        {
+          id: "64a65a6158b470c6e06959ev",
+          name: "A Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2800,
+          discount: .20,
+          hit: null,
+          releaseDate: "2024-03-01",
+          brand: "Grim Horse",
+          digital: true,
+          categories: ["Электронная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          amount: 1,
+          images: [
+            {
+              image:
+                  "../src/images/return-of-the-sit-amet-210-326.png",
+            },
+          ],
+          reviews: [],
+        },
+        {
+          id: "64a65a6158b470c6e06959ez",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2750,
+          discount: .20,
+          hit: null,
+          releaseDate: "2024-04-16",
+          brand: "Grim Horse",
+          digital: true,
+          categories: ["Электронная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          amount: 2,
+          images: [
+            {
+              image:
+                  "../src/images/return-of-the-sit-amet-210-326.png",
+            },
+          ],
+          reviews: [],
+        },
+        {
+          id: "64a65a6158b470c6e06959et",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2600,
+          discount: .20,
+          hit: null,
+          releaseDate: "2024-01-28",
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          amount: 1,
+          images: [
+            {
+              image:
+                  "../src/images/return-of-the-sit-amet-210-326.png",
+            },
+          ],
+          reviews: [],
+        },
+        {
+          id: "64a4ebe300900d44bb50628c",
+          name: "Ipsum-Man: The Long Way Home #1",
+          description: "Short description",
+          price: 2400,
+          discount: .15,
+          hit: null,
+          releaseDate: null,
+          brand: "Grim Horse",
+          digital: false,
+          categories: ["Печатная книга", "Комикс"],
+          cover: "Мягкая обложка",
+          amount: 1,
+          images: [
+            {
+              image:
+                  "../src/images/free comic cover 210-326.png",
+            },
+          ],
+          reviews: null,
+        },
       ]
     }

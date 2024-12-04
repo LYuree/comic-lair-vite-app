@@ -7,7 +7,7 @@ import {IProductItem} from "../../api/products/fetchProducts.ts";
 import { addToCart } from "../../api/products/addToCart.ts";
 import { getCurrentUser } from "../../services/auth.service.ts";
 
-interface ProductCardProps {
+export interface ProductCardProps {
     data: IProductItem
     key: number | string;
 }
