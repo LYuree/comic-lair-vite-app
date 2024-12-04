@@ -16,6 +16,7 @@ interface ISwiperProps{
     slides: ReactNode[],
     slidesPerVP: number,
     breakPoints: {},
+    // maxWidth: number
 }
 
 // export default
@@ -23,11 +24,11 @@ const Slider: FC<ISwiperProps> = ({slides, slidesPerVP, breakPoints}) => {
   return (
     <Swiper
       // install Swiper modules
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      modules={[Navigation, /*Pagination,*/ Scrollbar, A11y]}
     //   spaceBetween={50}
       slidesPerView={slidesPerVP}
       navigation
-      pagination={{ clickable: true }}
+    //   pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}

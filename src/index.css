@@ -189,9 +189,13 @@ div.form-control {
     margin-top: 1rem;
 }
 
-@media screen and (min-width: 900px){
+.swiper-wrapper {
+    padding-bottom: 2rem;
+}
+
+@media screen and (min-width: 368px){
     .swiper {
         /* width: 470px !important; */
-        max-width: 60vw;
+        max-width: 600px;
     }
 }

@@ -71,13 +71,18 @@ const CartPage = observer(() => {
                 :
             <>
                 <Container>
-                    <div className="flex flex-col lg:flex-row justify-between px-4 py-4">
+                    <div className="flex
+                        flex-col
+                        lg:flex-row
+                        lg:gap-16
+                        px-4 py-4
+                        mr-8
+                        mt-24">
                         <div>
                             <Slider slides={slides}
                                     slidesPerVP={3}
                                     breakPoints={{
                                         368: {
-                                            width: 600,
                                             slidesPerView: 1,
                                         },
                                         900: {
@@ -86,8 +91,8 @@ const CartPage = observer(() => {
                                     }}
                                     />
                         </div>
-                        <div className="flex flex-col">
-                            <div className="total my-2 basis-1 inline">
+                        <div className="flex flex-col gap-2">
+                            <div className="total my-2 text-2xl font-semibold">
                                 СУММА ЗАКАЗА: {formatPrice(totalCost)}
                             </div>
                             <a href="/checkout" className="inline">
@@ -101,6 +106,15 @@ const CartPage = observer(() => {
                                     className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white">ОФОРМИТЬ ЗАКАЗ</span>
                                 </button>
                             </a>
+                            <div className="mt-8">
+                                <div className="">
+                                    <h2 className="text-2xl font-semibold mb-4">Ваши данные</h2>
+                                    {/* Здесь можно добавить компоненты или элементы для отображения информации о пользователе */}
+                                    <p><strong>Имя:</strong> {/*currentUser.name*/} Иван Иванов</p>
+                                    <p><strong>Электронная почта:</strong> {/*currentUser.email*/} ivan.ivanov@example.com</p>
+                                    <p><strong>Телефон:</strong> {/*currentUser.phone*/}+7 (999) 123-45-67</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Container>
