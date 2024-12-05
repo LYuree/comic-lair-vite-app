@@ -29,7 +29,10 @@ const ProfilePage: FC = () => {
         // но ошибка в validateSession почему-то не отлавливалась
         // блоком catch в этом useLayoutEffect)
         // так что пока сделал просто через промис + catch
-        setProfileLoading(true);
+        
+        setProfileLoading(true); //обернуть в промис/await? стейт обновляется асинхронно,
+                                // неавторизованный пользователь может что-то увидеть
+                                // до того, как провалит валидацию и его выбросит
         validateSession()
         .then(() => setProfileLoading(false))
         .catch(error => {

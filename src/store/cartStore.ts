@@ -11,6 +11,9 @@ export class CartStore {
     };
     cartLoading: boolean = false;
     error: string | null = null;
+    email: string = "";
+    phone: string = "";
+    isCheckoutPopupOpen: boolean = false;
     
     get totalCost(): number {
         return this.cartProducts.data.reduce((accumulator, currentProduct: IProductItem) =>
@@ -20,6 +23,9 @@ export class CartStore {
     constructor(){
         makeAutoObservable(this);
     }
+    setCheckoutPopupOpen = (isOpen: boolean) => {this.isCheckoutPopupOpen = isOpen};
+    setEmail = (email: string) => (this.email = email);
+    setPhone = (phone: any) => {console.log("Phone number: ", typeof phone); this.phone = phone};
     setCartLoading = (loading: boolean) => (this.cartLoading = loading);
     setCartProducts = (products: ProductsData) => (this.cartProducts = products);
     setCartProductAmount = (id: string, amount: number) => {
@@ -64,6 +70,7 @@ export class CartStore {
             await checkout(userId, cartProducts);
             this.setCartProducts({data: []});
             this.setCartLoading(false);
+            this.setCheckoutPopupOpen(true);
         }, 500);
     }
     setError = (error: string) => (this.error = error);

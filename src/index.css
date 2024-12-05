@@ -167,7 +167,6 @@ div.form-control {
 .alert {
     padding: 1rem 1.25rem;           /* Padding for the alert */
     border: 1px solid transparent;    /* Initial border styling */
-    border-radius: 0.25rem;           /* Rounded corners */
     margin-bottom: 1rem;              /* Space below alert */
     font-size: 1rem;                  /* Font size */
 }
