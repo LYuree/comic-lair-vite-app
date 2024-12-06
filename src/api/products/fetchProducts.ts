@@ -1,5 +1,4 @@
 import axios from "axios";
-import {products} from "../../utils/products.tsx";
 
 interface ICoverImage {
     image: string
@@ -7,7 +6,8 @@ interface ICoverImage {
 
 // Определение интерфейса для данных
 export interface IProductItem {
-    id: string,
+    // id: string,
+    id: number,
     name: string,
     description: string,
     price: number,
@@ -28,22 +28,37 @@ export interface ProductsData {
 }
 
 // Версия для работы с бэком
-// export const fetchProducts = async (): Promise<ProductsData> => {
-//     try {
-//         await axios.get<ProductsData>(
-//             'https://backend.example/api/products')
-//             .then((response) => response.data);
-//
-//     } catch (error) {
-//         console.error("Error fetching data:", error);
-//         // Верните пустой массив ProductsData в виде обещания
-//         return Promise.resolve({
-//             data: []
-//         });
-//     }
-// };
+export const fetchProducts = async (): Promise<ProductsData> => {
+    try {
+        // let products = {data: []};
+        let fetchResponse = {data: []};
+        await axios.get<ProductsData>(
+            'http://127.0.0.1:8000/products/')
+            .then((response) => {
+                // оборачиваем данные с сервера в объект,
+                // присваивая их в качестве значения ключа data
+                Object.defineProperty(fetchResponse,
+                    "data",
+                    {
+                        // на всякий случай делаю deep copy
+                        // с помощью JSON-api
+                        // (возможно, это излишне)
+                        value: JSON.parse(JSON.stringify(response.data)),
+                        writable: false
+                    });
+                return fetchResponse;
+            })
+        return Promise.resolve(fetchResponse);
+
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        // Верните пустой массив ProductsData в виде обещания
+        return Promise.resolve({data: []});
+    }
+};
+
 // Версия для моков
-export const fetchProducts = async (): Promise<ProductsData> =>
-    await new Promise(resolve => {
-            resolve(products)
-    })
+// export const fetchProducts = async (): Promise<ProductsData> =>
+//     await new Promise(resolve => {
+//             resolve(products)
+//     })

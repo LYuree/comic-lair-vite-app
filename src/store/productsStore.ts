@@ -28,8 +28,14 @@ export class ProductsStore {
         makeAutoObservable(this);
     }
 
+    // get productsData: this.products.data;
+
     /*Сеттеры*/
-    setProducts = (products: ProductsData) => (this.products = products);
+    setProducts = (products: ProductsData) => {
+        console.log(products);
+        console.log(this);
+        this.products = products;
+    }
     setDisplayedProducts = (displayedProducts: ProductsData) => (this.displayedProducts = displayedProducts);
     setError = (error: string) => (this.error = error);
     setFieldsLoading = (loading: boolean) => (this.productsLoading = loading);
@@ -112,18 +118,18 @@ export class ProductsStore {
         try {
             this.setFieldsLoading(true);
             // вариант с рабочим бэком
-            // const productsData = await fetchProducts();
-            // this.setProducts(productsData);
-            // this.setDisplayedProducts(productsData);
-            // this.setFieldsLoading(false);
+            const productsData = await fetchProducts();
+            this.setProducts(productsData);
+            this.setDisplayedProducts(JSON.parse(JSON.stringify(productsData)));
+            this.setFieldsLoading(false);
 
             // вариант на моках
-            setTimeout(async ()=> {
-                const productsData = await fetchProducts();
-                this.setProducts(productsData);
-                this.setDisplayedProducts(JSON.parse(JSON.stringify(productsData)));
-                this.setFieldsLoading(false);
-            }, 2000)
+            // setTimeout(async ()=> {
+            //     const productsData = await fetchProducts();
+            //     this.setProducts(productsData);
+            //     this.setDisplayedProducts(JSON.parse(JSON.stringify(productsData)));
+            //     this.setFieldsLoading(false);
+            // }, 2000)
 
         } catch (error) {
             this.setError("error");

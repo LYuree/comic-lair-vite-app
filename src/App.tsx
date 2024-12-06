@@ -43,7 +43,7 @@ function App() {
         }, []);
     
       const logOut = () => {
-        AuthService.logout();
+      AuthService.logout();
         setShowModeratorBoard(false);
         setShowAdminBoard(false);
         setCurrentUser(undefined);

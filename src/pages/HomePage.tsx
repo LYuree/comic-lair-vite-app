@@ -34,9 +34,9 @@ const HomePage = observer(() => {
                     <h2 className="text-4xl text-center mb-16 mt-8">НОВЕЙШИЕ РЕЛИЗЫ</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
                             2xl:grid-cols-6 gap-8">
-                        {products.data.map((product: IProductItem) => {
+                        {products.data ? products.data.map((product: IProductItem) => {
                             return (<ProductCard key={product.id} data={product}></ProductCard>)
-                        })}
+                        }): ""}
                     </div>
                 </div>
             </Container>
@@ -58,9 +58,9 @@ const HomePage = observer(() => {
                     <h2 className="text-4xl text-center mb-16 mt-8 border-b-2 border-black w-3/4 mx-auto min-w-min pb-4">ХИТЫ</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
                         2xl:grid-cols-6 gap-8">
-                        {products.data.map((product: IProductItem) => {
+                        {products.data ? products.data.map((product: IProductItem) => {
                             return (<ProductCard key={product.id} data={product}></ProductCard>)
-                        })}
+                        }): ""}
                     </div>
                 </div>
             </Container>
@@ -86,9 +86,9 @@ const HomePage = observer(() => {
                     <h2 className="text-4xl text-center mb-16 mt-8 border-b-2 border-black w-3/4 mx-auto min-w-min pb-4">СКИДКИ</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
                         2xl:grid-cols-6 gap-8">
-                        {products.data.map((product: IProductItem) => {
+                        {products.data ? products.data.map((product: IProductItem) => {
                             return (<ProductCard key={product.id} data={product}></ProductCard>)
-                        })}
+                        }): ""}
                     </div>
                 </div>
             </Container>
