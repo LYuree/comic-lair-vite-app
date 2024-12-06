@@ -28,13 +28,13 @@ export class CartStore {
     setPhone = (phone: any) => {console.log("Phone number: ", typeof phone); this.phone = phone};
     setCartLoading = (loading: boolean) => (this.cartLoading = loading);
     setCartProducts = (products: ProductsData) => (this.cartProducts = products);
-    setCartProductAmount = (id: string, amount: number) => {
+    setCartProductAmount = (id: number, amount: number) => {
         const newCartProducts = {
             data: this.cartProducts.data.map(item => (item.id === id? {...item, amount}: item))
         };
         this.setCartProducts(newCartProducts);
     }
-    deleteCartProduct = async (userId: string, id: string) => {
+    deleteCartProduct = async (userId: number, id: number) => {
         // проверка на успешное удаление...
         this.setCartLoading(true);
         // вариант с рабочим бэком
@@ -80,16 +80,16 @@ export class CartStore {
         try {
             this.setCartLoading(true);
             // вариант с рабочим бэком
-            // const cartProductsData = await fetchCartProducts();
-            // this.setCartProducts(cartProductsData);
-            // this.setFieldsLoading(false);
+            const cartProductsData = await fetchCartProducts();
+            this.setCartProducts(cartProductsData);
+            this.setCartLoading(false);
 
             // вариант на моках
-            setTimeout(async ()=> {
-                const productsData = await fetchCartProducts();
-                this.setCartProducts(productsData);
-                this.setCartLoading(false);
-            }, 2000)
+            // setTimeout(async ()=> {
+            //     const productsData = await fetchCartProducts();
+            //     this.setCartProducts(productsData);
+            //     this.setCartLoading(false);
+            // }, 2000)
 
         } catch (error) {
             console.log(error);

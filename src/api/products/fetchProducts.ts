@@ -30,8 +30,7 @@ export interface ProductsData {
 // Версия для работы с бэком
 export const fetchProducts = async (): Promise<ProductsData> => {
     try {
-        // let products = {data: []};
-        let fetchResponse = {data: []};
+        const fetchResponse = {data: []};
         await axios.get<ProductsData>(
             'http://127.0.0.1:8000/products/')
             .then((response) => {

@@ -30,7 +30,7 @@ import validateSession from "../../services/validateSession";
 //     }
 
 // вариант на моках
-export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<boolean> => {
+export const deleteCartProduct = async (userId: number, cartProductId: number) : Promise<boolean> => {
     console.log(`Запрос на удаление товара из корзины, userId: ${userId}, itemId: ${cartProductId}`);
     return new Promise(resolve => resolve(true));
 }
