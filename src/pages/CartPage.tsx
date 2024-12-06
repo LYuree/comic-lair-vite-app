@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
 import { checkout } from "../api/products/checkout";
@@ -17,6 +17,7 @@ const userId = "asdasdads010101";
 
 const CartPage = observer(() => {
     const navigate = useNavigate();
+    const swiperRef = useRef();
 
     const {
         cartStore : {
@@ -76,21 +77,28 @@ const CartPage = observer(() => {
     const handleClosePopup = () => {
         setCheckoutPopupOpen(false);
         };
+        
 
     return (
         <>
+            
             {cartLoading ? 
                 <LoadingScreen/>
                 :
                 <>
                 {(!cartLoading && Array.isArray(cartProducts.data) && !cartProducts.data.length) ?
-                    <div className="w-full h-[80vh] flex flex-col justify-center items-center gap-4">
+                    <div className="w-full h-[80vh] flex-col justify-center items-center gap-4">
                         <span className="text-2xl font-bold">Ваша корзина пуста.</span>
                         <a className="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 inline-block" href="/">Вернуться на главную</a>
                     </div>
                     :
                     <Container>
-                        <div className="flex
+                        {/* временно убрал flex у cart-page-slider-wrapper,
+                        потому что flex вызывает баг с бесконечной шириной
+                        у слайдов swiper-js  */}
+                        <div className="
+                            cart-page-slider-wrapper
+                            inline-block
                             flex-col
                             lg:flex-row
                             lg:gap-16
@@ -99,18 +107,22 @@ const CartPage = observer(() => {
                             mt-24">
                             <div>
                                 <Slider slides={slides}
-                                        slidesPerVP={3}
+                                        slidesPerVP={1}
+                                        autoPlay={false}
+                                        isLooped={false}
+                                        navigate={true}
+                                        ref={swiperRef}
                                         breakPoints={{
-                                            368: {
-                                                slidesPerView: 1,
-                                            },
-                                            900: {
-                                                slidesPerView: 1,
-                                            }
+                                            // 368: {
+                                            //     slidesPerView: 1,
+                                            // },
+                                            // 900: {
+                                            //     slidesPerView: 1,
+                                            // }
                                         }}
                                         />
                             </div>
-                            <div className="flex flex-col gap-2">
+                            <div className="inline-block flex flex-col gap-2">
                                 <div className="total my-2 text-2xl font-semibold py-8 border-y-2 border-[gray]">
                                     СУММА ЗАКАЗА: <span className="text-[green]">{formatPrice(totalCost)}</span>
                                 </div>

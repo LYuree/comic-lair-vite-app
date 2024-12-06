@@ -4,7 +4,7 @@ export const cartProducts =
     {
       data: [
         {
-          id: "64a654593e91b8e73a351e9b",
+          id: 1,
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
           price: 600,
@@ -22,10 +22,10 @@ export const cartProducts =
                   "../src/images/ipsum.png",
             },
           ],
-          reviews: null,
+          reviews: ["review 1, review 2"],
         },
         {
-          id: "64a4ebe300900d44bb50628psdfsd",
+          id: 2,
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
           price: 2999,
@@ -43,10 +43,10 @@ export const cartProducts =
                   "../src/images/free comic cover 210-326.png",
             },
           ],
-          reviews: null,
+          reviews: ["review 1", "review 2"],
         },
         {
-          id: "64a65a6158b470c6e06959ev",
+          id: 4,
           name: "A Ipsum-Man: The Long Way Home #1",
           description: "Short description",
           price: 2800,
@@ -67,7 +67,7 @@ export const cartProducts =
           reviews: [],
         },
         {
-          id: "64a65a6158b470c6e06959ez",
+          id: 3,
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
           price: 2750,
@@ -88,7 +88,7 @@ export const cartProducts =
           reviews: [],
         },
         {
-          id: "64a65a6158b470c6e06959et",
+          id: 5,
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
           price: 2600,
@@ -109,7 +109,7 @@ export const cartProducts =
           reviews: [],
         },
         {
-          id: "64a4ebe300900d44bb50628c",
+          id: 6,
           name: "Ipsum-Man: The Long Way Home #1",
           description: "Short description",
           price: 2400,

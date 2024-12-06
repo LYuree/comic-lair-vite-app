@@ -1,5 +1,5 @@
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -12,26 +12,34 @@ import { ProductCardProps } from '../ProductCard/ProductCard';
 import CartItem, { CartItemProps } from '../CartItem/CartItem';
 import { FC, ReactNode } from 'react';
 
+
 interface ISwiperProps{
     slides: ReactNode[],
     slidesPerVP: number,
     breakPoints: {},
+    autoPlay: boolean,
+    isLooped: boolean,
+    navigate: boolean,
+    ref: any
     // maxWidth: number
 }
 
 // export default
-const Slider: FC<ISwiperProps> = ({slides, slidesPerVP, breakPoints}) => {
+const Slider: FC<ISwiperProps> = ({slides, slidesPerVP, breakPoints, autoPlay, isLooped, navigate}) => {
   return (
     <Swiper
       // install Swiper modules
-      modules={[Navigation, /*Pagination,*/ Scrollbar, A11y]}
+      modules={[Navigation, /*Pagination,*/ Scrollbar,
+       A11y, Autoplay]}
+       loop={isLooped}
     //   spaceBetween={50}
       slidesPerView={slidesPerVP}
-      navigation
+      navigation={navigate}
     //   pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
+      autoplay={autoPlay}
       breakpoints={
         breakPoints
         // {        
@@ -45,7 +53,8 @@ const Slider: FC<ISwiperProps> = ({slides, slidesPerVP, breakPoints}) => {
     }
     >
         {slides.map(slide => {
-            return <SwiperSlide>{slide}</SwiperSlide>
+            return <SwiperSlide key={crypto.randomUUID()}
+              >{slide}</SwiperSlide>
         })}
     </Swiper>
   );
