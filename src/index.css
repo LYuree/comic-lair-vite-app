@@ -192,6 +192,7 @@ div.form-control {
     padding-bottom: 2rem;
 }
 
+
 /* .hero-slider .swiper-button-prev,
 .hero-slider .swiper-button-next {
     color: black;
@@ -217,9 +218,14 @@ div.form-control {
 
 
 @media screen and (min-width: 368px){
-    .cart-page-slider-wrapper {
+    .cart-page-slider-wrapper .swiper-wrapper{
         /* width: 470px !important; */
         width: 600px;
         /* width: 100%; */
     }
 }
+
+/* код ниже оказался не нужен */
+/* .swiper-slide {
+    max-width: 600px !important;
+} */

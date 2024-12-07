@@ -55,7 +55,7 @@ const HomeBanner = () => {
     
     return (
         <>
-            <div className="hero-slider">
+            <div className="hero-slider max-w-[1189px] mx-auto">
                 <Slider
                     slides={slideNodes}
                     slidesPerVP={1}

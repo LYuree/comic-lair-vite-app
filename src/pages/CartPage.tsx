@@ -87,7 +87,7 @@ const CartPage = observer(() => {
                 :
                 <>
                 {(!cartLoading && Array.isArray(cartProducts.data) && !cartProducts.data.length) ?
-                    <div className="w-full h-[80vh] flex-col justify-center items-center gap-4">
+                    <div className="w-full h-[80vh] flex flex-col justify-center items-center gap-4">
                         <span className="text-2xl font-bold">Ваша корзина пуста.</span>
                         <a className="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 inline-block" href="/">Вернуться на главную</a>
                     </div>
@@ -98,7 +98,7 @@ const CartPage = observer(() => {
                         у слайдов swiper-js  */}
                         <div className="
                             cart-page-slider-wrapper
-                            inline-block
+                            flex
                             flex-col
                             lg:flex-row
                             lg:gap-16
@@ -122,7 +122,7 @@ const CartPage = observer(() => {
                                         }}
                                         />
                             </div>
-                            <div className="inline-block flex flex-col gap-2">
+                            <div className="flex flex-col gap-2">
                                 <div className="total my-2 text-2xl font-semibold py-8 border-y-2 border-[gray]">
                                     СУММА ЗАКАЗА: <span className="text-[green]">{formatPrice(totalCost)}</span>
                                 </div>
