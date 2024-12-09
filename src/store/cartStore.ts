@@ -58,7 +58,10 @@ export class CartStore {
             this.setCartLoading(false);
         }, 500);
     }
-    checkout = (userId: string, cartProducts: ProductsData) => {
+    checkout = (userId: string,
+        phone: string,
+        email: string,        
+        cartProducts: ProductsData) => {
         // проверка на успешное удаление...
         this.setCartLoading(true);
         // вариант с рабочим бэком
@@ -68,7 +71,7 @@ export class CartStore {
 
         // вариант на моках
         setTimeout(async () => {
-            await checkout(userId, cartProducts);
+            await checkout(userId, phone, email, cartProducts);
             this.setCartProducts({data: []});
             this.setCartLoading(false);
             this.setCheckoutPopupOpen(true);
