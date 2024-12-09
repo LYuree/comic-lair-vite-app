@@ -111,7 +111,6 @@ const CartPage = observer(() => {
                                         autoPlay={false}
                                         isLooped={false}
                                         navigate={true}
-                                        ref={swiperRef}
                                         breakPoints={{
                                             // 368: {
                                             //     slidesPerView: 1,

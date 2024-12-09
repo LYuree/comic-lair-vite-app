@@ -6,7 +6,7 @@ import validateSession from "../../services/validateSession";
 // export const setCartProductAmount = async (userId: string, itemId: string, newAmount: number): Promise<boolean> => {
 //     // Версия для работы с бэком
 //         try {
-//             await validateSession();
+            // await validateSession();
 //             await axios.put(
 //                 'https://backend.example/api/cart/put',
 //                 data: {

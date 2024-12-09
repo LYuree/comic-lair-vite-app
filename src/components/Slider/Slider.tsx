@@ -20,7 +20,7 @@ interface ISwiperProps{
     autoPlay: boolean,
     isLooped: boolean,
     navigate: boolean,
-    ref: any
+    // ref: any
     // maxWidth: number
 }
 
@@ -37,8 +37,8 @@ const Slider: FC<ISwiperProps> = ({slides, slidesPerVP, breakPoints, autoPlay, i
       navigation={navigate}
     //   pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
       autoplay={autoPlay}
       breakpoints={
         breakPoints

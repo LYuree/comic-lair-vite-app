@@ -16,6 +16,7 @@ export class CartStore {
     isCheckoutPopupOpen: boolean = false;
     
     get totalCost(): number {
+        console.log(this.cartProducts.data);
         return this.cartProducts.data.reduce((accumulator, currentProduct: IProductItem) =>
             accumulator + currentProduct.price*(1 - currentProduct.discount)*currentProduct.amount, 0);
     }
@@ -27,7 +28,7 @@ export class CartStore {
     setEmail = (email: string) => (this.email = email);
     setPhone = (phone: any) => {console.log("Phone number: ", typeof phone); this.phone = phone};
     setCartLoading = (loading: boolean) => (this.cartLoading = loading);
-    setCartProducts = (products: ProductsData) => (this.cartProducts = products);
+    setCartProducts = (products: ProductsData) => {this.cartProducts = products};
     setCartProductAmount = (id: number, amount: number) => {
         const newCartProducts = {
             data: this.cartProducts.data.map(item => (item.id === id? {...item, amount}: item))
@@ -81,6 +82,11 @@ export class CartStore {
             this.setCartLoading(true);
             // вариант с рабочим бэком
             const cartProductsData = await fetchCartProducts();
+            // console.log(cartProductsData.data);
+            // const cartProductsDataArray = JSON.parse(JSON.stringify(cartProductsData));
+            // console.log(cartProductsDataArray);
+            console.log(cartProductsData.data.reduce((accumulator:number, currentProduct: IProductItem) =>
+                accumulator + currentProduct.price*(1 - currentProduct.discount)*currentProduct.amount, 0));
             this.setCartProducts(cartProductsData);
             this.setCartLoading(false);
 
