@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import validateSession from "../services/validateSession";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
+import { fetchOrderDetails } from "../api/products/fetchOrderDetails";
 
 
 interface IOrderItem {
@@ -19,39 +20,43 @@ const ProfilePage: FC = () => {
         profileStore : { profileLoading, setProfileLoading }
     } = rootStore;
 
+    // useLayoutEffect(() => {
+    //     // как и в CartPage.tsx:
+        
+    //     // пытался реализовать валидацию токена пользователя
+    //     // через try-catch и async-await 
+    //     // (при возврате ошибки с сервера в validateSession
+    //     // пользователя должно было бы выбрасывать на страницу логина,
+    //     // но ошибка в validateSession почему-то не отлавливалась
+    //     // блоком catch в этом useLayoutEffect)
+    //     // так что пока сделал просто через промис + catch
+        
+    //     setProfileLoading(true); //обернуть в промис/await? стейт обновляется асинхронно,
+    //                             // неавторизованный пользователь может что-то увидеть
+    //                             // до того, как провалит валидацию и его выбросит
+    //     validateSession()
+    //     .then(() => setProfileLoading(false))
+    //     .catch(error => {
+    //         // если с сервера пришла ошибка
+    //         //  с кодом 401 (не авторизован)
+    //         if(error.response &&
+    //             error.response.status &&
+    //             error.response.status === 401){
+    //             logout();
+    //             navigate("/signin");
+    //         }
+    //         else {
+    //             // вариант с рандомной ошибкой без бэкенда,
+    //             // нужно было протестить переход на страницу авторизации
+    //             console.log("Some error has arised...");
+    //             logout();
+    //             navigate("/signin");
+    //         }
+    //     });
+    // }, []);
+
     useLayoutEffect(() => {
-        // как и в CartPage.tsx:
-        
-        // пытался реализовать валидацию токена пользователя
-        // через try-catch и async-await 
-        // (при возврате ошибки с сервера в validateSession
-        // пользователя должно было бы выбрасывать на страницу логина,
-        // но ошибка в validateSession почему-то не отлавливалась
-        // блоком catch в этом useLayoutEffect)
-        // так что пока сделал просто через промис + catch
-        
-        setProfileLoading(true); //обернуть в промис/await? стейт обновляется асинхронно,
-                                // неавторизованный пользователь может что-то увидеть
-                                // до того, как провалит валидацию и его выбросит
-        validateSession()
-        .then(() => setProfileLoading(false))
-        .catch(error => {
-            // если с сервера пришла ошибка
-            //  с кодом 401 (не авторизован)
-            if(error.response &&
-                error.response.status &&
-                error.response.status === 401){
-                logout();
-                navigate("/signin");
-            }
-            else {
-                // вариант с рандомной ошибкой без бэкенда,
-                // нужно было протестить переход на страницу авторизации
-                console.log("Some error has arised...");
-                logout();
-                navigate("/signin");
-            }
-        });
+        fetchOrderDetails();
     }, []);
 
     return (

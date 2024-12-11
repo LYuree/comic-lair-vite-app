@@ -14,6 +14,9 @@ export const checkout = async (userId: string,
     const {profileStore : {
         currentUser, setCurrentUser,
         }} = rootStore;
+    // console.log(`User id: ${typeof AuthService.getCurrentUser().id}`);
+    const userIdInt = parseInt(userId);
+    console.log(userId, userIdInt);
     try {
         // await validateSession();
         const orderDetails = JSON.stringify({
@@ -21,12 +24,13 @@ export const checkout = async (userId: string,
             email,
             cartProducts
         }); 
+        console.log(userIdInt);
         await axios.post(
             'http://127.0.0.1:8000/orders/',
             {
                 // user_id: userId,
                 // требует integer
-                user_id: 1,
+                user_id: userIdInt,
                 order_details: orderDetails
             },
             {

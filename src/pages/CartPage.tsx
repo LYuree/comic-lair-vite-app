@@ -12,12 +12,15 @@ import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import Slider from "../components/Slider/Slider";
 import PhoneNumberInput from "../components/PhoneNumberInput/PhoneNumberInput";
 import Popup from "../components/Popup/Popup";
+import * as AuthService from "../services/auth.service";
 
-const userId = "asdasdads010101";
+
+// const userId = "asdasdads010101";
 
 const CartPage = observer(() => {
     const navigate = useNavigate();
     const swiperRef = useRef();
+    const userId = AuthService.getCurrentUser().id;
 
     const {
         cartStore : {

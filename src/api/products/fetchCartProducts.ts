@@ -15,7 +15,8 @@ interface cartUnit {
 // Версия для работы с бэком
 
 // dev mode
-localStorage.setItem("user", JSON.stringify({id: "1", name: "Archimboldo", token: "sdsdfsdfs"}));
+localStorage.removeItem("user");
+localStorage.setItem("user", JSON.stringify({id: "3", name: "Archimboldo", token: "sdsdfsdfs"}));
 
 export const fetchCartProducts = async (): Promise<ProductsData> => {
     const {profileStore : {

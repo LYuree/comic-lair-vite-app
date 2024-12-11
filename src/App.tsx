@@ -17,6 +17,7 @@ import IUser from "./types/user.type.ts";
 import EventBus from "./common/EventBus";
 
 import * as AuthService from "./services/auth.service";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
 
     return (
         <div className="app">
+                <ScrollToTop/>
                 <NavBar/>
                 <Routes>
                     <Route path="/" element={<HomePage/>}></Route>
