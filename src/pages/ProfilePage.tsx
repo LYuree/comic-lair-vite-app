@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import validateSession from "../services/validateSession";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
-import { fetchOrderDetails } from "../api/products/fetchOrderDetails";
-
+import { IOrderDetails, IOrderJSON } from "../api/products/fetchOrderDetails";
+import { observer } from "mobx-react";
+import { ProductsData } from "../api/products/fetchProducts";
 
 interface IOrderItem {
     id: string,
@@ -13,14 +14,16 @@ interface IOrderItem {
     status: string,
 }
 
-const ProfilePage: FC = () => {
+
+const ProfilePage: FC = observer(() => {
     const navigate = useNavigate();   
 
     const {
-        profileStore : { profileLoading, setProfileLoading }
+        profileStore : { profileLoading, setProfileLoading,
+            currentUser, setCurrentUser, 
+            userOrderDetails, fetchOrderDetails }
     } = rootStore;
 
-    // useLayoutEffect(() => {
     //     // как и в CartPage.tsx:
         
     //     // пытался реализовать валидацию токена пользователя
@@ -59,6 +62,10 @@ const ProfilePage: FC = () => {
         fetchOrderDetails();
     }, []);
 
+    const orderSX = userOrderDetails.map((order: IOrderJSON) => {
+        <li className="mb-2">{`Заказ ${order.email} - Id пользователя: ${order.phone}`}</li>
+    });
+
     return (
         <>
         {profileLoading ?
@@ -75,10 +82,18 @@ const ProfilePage: FC = () => {
                                 {/* {currentUser.orders.map((order: IOrderItem) => {
                                     <li className="mb-2">{`Заказ ${order.id} - Дата: ${order.date} - Статус: ${order.status}`}</li>    
                                 })} */}
+                                {   
+                                    (userOrderDetails ? 
+                                            userOrderDetails.map((order: IOrderJSON) => {
+                                                return <li key={crypto.randomUUID()} className="mb-2">{`Заказ ${order.email} - Id пользователя: ${order.phone}`}</li>
+                                            })
+                                        :
+                                        "")
+                                }
 
-                                <li className="mb-2">Заказ #1 - Дата: 01.01.2023 - Статус: Завершен</li>
-                                <li className="mb-2">Заказ #2 - Дата: 15.01.2023 - Статус: В обработке</li>
-                                <li className="mb-2">Заказ #3 - Дата: 20.01.2023 - Статус: Отменен</li>
+                                {/* <li className="mb-2">Заказ #1 - Дата: 01.01.2023 - Статус: Завершен</li> */}
+                                {/* <li className="mb-2">Заказ #2 - Дата: 15.01.2023 - Статус: В обработке</li> */}
+                                {/* <li className="mb-2">Заказ #3 - Дата: 20.01.2023 - Статус: Отменен</li> */}
                             </ul>
                         </div>
                     </div>
@@ -96,8 +111,11 @@ const ProfilePage: FC = () => {
             <div className="w-full flex justfy-center">
                 <button className="w-[50vw] mx-auto bg-blue-500 text-white p-2  hover:bg-blue-600"
                     type="submit"
-                    onClick={logout}
-                >
+                    onClick={() => {
+                        logout;
+                        navigate("/signin")}
+                    }
+                    >
                     Выйти
                 </button>
             </div>
@@ -106,6 +124,6 @@ const ProfilePage: FC = () => {
     </>
 
     )
-}
+})
  
 export default ProfilePage;
