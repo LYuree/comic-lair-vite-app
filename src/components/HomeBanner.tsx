@@ -21,7 +21,6 @@ const HomeBanner = () => {
     ]
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const swiperRef = useRef();
 
     const prevSlide = () => {
         setCurrentIndex( currentIndex => {
@@ -63,7 +62,6 @@ const HomeBanner = () => {
                     autoPlay={true}
                     isLooped={true}
                     navigate={false}
-                    ref={swiperRef}
                     />
             </div>
     {/* <div className='max-w-[1160px] w-full h-[475px] mx-auto mt-4 relative

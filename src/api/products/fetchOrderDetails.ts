@@ -12,6 +12,12 @@ import authHeader from "../../services/auth-header";
 //     status: string,
 // }
 
+interface IOrderDetails{
+    id: number,
+    user_id: number,
+    order_details: string
+}
+
 interface cartUnit {
         id: number;
         user_id: number;
@@ -27,7 +33,7 @@ export const fetchOrderDetails = async (): Promise<ProductsData> => {
     const {profileStore : {
         currentUser, setCurrentUser,
         }} = rootStore;
-    let orderItemStrings = [""];
+    // let orderItemStrings = [];
     try {
         const fetchResponse = {data: []};
         // await validateSession();
@@ -35,21 +41,27 @@ export const fetchOrderDetails = async (): Promise<ProductsData> => {
         // await axios.get<ProductsData>(
         // получаем данные в формате массива JSON-строк
         
-        await axios.get<string[]>(
+        await axios.get<IOrderDetails[]>(
             `http://127.0.0.1:8000/orders/${AuthService.getCurrentUser().id}`,
             {
                 headers: authHeader()
             })
             .then(response => {
-                orderItemStrings = response.data;
+                const orderItems = response.data;
+                const orderDetails = orderItems.map(
+                    (orderItem: IOrderDetails) => JSON.parse(orderItem.order_details))
+                console.log(orderDetails);
+                return orderDetails;
             });
-            console.log(orderItemStrings);
-        const orderItems = orderItemStrings.map((orderItem: string) => JSON.parse(orderItem))
-            console.log(orderItems);
+            // console.log(orderItemStrings);
+            // const orderItems = orderItemStrings.map(
+                // (orderItemString: IOrderDetails) => JSON.parse(orderItemString.order_details))
+            // console.log(orderItems);
             return fetchResponse;
         } catch (error: any) {
                 console.error("Error fetching data:", error);
-                if(error.response.status === 401){
+                if(error.response.status
+                    && error.response.status === 401){
                 AuthService.logout();
                 //      setShowModeratorBoard(false);
                 //      setShowAdminBoard(false);
