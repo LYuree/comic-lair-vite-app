@@ -39,14 +39,10 @@ export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
     const {profileStore : {
         currentUser, setCurrentUser,
         }} = rootStore;
-    // let orderItemStrings = [];
     try {
         let fetchResponse: IOrderJSON[] = [];
         // await validateSession();
-
-        // await axios.get<ProductsData>(
-        // получаем данные в формате массива JSON-строк
-        
+              
         await axios.get<IOrderDetails[]>(
             `http://127.0.0.1:8000/orders/${AuthService.getCurrentUser().id}`,
             {
@@ -56,23 +52,7 @@ export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
                 const orderItems = response.data;
                 const orderDetails: IOrderJSON[] = orderItems.map(
                     (orderItem: IOrderDetails) => JSON.parse(orderItem.order_details));
-                // Object.defineProperty(fetchResponse,
-                //     "data",
-                //     {
-                //     // на всякий случай делаю deep copy
-                //     // с помощью JSON-api
-                //     // (возможно, это излишне)
-                //     value: JSON.parse(JSON.stringify(orderDetails)),
-                //     writable: false
-                //     });
-                //     console.log(fetchResponse);
-                //     return fetchResponse;
-                // });
                 fetchResponse = orderDetails;
-            // console.log(orderItemStrings);
-            // const orderItems = orderItemStrings.map(
-                // (orderItemString: IOrderDetails) => JSON.parse(orderItemString.order_details))
-            // console.log(orderItems);
             return fetchResponse;
         })
         return fetchResponse;

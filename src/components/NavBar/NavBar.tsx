@@ -14,19 +14,19 @@ const NavBar = () => {
 
 
 
-    return (  <div
+    return (  
+    <>
+    <div
     className="
-    sticky
+    
     top-0
     w-full
     bg-black
     text-white
     z-30
+    pt-4"
+    >
 
-    ">
-        <div className="
-        py-4
-        ">
             <Container>
                 <div className="flex
                 flex-row
@@ -74,7 +74,7 @@ const NavBar = () => {
                         </Link>
                     </div>
                 </div>
-                <ul className="flex
+                {/* <ul className="flex
                 flex-row
                 items-center
                 justify-around
@@ -85,13 +85,35 @@ const NavBar = () => {
                     <li><Link to={"/about"} className="hover:underline">О нас</Link></li>
                     <li><Link to={"#"} className="hover:underline">Купим у ВАС!</Link></li>
                     <li><Link to={"/signin"} className="font-bold hover:underline">ВОЙТИ</Link></li>
-                </ul>
-                
+                </ul>                 */}
             </Container>
-
-
-        </div>
-    </div> );
+    </div>
+    <div
+    className="
+    sticky
+    top-0
+    w-full
+    bg-black
+    text-white
+    z-30
+    py-4"
+    >
+    <Container>
+        <ul className="flex
+                    flex-row
+                    items-center
+                    justify-around
+                    text-sm
+                    ">
+                        <li><Link to={"/"} className="hover:underline">Главная</Link></li>
+                        <li><Link to={"/products"} className="hover:underline">Товары</Link></li>
+                        <li><Link to={"/about"} className="hover:underline">О нас</Link></li>
+                        <li><Link to={"#"} className="hover:underline">Купим у ВАС!</Link></li>
+                        <li><Link to={"/signin"} className="font-bold hover:underline">ВОЙТИ</Link></li>
+                    </ul>
+    </Container>
+    </div>
+    </> );
 }
  
 export default NavBar;
