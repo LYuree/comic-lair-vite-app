@@ -14,11 +14,11 @@ interface cartUnit {
 
 // Версия для работы с бэком
 
-// dev mode
-localStorage.removeItem("user");
-localStorage.setItem("user", JSON.stringify({id: "3", name: "Archimboldo", token: "sdsdfsdfs"}));
 
 export const fetchCartProducts = async (): Promise<ProductsData> => {
+    // dev mode
+    localStorage.removeItem("user");
+    localStorage.setItem("user", JSON.stringify({id: "1", name: "Archimboldo", token: "sdsdfsdfs"}));
     const {profileStore : {
         currentUser, setCurrentUser,
         }} = rootStore;
@@ -38,6 +38,7 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                 headers: authHeader()
                 })
                 .then(async response => {
+                        // версия для эндпоинта products/{product_id}                        
                         // const cartProductDetails = response.data.map(async (cartItem: cartUnit) => {
                         //         await axios.get<IProductItem>(
                         //                 `http://127.0.0.1:8000/products/${cartItem.product_id}`,
@@ -47,6 +48,18 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                         //                 }       
                         //         )
                         // })
+                        // Object.defineProperty(fetchResponse,
+                        //         "data",
+                        //         {
+                        //         // на всякий случай делаю deep copy
+                        //         // с помощью JSON-api
+                        //         // (возможно, это излишне)
+                        //         value: JSON.parse(JSON.stringify(cartProductDetails)),
+                        //         writable: false
+                        //         });
+
+                        // временная версия
+
                         const cartProductDetails = await axios.get<ProductsData>(
                                 'http://127.0.0.1:8000/products/')
                                 .then((response) => {
@@ -67,9 +80,7 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                                         });
                                         return fetchResponse;
                                         return Promise.resolve(fetchResponse);
-                                        
-                        // return cartProductDetails;
-                        // return Promise.resolve(cartProductDetails)
+
                 })
                 return fetchResponse;
         } catch (error: any) {

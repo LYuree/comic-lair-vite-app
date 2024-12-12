@@ -1,32 +1,37 @@
 import axios from "axios";
 import authHeader from "../../services/auth-header";
 import validateSession from "../../services/validateSession";
+import * as AuthService from "../../services/auth.service";
+import { rootStore } from "../../store";
 
 
 // export const setCartProductAmount = async (userId: string, itemId: string, newAmount: number): Promise<boolean> => {
-//     // Версия для работы с бэком
+// //     // Версия для работы с бэком
+//         const {profileStore : {
+//             currentUser, setCurrentUser,
+//         }} = rootStore;
 //         try {
-            // await validateSession();
+//             // await validateSession();
 //             await axios.put(
-//                 'https://backend.example/api/cart/put',
-//                 data: {
+//                 'http://127.0.0.1:8000/carts/put',
+//                 {
 //                     userId,
 //                     itemId,
 //                     newAmount
 //                 },
-//                 axiosConfig: {
+//                 {
 //                     headers: authHeader()
 //                 })
 //                 .then((response) => response.data);
 //                 return new Promise(resolve => resolve(true));
 
-//         } catch (error) {
+//         } catch (error: any) {
 //             console.error(`Error updating cart product amount: ${error}`);
 //              if(error.response.status === 401){
 //                  AuthService.logout();
-//                  setShowModeratorBoard(false);
-//                  setShowAdminBoard(false);
-//                  setCurrentUser(undefined);     
+//                 //  setShowModeratorBoard(false);
+//                 //  setShowAdminBoard(false);
+//                 setCurrentUser(null);     
 //              }
 //             return new Promise(resolve => resolve(false));
 //         }

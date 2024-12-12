@@ -1,30 +1,39 @@
 import axios from "axios";
 import authHeader from "../../services/auth-header";
 import validateSession from "../../services/validateSession";
+import * as AuthService from "../../services/auth.service";
+import { rootStore } from "../../store";
+
 
 
 // export const deleteCartProduct = async (userId: string, cartProductId: string) : Promise<string|undefined> => {
-//     // вариант с бэкендом - VSCode требует указание <string | UNDEFINED>...
+//     // вариант с бэкендом
+//     const {profileStore : {
+//         currentUser, setCurrentUser,
+//     }} = rootStore;
 //     try {
-//         await validateSession();
+//         // await validateSession();
+//         const headers = authHeader();
+//         const data = {
+//             userId,
+//             cartProductId,
+//         };
 //         await axios.delete<string>(
-//             `https://backend.example/api/cart/delete`,
+//             `http://127.0.0.1:8000/carts/delete`,
 //             {
-//                 data: {
-//                     userId,
-//                     cartProductId
-//                 }
+//                 headers,
+//                 data
 //             }
 //         )
 //         .then(response => JSON.stringify(response.data));
 //     }
-//     catch(error){
+//     catch(error: any){
 //         console.log(`Error deleting a cart product: ${error}`)
 //         if(error.response.status === 401){
 //              AuthService.logout();
-//              setShowModeratorBoard(false);
-//              setShowAdminBoard(false);
-//              setCurrentUser(undefined);     
+//             //  setShowModeratorBoard(false);
+//             //  setShowAdminBoard(false);
+//              setCurrentUser(null);     
 //         }
 //         return Promise.reject(error);
 //     }
