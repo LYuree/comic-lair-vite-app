@@ -17,7 +17,7 @@ export const setCartProductAmount = async (userId: string, itemId: number, newAm
                 `http://127.0.0.1:8000/carts/${cartId}/update`,
                 {
                     product_id: itemId,
-                    quanity: newAmount
+                    quantity: newAmount
                 },
                 {
                     headers: authHeader()

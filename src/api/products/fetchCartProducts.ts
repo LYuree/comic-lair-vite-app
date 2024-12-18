@@ -6,12 +6,13 @@ import validateSession from "../../services/validateSession";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
 
-// interface cartUnit {
-//         id: number;
-//         user_id: number;
-//         product_id: number;
-// }
-interface cartUnit {
+interface cartData {
+        id: number;
+        user_id: string;
+        products: cartItem[];
+}
+
+interface cartItem {
         quantity: number;
         product_id: number;
 }
@@ -32,11 +33,11 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
 
         // await axios.get<ProductsData>(
 
-        // сначала получаем данные в формате cartUnit,
+        // сначала получаем данные в формате cartItem,
         // чтобы дальше по их id подтянуть полную
         // информацию о соответствующих товарах
         // из products
-        await axios.get(
+        await axios.get<cartData>(
             `http://127.0.0.1:8000/carts/${AuthService.getCurrentUser().id}`,
              {
                 headers: authHeader()
@@ -44,14 +45,14 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                 .then(async response => {
                         // версия для эндпоинта products/{product_id}    
                         console.log(response);                    
-                        const cartProductDetails = await Promise.all(response.data.products.map(async (cartItem: cartUnit) => {
+                        const cartProductDetails = await Promise.all(response.data.products.map(async (cartItem: cartItem) => {
                                 const response = await axios.get<IProductItem>(
                                         `http://127.0.0.1:8000/products/${cartItem.product_id}`,
                                         {
                                                 headers: authHeader(),
                                                 withCredentials: true
                                         }       
-                                )
+                                )       
                                 return {...response.data, amount: cartItem.quantity};
                                 // console.log(product.data);
                                 // return product.data;

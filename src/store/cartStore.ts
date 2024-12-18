@@ -4,6 +4,7 @@ import { IProductItem } from "../api/products/fetchProducts";
 import { fetchCartProducts } from "../api/products/fetchCartProducts.ts";
 import { deleteCartProduct } from "../api/products/deleteCartProduct.ts";
 import { checkout } from "../api/products/checkout.ts";
+import { setCartProductAmount } from "../api/products/setCartProductAmount.ts";
 
 export class CartStore {
     cartProducts: ProductsData = {
@@ -29,11 +30,14 @@ export class CartStore {
     setPhone = (phone: any) => {console.log("Phone number: ", typeof phone); this.phone = phone};
     setCartLoading = (loading: boolean) => (this.cartLoading = loading);
     setCartProducts = (products: ProductsData) => {this.cartProducts = products};
-    setCartProductAmount = (id: number, amount: number) => {
+    setCartProductAmount = async (userId: string, itemId: number, newAmount: number) => {
+        this.setCartLoading(true);
+        await setCartProductAmount(userId, itemId, newAmount);
         const newCartProducts = {
-            data: this.cartProducts.data.map(item => (item.id === id? {...item, amount}: item))
+            data: this.cartProducts.data.map(item => (item.id === itemId? {...item, newAmount}: item))
         };
         this.setCartProducts(newCartProducts);
+        this.setCartLoading(false);
     }
     deleteCartProduct = async (userId: string, id: number) => {
         // проверка на успешное удаление...

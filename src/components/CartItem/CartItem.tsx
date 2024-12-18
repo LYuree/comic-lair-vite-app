@@ -61,7 +61,7 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
                     // max={}
                         className="max-w-[50px] mr-2 border-0
                         outline outline-1 outline-grey px-1"
-                        onChange={e => setAmount(data.id, e.target.value)}
+                        onChange={e => setAmount(getCurrentUser().id, data.id, +e.target.value)}
                         />
                     <button type="submit"
                             className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
