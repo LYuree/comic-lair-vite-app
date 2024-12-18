@@ -31,11 +31,13 @@ export class CartStore {
     setCartLoading = (loading: boolean) => (this.cartLoading = loading);
     setCartProducts = (products: ProductsData) => {this.cartProducts = products};
     setCartProductAmount = async (userId: string, itemId: number, newAmount: number) => {
+        console.log(newAmount);
         this.setCartLoading(true);
         await setCartProductAmount(userId, itemId, newAmount);
         const newCartProducts = {
-            data: this.cartProducts.data.map(item => (item.id === itemId? {...item, newAmount}: item))
+            data: this.cartProducts.data.map(item => (item.id === itemId? {...item, amount: newAmount}: item))
         };
+        console.log(newCartProducts);
         this.setCartProducts(newCartProducts);
         this.setCartLoading(false);
     }

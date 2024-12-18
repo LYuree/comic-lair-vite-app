@@ -1,11 +1,12 @@
 "use client"
-import {FC} from "react";
+import {FC, useState} from "react";
 import {truncateText} from "../../utils/truncateText.ts";
 import {formatPrice} from "../../utils/formatPrice.ts";
 import {IProductItem} from "../../api/products/fetchProducts.ts";
 import { TbHeartPlus } from "react-icons/tb";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { getCurrentUser } from "../../services/auth.service.ts";
+import { observer } from "mobx-react";
 
 export interface CartItemProps {
     data: IProductItem,
@@ -13,7 +14,8 @@ export interface CartItemProps {
     deleteItem: Function
 }
 
-const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
+const CartItem: FC<CartItemProps> = observer((({data, setAmount, deleteItem}) => {
+    const [itemAmount, setItemAmount] = useState(data.amount);
     console.log(data);
     return (
         <div className="
@@ -56,12 +58,15 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
                 </div>
                 <div className="mt-2 flex flex-row items-center mb-2 px-2">
                     <TbHeartPlus className="text-3xl mr-4 ml-2 hover:text-[maroon] grow-0"/>
-                    <input type="number" name="" id="" value={data.amount}
+                    <input type="number" name="" id="" value={itemAmount}
                     min={1}
                     // max={}
                         className="max-w-[50px] mr-2 border-0
                         outline outline-1 outline-grey px-1"
-                        onChange={e => setAmount(getCurrentUser().id, data.id, +e.target.value)}
+                        onChange={e => {
+                            setAmount(getCurrentUser().id, data.id, +e.target.value);
+                            }
+                        }
                         />
                     <button type="submit"
                             className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
@@ -77,6 +82,6 @@ const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
             
         </div>
     );
-});
+}));
 
 export default CartItem;
