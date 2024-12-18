@@ -52,7 +52,7 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                                                 withCredentials: true
                                         }       
                                 )
-                                return response.data;
+                                return {...response.data, amount: cartItem.quantity};
                                 // console.log(product.data);
                                 // return product.data;
                         }));
