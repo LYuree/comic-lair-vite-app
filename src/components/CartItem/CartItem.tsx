@@ -14,6 +14,7 @@ export interface CartItemProps {
 }
 
 const CartItem: FC<CartItemProps> = (({data, setAmount, deleteItem}) => {
+    console.log(data);
     return (
         <div className="
             col-span-1

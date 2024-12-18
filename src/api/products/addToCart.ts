@@ -6,16 +6,16 @@ import { rootStore } from "../../store";
 
 
 // вариант с рабочим бэкендом
-export const addToCart = async(userId: number, itemId: number, amount: number = 1): Promise<boolean> => {
+export const addToCart = async(userId: string, itemId: number, amount: number = 1): Promise<boolean> => {
     const {profileStore : {
         setCurrentUser,
     }} = rootStore;
     try{
         // await validateSession();
         await axios.post(
-            'http://127.0.0.1:8000/carts/',
+            `http://127.0.0.1:8000/carts/${userId}/add`,
             {
-                user_id: userId,
+                quantity: amount,
                 product_id: itemId,
                 // добавить:
                 // amount

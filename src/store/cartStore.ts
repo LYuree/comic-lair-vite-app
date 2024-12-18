@@ -35,7 +35,7 @@ export class CartStore {
         };
         this.setCartProducts(newCartProducts);
     }
-    deleteCartProduct = async (userId: number, id: number) => {
+    deleteCartProduct = async (userId: string, id: number) => {
         // проверка на успешное удаление...
         this.setCartLoading(true);
         // вариант с рабочим бэком
