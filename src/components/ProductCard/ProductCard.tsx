@@ -59,7 +59,7 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                     <button type="submit"
                             className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                             onClick={() => {
-                                addToCart(getCurrentUser().id, data.id, 1);
+                                // addToCart(getCurrentUser().id, data.id, 1);
                                 const cartStr = localStorage.getItem("cart");
                                 const cart = cartStr ? JSON.parse(cartStr) : null;
                                 if(!cart) {

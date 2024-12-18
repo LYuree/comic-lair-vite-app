@@ -20,7 +20,8 @@ import * as AuthService from "../services/auth.service";
 const CartPage = observer(() => {
     const navigate = useNavigate();
     const swiperRef = useRef();
-    const userId = AuthService.getCurrentUser().id;
+    // const userId = AuthService.getCurrentUser().id;
+    const userId = "666";
 
     const {
         cartStore : {

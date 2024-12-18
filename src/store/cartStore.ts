@@ -7,6 +7,7 @@ import { checkout } from "../api/products/checkout.ts";
 import { setCartProductAmount } from "../api/products/setCartProductAmount.ts";
 import authHeader from "../services/auth-header.ts";
 import axios from "axios";
+import CartItem from "../components/CartItem/CartItem.tsx";
 
 export class CartStore {
     cartProducts: ProductsData = {
@@ -33,16 +34,29 @@ export class CartStore {
     setCartLoading = (loading: boolean) => (this.cartLoading = loading);
     setCartProducts = (products: ProductsData) => {this.cartProducts = products};
     setCartProductAmount = async (userId: string, itemId: number, newAmount: number) => {
-        console.log(newAmount);
         this.setCartLoading(true);
-        await setCartProductAmount(userId, itemId, newAmount);
+        // await setCartProductAmount(userId, itemId, newAmount);
+        const cartStr = localStorage.getItem("cart");
+        const cart = cartStr ? JSON.parse(cartStr) : null;
+        if(cart){
+            const newCart = cart.map((item: cartItem) => {
+                return (item.product_id === itemId ? 
+                    {...item, quantity: newAmount} 
+                    :
+                    item)
+            });
+            localStorage.setItem("cart", JSON.stringify(newCart));
+            console.log(localStorage.getItem("cart"));
+        }
         const newCartProducts = {
             data: this.cartProducts.data.map(item => (item.id === itemId? {...item, amount: newAmount}: item))
         };
-        console.log(newCartProducts);
         this.setCartProducts(newCartProducts);
         this.setCartLoading(false);
     }
+
+
+
     deleteCartProduct = async (userId: string, id: number) => {
         // проверка на успешное удаление...
         this.setCartLoading(true);
@@ -61,8 +75,14 @@ export class CartStore {
                 data: this.cartProducts.data.filter((item: IProductItem) => item.id !== id ? true : false)
             }
             console.log(this.cartProducts === newCartProducts);
+            const cartStr = localStorage.getItem("cart");
+            const cart = cartStr ? JSON.parse(cartStr) : null;
+            if(cart) {
+                localStorage.setItem("cart", JSON.stringify(cart.filter((item:cartItem) => item.product_id !== id)));
+                console.log(localStorage.getItem("cart"));
+            }
             this.setCartProducts(newCartProducts);
-            await deleteCartProduct(userId, id); //
+            // await deleteCartProduct(userId, id);
             this.setCartLoading(false);
         }, 500);
     }
@@ -93,10 +113,13 @@ export class CartStore {
             this.setCartLoading(true);
             // вариант с рабочим бэком
             // const cartProductsData = await fetchCartProducts();
+
+            // вариант с бэком + localStorage
             const cartStr = localStorage.getItem("cart");
             const cart = cartStr ? JSON.parse(cartStr) : null;
             if (!cartStr) return;
             const result = {data: []};
+            console.log(cart);
             const cartProductsData = await Promise.all(cart.map(async (cartItem: cartItem) => {
                 const response = await axios.get<IProductItem>(
                         `http://127.0.0.1:8000/products/${cartItem.product_id}`,
