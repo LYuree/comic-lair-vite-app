@@ -1,10 +1,12 @@
 import { makeAutoObservable } from "mobx";
 import { ProductsData } from "../api/products/fetchProducts.ts";
 import { IProductItem } from "../api/products/fetchProducts";
-import { fetchCartProducts } from "../api/products/fetchCartProducts.ts";
+import { cartItem, fetchCartProducts } from "../api/products/fetchCartProducts.ts";
 import { deleteCartProduct } from "../api/products/deleteCartProduct.ts";
 import { checkout } from "../api/products/checkout.ts";
 import { setCartProductAmount } from "../api/products/setCartProductAmount.ts";
+import authHeader from "../services/auth-header.ts";
+import axios from "axios";
 
 export class CartStore {
     cartProducts: ProductsData = {
@@ -90,13 +92,34 @@ export class CartStore {
         try {
             this.setCartLoading(true);
             // вариант с рабочим бэком
-            const cartProductsData = await fetchCartProducts();
-            // console.log(cartProductsData.data);
-            // const cartProductsDataArray = JSON.parse(JSON.stringify(cartProductsData));
-            // console.log(cartProductsDataArray);
-            console.log(cartProductsData.data.reduce((accumulator:number, currentProduct: IProductItem) =>
-                accumulator + currentProduct.price*(1 - currentProduct.discount)*currentProduct.amount, 0));
-            this.setCartProducts(cartProductsData);
+            // const cartProductsData = await fetchCartProducts();
+            const cartStr = localStorage.getItem("cart");
+            const cart = cartStr ? JSON.parse(cartStr) : null;
+            if (!cartStr) return;
+            const result = {data: []};
+            const cartProductsData = await Promise.all(cart.map(async (cartItem: cartItem) => {
+                const response = await axios.get<IProductItem>(
+                        `http://127.0.0.1:8000/products/${cartItem.product_id}`,
+                        {
+                                headers: authHeader(),
+                                withCredentials: true
+                        }       
+                )       
+                return {...response.data, amount: cartItem.quantity};
+                // console.log(product.data);
+                // return product.data;
+                }));
+                // console.log(cartProductsData);
+                Object.defineProperty(result,
+                        "data",
+                        {
+                        // на всякий случай делаю deep copy
+                        // с помощью JSON-api
+                        // (возможно, это излишне)
+                        value: JSON.parse(JSON.stringify(cartProductsData)),
+                        writable: false
+                        });
+            this.setCartProducts(result);
             this.setCartLoading(false);
 
             // вариант на моках
