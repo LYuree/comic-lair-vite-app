@@ -13,8 +13,10 @@ const NavBar = () => {
     }
 
     if(!localStorage.getItem("cart"))
-        localStorage.setItem("cart",
-                    JSON.stringify([]));
+        localStorage.setItem("cart", JSON.stringify([]));
+
+    if(!localStorage.getItem("userId"))
+        localStorage.setItem("userId", crypto.randomUUID());
 
 
     return (  

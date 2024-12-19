@@ -21,7 +21,7 @@ const CartPage = observer(() => {
     const navigate = useNavigate();
     const swiperRef = useRef();
     // const userId = AuthService.getCurrentUser().id;
-    const userId = "666";
+    // const userId = "666";
 
     const {
         cartStore : {
@@ -152,6 +152,7 @@ const CartPage = observer(() => {
                                             <button type="submit"
                                                 className="btn w-full relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                                                 onClick={() => {
+                                                    const userId = localStorage.getItem("userId");
                                                     if (userId && cartProducts &&
                                                         email && phone){
                                                             checkout(userId, phone, email, cartProducts);
