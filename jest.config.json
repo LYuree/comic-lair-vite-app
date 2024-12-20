@@ -1,0 +1,19 @@
+{
+    "preset": "ts-jest",
+    "setupFiles": ["<rootDir>/jest.setup.ts"],
+    "testEnvironment": "node",
+    "moduleFileExtensions": ["ts", "js", "json"],
+    "transform": {
+        "^.+\\.ts$": "ts-jest"
+    },
+    "testMatch": [
+        "**/__tests__/**/*.test.ts",
+        "**/?(*.)+(spec|test).ts"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+        "src/**/*.{ts,js}",
+        "!src/**/*.d.ts"
+    ],
+    "coverageDirectory": "coverage"
+}
