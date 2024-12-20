@@ -1,10 +1,11 @@
-import { IProductItem, ProductsData, fetchProducts } from "./fetchProducts"
-import { cartProducts } from "../../utils/cartProducts"
+import { IProductItem, ProductsData} from "./fetchProducts"
+// import { cartProducts } from "../../utils/cartProducts"
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
-import validateSession from "../../services/validateSession";
+// import validateSession from "../../services/validateSession";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
+
 
 interface cartData {
         id: number;

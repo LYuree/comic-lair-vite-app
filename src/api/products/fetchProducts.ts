@@ -50,9 +50,8 @@ export const fetchProducts = async (): Promise<ProductsData> => {
         return fetchResponse;
 
     } catch (error) {
-        console.error("Error fetching data:", error);
-        // Верните пустой массив ProductsData в виде обещания
-        return Promise.resolve({data: []});
+        // console.error("Error fetching data:", error);
+        return { data: [] };
     }
 };
 

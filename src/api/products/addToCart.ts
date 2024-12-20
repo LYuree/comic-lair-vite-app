@@ -1,6 +1,6 @@
 import axios from "axios"
 import authHeader from "../../services/auth-header";
-import validateSession from "../../services/validateSession";
+// import validateSession from "../../services/validateSession";
 import * as AuthService from "../../services/auth.service"
 import { rootStore } from "../../store";
 
@@ -30,7 +30,7 @@ export const addToCart = async(userId: string, itemId: number, amount: number = 
     catch(error: any){
         console.log(`Произошла ошибка при попытке добавления товара в корзину: ${error}
             userId: ${userId}, itemId: ${itemId}, amount: ${amount}`);
-        if(error.response.status === 401){
+        if(error.response && error.response.status === 401){
             AuthService.logout();
             //  setShowModeratorBoard(false);
             //  setShowAdminBoard(false);

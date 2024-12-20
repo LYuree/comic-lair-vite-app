@@ -1,13 +1,13 @@
 import { makeAutoObservable } from "mobx";
-import { ProductsData } from "../api/products/fetchProducts.ts";
+import { ProductsData } from "../api/products/fetchProducts";
 import { IProductItem } from "../api/products/fetchProducts";
-import { cartItem, fetchCartProducts } from "../api/products/fetchCartProducts.ts";
-import { deleteCartProduct } from "../api/products/deleteCartProduct.ts";
-import { checkout } from "../api/products/checkout.ts";
-import { setCartProductAmount } from "../api/products/setCartProductAmount.ts";
-import authHeader from "../services/auth-header.ts";
+import { cartItem } from "../api/products/fetchCartProducts";
+// import { deleteCartProduct } from "../api/products/deleteCartProduct.ts";
+import { checkout } from "../api/products/checkout";
+// import { setCartProductAmount } from "../api/products/setCartProductAmount.ts";
+import authHeader from "../services/auth-header";
 import axios from "axios";
-import CartItem from "../components/CartItem/CartItem.tsx";
+// import CartItem from "../components/CartItem/CartItem.tsx";
 
 export class CartStore {
     cartProducts: ProductsData = {
