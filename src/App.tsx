@@ -18,6 +18,7 @@ import EventBus from "./common/EventBus";
 
 import * as AuthService from "./services/auth.service";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
+import ProductDetails from "./pages/ProductDetails.tsx";
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
                     <Route path="/signup" element={<SignUpPage/>}></Route>
                     <Route path="/profile" element={<ProfilePage/>}></Route>
                     <Route path="/checkout" element={<CheckOutPage/>}></Route>
+                    {/* <Route path="/product_details/:id" element={<ProductDetails/>}/> */}
                     <Route path="*" element={<PageNotFound/>}></Route>
                 </Routes>
                 <Footer/>

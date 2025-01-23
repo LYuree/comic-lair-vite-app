@@ -32,11 +32,13 @@ export class ProductsStore {
 
     /*Сеттеры*/
     setProducts = (products: ProductsData) => {
-        console.log(products);
-        console.log(this);
         this.products = products;
     }
-    setDisplayedProducts = (displayedProducts: ProductsData) => (this.displayedProducts = displayedProducts);
+    setDisplayedProducts = (displayedProducts: ProductsData) => {
+        console.log("set displayed products got called");
+        console.trace('The Trace');
+        this.displayedProducts = displayedProducts
+    };
     setError = (error: string) => (this.error = error);
     setFieldsLoading = (loading: boolean) => (this.productsLoading = loading);
     setSortingMethod = (sortingMethod: string) => {

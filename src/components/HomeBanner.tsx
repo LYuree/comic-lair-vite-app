@@ -50,7 +50,6 @@ const HomeBanner = () => {
                 </Link>
         </div>)
     })
-    console.log(slideNodes);
     
     return (
         <>

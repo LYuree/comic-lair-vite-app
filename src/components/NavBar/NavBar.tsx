@@ -3,6 +3,8 @@ import Container from "../Container";
 import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
+import { rootStore } from "../../store";
+import { IProductItem } from "../../api/products/fetchProducts";
 
 
 const NavBar = () => {
@@ -12,11 +14,43 @@ const NavBar = () => {
         // (Cookies.get('oauth'))
     }
 
+    const {
+        productsStore: {products, fetchProducts, productsLoading, sortingMethod, setSortingMethod,
+            displayedProducts, setDisplayedProducts},
+        gridPageStore : {currentPage, itemsPerPage, setItemsPerPage, setCurrentPage,
+            categoryCheckboxes, setCategoryCheckboxes, toggleCategoryCheckbox,
+            searchFormValue, setSearchFormValue
+        },
+    } = rootStore;
+
+    const uuid = crypto.randomUUID();
+
     if(!localStorage.getItem("cart"))
         localStorage.setItem("cart", JSON.stringify([]));
 
     if(!localStorage.getItem("userId"))
-        localStorage.setItem("userId", crypto.randomUUID());
+        localStorage.setItem("userId", uuid);
+
+    if(!localStorage.getItem("user"))
+        localStorage.setItem("user", JSON.stringify({id: uuid}));
+
+    const handleSearch = function(inputText: string){
+        // toLocaleLowerCase лучше?
+        // const navigate = useNavigate();
+        setSearchFormValue(inputText);
+        const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+        if (inputText !== null && inputText !== undefined) {
+            // автора тоже надо бы учитывать при сортировке, но мы пока не завели такое поле
+            newDisplayedProducts.data = newDisplayedProducts.data.filter(                
+                (product: IProductItem) => {
+                    return (product.name.toLowerCase().indexOf(inputText.toLowerCase()) !== -1);
+                }
+            );
+            console.log("Length: ", newDisplayedProducts.data.length);
+            setDisplayedProducts(newDisplayedProducts);
+        }
+        // else setDisplayedProducts(products);
+    }
 
 
     return (  
@@ -53,18 +87,23 @@ const NavBar = () => {
                             </div>
                         </div>
                     </Link>
-                    <div className="grow relative flex items-center">
+                    <form className="grow relative flex items-center"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            navigate("/products");
+                            }}>
                         <input type="text" name="search-form" id="search-form" placeholder="Поиск..."
                             className="relative outline-none bg-transparent border-2 border-white
                             w-full py-1 px-2
                             cursor-pointer"
+                            onChange={(e) => handleSearch(e.target.value)}
                             />
                         <label htmlFor="search-form" className="absolute right-0 mr-2">
                             <IoSearch className="relative right-0
                                 cursor-pointer text-xl"
                                 />
                         </label>
-                    </div>
+                    </form>
                     <div className="flex items-center gap-3">
                         <AiOutlineHeart className="cursor-pointer text-2xl hover:text-slate-400" />
                         <Link to={"/cart"}>

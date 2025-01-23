@@ -33,7 +33,7 @@ export interface IOrderJSON {
 // Версия для работы с бэком
 
 // dev mode
-localStorage.setItem("user", JSON.stringify({id: "64a654593e91b8e73a351e9sdfsdf", name: "Mykytko", token: "sdsdfsdfs"}));
+// localStorage.setItem("user", JSON.stringify({id: "64a654593e91b8e73a351e9sdfsdf", name: "Mykytko", token: "sdsdfsdfs"}));
 
 export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
     const {profileStore : {

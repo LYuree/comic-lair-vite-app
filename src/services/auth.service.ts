@@ -1,11 +1,12 @@
 import axios from "axios";
 
 // const API_URL = "http://localhost:8080/api/auth/";
-const API_URL = "http://backend.example/api/auth/";
+const API_URL = "http://127.0.0.1:8000/";
 
 // регистрация
-export const register = (username: string, email: string, password: string) => {
-  return axios.post(API_URL + "signup", {
+export const register = (id: string, username: string, email: string, password: string) => {
+  return axios.post(API_URL + "users", {
+    id,
     username,
     email,
     password,

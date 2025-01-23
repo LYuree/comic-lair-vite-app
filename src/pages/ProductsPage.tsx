@@ -28,7 +28,7 @@ const ProductPage = observer(() => {
     } = rootStore;
     
     useEffect(() => {
-        fetchProducts();
+        if(Array.isArray(products) && products.length === 0) fetchProducts();
     }, []);
 
     const numberOfPages = Math.ceil(displayedProducts.data.length / itemsPerPage);
@@ -93,6 +93,7 @@ const ProductPage = observer(() => {
     }
 
     const handleSearch = function(inputText: string){
+        console.log("handle search got called");
         // toLocaleLowerCase лучше?
         setSearchFormValue(inputText);
         const newDisplayedProducts = JSON.parse(JSON.stringify(products));
@@ -100,7 +101,6 @@ const ProductPage = observer(() => {
             // автора тоже надо бы учитывать при сортировке, но мы пока не завели такое поле
             newDisplayedProducts.data = newDisplayedProducts.data.filter(                
                 (product: IProductItem) => {
-                    console.log()
                     return (product.name.toLowerCase().indexOf(inputText.toLowerCase()) !== -1);
                 }
             );
@@ -109,6 +109,9 @@ const ProductPage = observer(() => {
         }
         // else setDisplayedProducts(products);
     }
+
+    console.log("Displayed products: ", displayedProducts.data.length);
+    // console.log("Form value: ", searchFormValue);
 
     return (
         <>

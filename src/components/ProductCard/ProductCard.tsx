@@ -7,6 +7,7 @@ import {IProductItem} from "../../api/products/fetchProducts.ts";
 import { addToCart } from "../../api/products/addToCart.ts";
 import { getCurrentUser } from "../../services/auth.service.ts";
 import { cartItem } from "../../api/products/fetchCartProducts.ts";
+import { Link } from "react-router-dom";
 
 export interface ProductCardProps {
     data: IProductItem
@@ -28,14 +29,16 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
             "
             key={data.id}>
             <div className="relative overflow-hidden flex justify-center">
-                <picture>
-                    <source/>
-                    <img
-                        src={data.images[0].image}
-                        alt={data.name}
-                        className="hover:opacity-75 duration-500"
-                    />
-                </picture>
+                <Link to={`/product_details/id=${data.id}`}>
+                    <picture>
+                        <source/>
+                        <img
+                            src={data.images[0].image}
+                            alt={data.name}
+                            className="hover:opacity-75 duration-500"
+                        />
+                    </picture>
+                </Link>
             </div>
             <div className="flex flex-col items-center">
                 <div

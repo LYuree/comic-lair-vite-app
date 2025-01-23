@@ -22,8 +22,8 @@ export interface cartItem {
 
 export const fetchCartProducts = async (): Promise<ProductsData> => {
     // dev mode
-    localStorage.removeItem("user");
-    localStorage.setItem("user", JSON.stringify({id: "64a654593e91b8e73a351e9sdfsdf", name: "Mykytko", token: "sdsdfsdfs"}));
+//     localStorage.removeItem("user");
+//     localStorage.setItem("user", JSON.stringify({id: "64a654593e91b8e73a351e9sdfsdf", name: "Mykytko", token: "sdsdfsdfs"}));
     const {profileStore : {
         currentUser, setCurrentUser,
         }} = rootStore;

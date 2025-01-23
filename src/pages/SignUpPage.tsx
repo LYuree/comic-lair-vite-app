@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -6,8 +6,11 @@ import * as Yup from "yup";
 
 import IUser from "../types/user.type";
 import { register } from "../services/auth.service";
+import Popup from "../components/Popup/Popup";
+import { rootStore } from "../store";
+import { observer } from "mobx-react-lite";
 
-const SignUpPage: React.FC = () => {
+const SignUpPage: React.FC = observer(() => {
   const [successful, setSuccessful] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
@@ -16,6 +19,12 @@ const SignUpPage: React.FC = () => {
     email: "",
     password: "",
   };
+
+  const {
+    signUpStore: {
+      isSignupPopupOpen, setSignupPopupOpen
+    }
+  } = rootStore;
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -46,10 +55,11 @@ const SignUpPage: React.FC = () => {
   const handleRegister = (formValue: IUser) => {
     const { username, email, password } = formValue;
 
-    register(username, email, password).then(
+    register(crypto.randomUUID(), username, email, password).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
+        setSignupPopupOpen(true);
       },
       (error) => {
         const resMessage =
@@ -65,7 +75,16 @@ const SignUpPage: React.FC = () => {
     );
   };
 
+  const handleOpenPopup = () => {
+    setSignupPopupOpen(true);
+    };
+
+  const handleClosePopup = () => {
+    setSignupPopupOpen(false);
+    };
+
   return (
+    <>
     <div className="bg-white pt-16 w-96 mx-auto">
         <Formik
           initialValues={initialValues}
@@ -133,7 +152,19 @@ const SignUpPage: React.FC = () => {
           </Form>
         </Formik>
     </div>
+      {isSignupPopupOpen ? <Popup
+        title={"Заказ оформлен"}
+        content={`Благодарим за внимание к нашей продукции!
+                Ваш заказ будет рассмотрен в ближайшее время.
+                На указанную почту будет выслано письмо с деталями
+                оплаты.`}
+        onClose={() => {
+          handleClosePopup();
+        }}
+        /> : ""
+              }
+    </>
   );
-};
+});
 
 export default SignUpPage;
