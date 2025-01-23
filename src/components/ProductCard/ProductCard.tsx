@@ -29,7 +29,7 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
             "
             key={data.id}>
             <div className="relative overflow-hidden flex justify-center">
-                <Link to={`/product_details/id=${data.id}`}>
+                <Link to={`/product_details/${data.id}`}>
                     <picture>
                         <source/>
                         <img

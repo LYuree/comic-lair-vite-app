@@ -3,6 +3,7 @@ import { GridPageStore } from "./gridPageStore.ts";
 import { ProfileStore } from "./profileStore.ts";
 import { ProductsStore } from "./productsStore.ts";
 import { SignUpStore } from "./signUpStore.ts";
+import { ProductDetailsStore } from "./productDetailsStore.ts";
 
 class store {
     productsStore: ProductsStore;
@@ -10,6 +11,7 @@ class store {
     gridPageStore: GridPageStore;
     profileStore: ProfileStore;
     signUpStore: SignUpStore;
+    productDetailsStore: ProductDetailsStore;
 
     constructor() {
         this.productsStore = new ProductsStore();
@@ -17,6 +19,7 @@ class store {
         this.gridPageStore = new GridPageStore();
         this.profileStore = new ProfileStore();
         this.signUpStore = new SignUpStore();
+        this.productDetailsStore = new ProductDetailsStore();
     }
 }
 

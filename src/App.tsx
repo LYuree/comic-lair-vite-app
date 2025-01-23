@@ -65,7 +65,7 @@ function App() {
                     <Route path="/signup" element={<SignUpPage/>}></Route>
                     <Route path="/profile" element={<ProfilePage/>}></Route>
                     <Route path="/checkout" element={<CheckOutPage/>}></Route>
-                    {/* <Route path="/product_details/:id" element={<ProductDetails/>}/> */}
+                    <Route path="/product_details/:id" element={<ProductDetails/>}/>
                     <Route path="*" element={<PageNotFound/>}></Route>
                 </Routes>
                 <Footer/>
