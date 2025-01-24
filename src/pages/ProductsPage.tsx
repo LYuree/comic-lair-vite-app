@@ -79,22 +79,9 @@ const ProductPage = observer(() => {
                     setDisplayedProducts(newDisplayedProducts);
                 }
         }
-        // хотел написать более оптимальным способом, но почему-то все продукты удаляются...
-
-        // if (Array.isArray(checkedCategories) && checkedCategories.length !== 0){
-        //     console.log(newDisplayedProducts.data, checkedCategories);
-        //     for (const category in checkedCategories) {
-        //         newDisplayedProducts.data = newDisplayedProducts.data.filter(
-        //                 (product: IProductItem) => (product.categories.includes(category))
-        //             );
-        //     }
-        //     setDisplayedProducts(newDisplayedProducts);
-        // }
     }
 
     const handleSearch = function(inputText: string){
-        console.log("handle search got called");
-        // toLocaleLowerCase лучше?
         setSearchFormValue(inputText);
         const newDisplayedProducts = JSON.parse(JSON.stringify(products));
         if (inputText !== null && inputText !== undefined) {
@@ -104,14 +91,10 @@ const ProductPage = observer(() => {
                     return (product.name.toLowerCase().indexOf(inputText.toLowerCase()) !== -1);
                 }
             );
-            console.log(newDisplayedProducts.data.length);
             setDisplayedProducts(newDisplayedProducts);
         }
-        // else setDisplayedProducts(products);
     }
 
-    console.log("Displayed products: ", displayedProducts.data.length);
-    // console.log("Form value: ", searchFormValue);
 
     return (
         <>

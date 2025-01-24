@@ -97,9 +97,6 @@ const CartPage = observer(() => {
                     </div>
                     :
                     <Container>
-                        {/* временно убрал flex у cart-page-slider-wrapper,
-                        потому что flex вызывает баг с бесконечной шириной
-                        у слайдов swiper-js  */}
                         <div className="
                             cart-page-slider-wrapper
                             flex
@@ -115,14 +112,7 @@ const CartPage = observer(() => {
                                         autoPlay={false}
                                         isLooped={false}
                                         navigate={true}
-                                        breakPoints={{
-                                            // 368: {
-                                            //     slidesPerView: 1,
-                                            // },
-                                            // 900: {
-                                            //     slidesPerView: 1,
-                                            // }
-                                        }}
+                                        breakPoints={{}}
                                         />
                             </div>
                             <div className="flex flex-col gap-2">

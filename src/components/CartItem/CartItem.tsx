@@ -27,9 +27,6 @@ const CartItem: FC<CartItemProps> = observer((({data, setAmount, deleteItem}) =>
             pl-16
             "
             key={data.id}>
-            {/*hover:outline
-            hover:outline-violet-300
-            hover:outline-2 */}
             <div className="relative overflow-hidden flex justify-center">
                 <picture>
                     <source/>

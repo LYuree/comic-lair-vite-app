@@ -4,8 +4,6 @@ import {TbHeartPlus} from "react-icons/tb";
 import {truncateText} from "../../utils/truncateText.ts";
 import {formatPrice} from "../../utils/formatPrice.ts";
 import {IProductItem} from "../../api/products/fetchProducts.ts";
-import { addToCart } from "../../api/products/addToCart.ts";
-import { getCurrentUser } from "../../services/auth.service.ts";
 import { cartItem } from "../../api/products/fetchCartProducts.ts";
 import { Link } from "react-router-dom";
 
@@ -62,7 +60,6 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                     <button type="submit"
                             className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                             onClick={() => {
-                                // addToCart(getCurrentUser().id, data.id, 1);
                                 const cartStr = localStorage.getItem("cart");
                                 const cart = cartStr ? JSON.parse(cartStr) : null;
                                 if(!cart) {
@@ -85,14 +82,6 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                                                 ]
                                         )
                                     )
-                                // else localStorage.setItem("cart",
-                                //     JSON.stringify(
-                                //             [{
-                                //                 product_id: data.id,
-                                //                 quantity: 1
-                                //             }]
-                                //         )
-                                //     );
                                 console.log(`local storage cart: `, localStorage.getItem("cart"));
                                 }
                             }>

@@ -1,6 +1,5 @@
 import axios from "axios"
 import authHeader from "../../services/auth-header";
-import validateSession from "../../services/validateSession";
 import * as AuthService from "../../services/auth.service"
 import { rootStore } from "../../store";
 
@@ -17,8 +16,6 @@ export const addToCart = async(userId: string, itemId: number, amount: number = 
             {
                 quantity: amount,
                 product_id: itemId,
-                // добавить:
-                // amount
             },
             {
                 headers: authHeader(),

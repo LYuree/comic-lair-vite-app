@@ -21,9 +21,6 @@ export interface cartItem {
 
 
 export const fetchCartProducts = async (): Promise<ProductsData> => {
-    // dev mode
-//     localStorage.removeItem("user");
-//     localStorage.setItem("user", JSON.stringify({id: "64a654593e91b8e73a351e9sdfsdf", name: "Mykytko", token: "sdsdfsdfs"}));
     const {profileStore : {
         currentUser, setCurrentUser,
         }} = rootStore;
@@ -31,7 +28,7 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
         const fetchResponse = {data: []};
         // await validateSession();
 
-        // await axios.get<ProductsData>(
+        // await axios.get<ProductsData>...
 
         // сначала получаем данные в формате cartItem,
         // чтобы дальше по их id подтянуть полную
@@ -54,16 +51,11 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                                         }       
                                 )       
                                 return {...response.data, amount: cartItem.quantity};
-                                // console.log(product.data);
-                                // return product.data;
                         }));
                         console.log(cartProductDetails);
                         Object.defineProperty(fetchResponse,
                                 "data",
                                 {
-                                // на всякий случай делаю deep copy
-                                // с помощью JSON-api
-                                // (возможно, это излишне)
                                 value: JSON.parse(JSON.stringify(cartProductDetails)),
                                 writable: false
                                 });
@@ -106,9 +98,3 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                 return Promise.resolve({data: []});
         }
 };
-
-// Версия для моков
-// export const fetchCartProducts = async (): Promise<ProductsData> =>
-//     await new Promise(resolve => {
-//             resolve(cartProducts)
-//     })

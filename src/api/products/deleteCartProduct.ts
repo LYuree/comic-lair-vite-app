@@ -1,6 +1,5 @@
 import axios from "axios";
 import authHeader from "../../services/auth-header";
-import validateSession from "../../services/validateSession";
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
 
@@ -9,7 +8,7 @@ import { rootStore } from "../../store";
 export const deleteCartProduct = async (userId: string, cartProductId: number) : Promise<string|undefined> => {
     // вариант с бэкендом
     const {profileStore : {
-        currentUser, setCurrentUser,
+        setCurrentUser,
     }} = rootStore;
     try {
         // await validateSession();
@@ -38,9 +37,3 @@ export const deleteCartProduct = async (userId: string, cartProductId: number) :
         return Promise.reject(error);
     }
 }
-
-// вариант на моках
-// export const deleteCartProduct = async (userId: number, cartProductId: number) : Promise<boolean> => {
-//     console.log(`Запрос на удаление товара из корзины, userId: ${userId}, itemId: ${cartProductId}`);
-//     return new Promise(resolve => resolve(true));
-// }

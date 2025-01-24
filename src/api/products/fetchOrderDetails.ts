@@ -1,16 +1,8 @@
-import { IProductItem, ProductsData, fetchProducts } from "./fetchProducts"
-import { cartProducts } from "../../utils/cartProducts"
+import { ProductsData } from "./fetchProducts"
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
-import validateSession from "../../services/validateSession";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
-
-// interface IOrderItem {
-//     id: string,
-//     date: string,
-//     status: string,
-// }
 
 export interface IOrdersData {
     data: IOrderDetails[]
@@ -32,8 +24,6 @@ export interface IOrderJSON {
 
 // Версия для работы с бэком
 
-// dev mode
-// localStorage.setItem("user", JSON.stringify({id: "64a654593e91b8e73a351e9sdfsdf", name: "Mykytko", token: "sdsdfsdfs"}));
 
 export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
     const {profileStore : {
@@ -69,9 +59,3 @@ export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
                 return [];
         }
 };
-
-// Версия для моков
-// export const fetchCartProducts = async (): Promise<ProductsData> =>
-//     await new Promise(resolve => {
-//             resolve(cartProducts)
-//     })

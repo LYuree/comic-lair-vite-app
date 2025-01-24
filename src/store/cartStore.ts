@@ -1,13 +1,10 @@
 import { makeAutoObservable } from "mobx";
 import { ProductsData } from "../api/products/fetchProducts.ts";
 import { IProductItem } from "../api/products/fetchProducts";
-import { cartItem, fetchCartProducts } from "../api/products/fetchCartProducts.ts";
-import { deleteCartProduct } from "../api/products/deleteCartProduct.ts";
+import { cartItem } from "../api/products/fetchCartProducts.ts";
 import { checkout } from "../api/products/checkout.ts";
-import { setCartProductAmount } from "../api/products/setCartProductAmount.ts";
 import authHeader from "../services/auth-header.ts";
 import axios from "axios";
-import CartItem from "../components/CartItem/CartItem.tsx";
 
 export class CartStore {
     cartProducts: ProductsData = {
@@ -35,7 +32,6 @@ export class CartStore {
     setCartProducts = (products: ProductsData) => {this.cartProducts = products};
     setCartProductAmount = async (userId: string, itemId: number, newAmount: number) => {
         this.setCartLoading(true);
-        // await setCartProductAmount(userId, itemId, newAmount);
         const cartStr = localStorage.getItem("cart");
         const cart = cartStr ? JSON.parse(cartStr) : null;
         if(cart){
@@ -70,7 +66,6 @@ export class CartStore {
 
         // вариант на моках
         setTimeout(async ()=> {
-            // let newCartProducts = JSON.parse(JSON.stringify(this.cartProducts));
             const newCartProducts = {
                 data: this.cartProducts.data.filter((item: IProductItem) => item.id !== id ? true : false)
             }
@@ -82,7 +77,6 @@ export class CartStore {
                 console.log(localStorage.getItem("cart"));
             }
             this.setCartProducts(newCartProducts);
-            // await deleteCartProduct(userId, id);
             this.setCartLoading(false);
         }, 500);
     }
@@ -129,10 +123,7 @@ export class CartStore {
                         }       
                 )       
                 return {...response.data, amount: cartItem.quantity};
-                // console.log(product.data);
-                // return product.data;
                 }));
-                // console.log(cartProductsData);
                 Object.defineProperty(result,
                         "data",
                         {
@@ -144,13 +135,6 @@ export class CartStore {
                         });
             this.setCartProducts(result);
             this.setCartLoading(false);
-
-            // вариант на моках
-            // setTimeout(async ()=> {
-            //     const productsData = await fetchCartProducts();
-            //     this.setCartProducts(productsData);
-            //     this.setCartLoading(false);
-            // }, 2000)
 
         } catch (error) {
             console.log(error);

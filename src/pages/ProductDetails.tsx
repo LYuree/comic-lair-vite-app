@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { IProductItem, fetchProducts } from '../api/products/fetchProducts';
+import { useNavigate, useParams } from 'react-router-dom';
+import { IProductItem } from '../api/products/fetchProducts';
 import { rootStore } from '../store';
 import { observer } from 'mobx-react';
 
@@ -8,14 +8,8 @@ const ProductDetails: React.FC = observer(() => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    // const [searchParams] = useSearchParams({itemId: id});
-    // const itemId = searchParams.get("id");
-
-    // for (const [key, value] of searchParams) console.log(`${key} => ${value}`);
-    // console.log(searchParams.size);
-
     const {
-        productsStore: {products, fetchProducts, productsLoading},
+        productsStore: {products, fetchProducts},
         productDetailsStore: {productDetails, setProductDetails}
     } = rootStore;
 
@@ -40,7 +34,6 @@ const ProductDetails: React.FC = observer(() => {
         };
         fetchItemDetails();
     }, []);
-    // (async () => await fetchItemDetails())();
 
     console.log(productDetails);
     if(productDetails) return (
@@ -48,6 +41,7 @@ const ProductDetails: React.FC = observer(() => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
             <img src={productDetails.images[0].image} alt={productDetails.name} className="w-full h-auto object-contain" />
+            {/* вывод разных картинок одного и того же товара, надо будет доделать*/}
             {/* <div className="mt-4">
                 {productDetails.images.map((image, index) => (
                 <img key={index} src={image} alt={productDetails.name} className="w-24 h-24 object-contain mr-2" />

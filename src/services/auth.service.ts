@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:8080/api/auth/";
 const API_URL = "http://127.0.0.1:8000/";
 
 // регистрация
@@ -38,7 +37,6 @@ export const logout = () => {
 // (вроде как, используется только на странице профиля)
 export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");
-  // console.log(userStr);
   if (userStr) return JSON.parse(userStr);
 
   return null;

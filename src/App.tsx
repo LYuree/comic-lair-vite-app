@@ -33,6 +33,7 @@ function App() {
     
         if (user) {
           setCurrentUser(user);
+          // на будущее: пользовательские роли
           // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
           // setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
@@ -72,22 +73,5 @@ function App() {
         </div>
     )
 }
-
-// function App() {
-
-//     //check jwt token
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//         setAuthToken(token);
-//     }
-  
-//     return (
-//       <div className="App">
-//         <Routers/>
-//       </div>
-//     );
-//   }
-  
-//   export default App;
 
 export default App

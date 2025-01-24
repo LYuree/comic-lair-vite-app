@@ -1,7 +1,6 @@
 import axios from "axios";
 import { ProductsData } from "./fetchProducts"
 import authHeader from "../../services/auth-header";
-import validateSession from "../../services/validateSession";
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
 
@@ -14,9 +13,6 @@ export const checkout = async (userId: string,
     const {profileStore : {
         currentUser, setCurrentUser,
         }} = rootStore;
-    // console.log(`User id: ${typeof AuthService.getCurrentUser().id}`);
-    // const userIdInt = parseInt(userId);
-    // console.log(userId, userIdInt);
     try {
         // await validateSession();
         const orderDetails = JSON.stringify({
@@ -50,9 +46,3 @@ export const checkout = async (userId: string,
         return false;
     }
 }
-
-// вариант на моках
-// export const checkout = async (userId: string, cartProducts: ProductsData) : Promise<boolean> => {
-//     console.log(`Запрос на оформление заказа, userId: ${userId}, cartProducts:`, cartProducts.data);
-//     return new Promise(resolve => resolve(true));
-// }
