@@ -3,26 +3,16 @@ import { rootStore } from "../store";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
-import { checkout } from "../api/products/checkout";
 import formatPrice from "../utils/formatPrice";
-import { useNavigate } from "react-router-dom";
-import { logout } from "../services/auth.service";
-import validateSession from "../services/validateSession";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import Slider from "../components/Slider/Slider";
 import PhoneNumberInput from "../components/PhoneNumberInput/PhoneNumberInput";
 import Popup from "../components/Popup/Popup";
-import * as AuthService from "../services/auth.service";
 
 
 // const userId = "asdasdads010101";
 
 const CartPage = observer(() => {
-    const navigate = useNavigate();
-    const swiperRef = useRef();
-    // const userId = AuthService.getCurrentUser().id;
-    // const userId = "666";
-
     const {
         cartStore : {
             cartProducts, cartLoading, setCartLoading,

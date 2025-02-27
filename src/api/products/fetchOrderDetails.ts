@@ -27,7 +27,7 @@ export interface IOrderJSON {
 
 export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
     const {profileStore : {
-        currentUser, setCurrentUser,
+            setCurrentUser,
         }} = rootStore;
     try {
         let fetchResponse: IOrderJSON[] = [];

@@ -11,7 +11,7 @@ export const checkout = async (userId: string,
     email: string,
     cartProducts: ProductsData): Promise<boolean> => {
     const {profileStore : {
-        currentUser, setCurrentUser,
+            setCurrentUser,
         }} = rootStore;
     try {
         // await validateSession();

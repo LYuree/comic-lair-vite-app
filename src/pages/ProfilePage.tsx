@@ -1,12 +1,10 @@
-import { FC, useEffect, useLayoutEffect } from "react";
-import { getCurrentUser, logout } from "../services/auth.service";
+import { FC, useLayoutEffect } from "react";
+import { logout } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
-import validateSession from "../services/validateSession";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
-import { IOrderDetails, IOrderJSON } from "../api/products/fetchOrderDetails";
+import { IOrderJSON } from "../api/products/fetchOrderDetails";
 import { observer } from "mobx-react";
-import { ProductsData } from "../api/products/fetchProducts";
 
 interface IOrderItem {
     id: string,

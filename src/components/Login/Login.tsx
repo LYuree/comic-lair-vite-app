@@ -35,7 +35,6 @@ const Login: React.FC = () => {
       const { access_token } = response.data;
       setLoading(false);
       localStorage.setItem('token', access_token);
-      // window.location.href = '/'; // Redirect to home page
       console.log(`Login successful`);
     } catch (err) {
       setLoading(false);

@@ -1,8 +1,6 @@
-import { IProductItem, ProductsData, fetchProducts } from "./fetchProducts"
-import { cartProducts } from "../../utils/cartProducts"
+import { IProductItem, ProductsData } from "./fetchProducts"
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
-import validateSession from "../../services/validateSession";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
 
@@ -60,31 +58,6 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                                 writable: false
                                 });
                 });
-
-                        // временная версия
-
-                //         const cartProductDetails = await axios.get<ProductsData>(
-                //                 'http://127.0.0.1:8000/products/')
-                //                 .then((response) => {
-                //                         // console.log("entering the data-wrapping then-block");
-                //                         console.log(response);
-                        
-                //                         // оборачиваем данные с сервера в объект,
-                //                         // присваивая их в качестве значения ключа data
-                //                         Object.defineProperty(fetchResponse,
-                //                                 "data",
-                //                                 {
-                //                                 // на всякий случай делаю deep copy
-                //                                 // с помощью JSON-api
-                //                                 // (возможно, это излишне)
-                //                                 value: JSON.parse(JSON.stringify(response.data)),
-                //                                 writable: false
-                //                                 });
-                //                         });
-                //                         return fetchResponse;
-                //                         return Promise.resolve(fetchResponse);
-
-                // })
                 console.log(fetchResponse);
                 return fetchResponse;
         } catch (error: any) {
