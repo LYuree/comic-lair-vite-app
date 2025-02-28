@@ -3,7 +3,7 @@ import { makeAutoObservable } from "mobx";
 
 export type ItemsPerPageRange = 12|24|36;
 
-interface categoryCheckbox {
+export interface categoryCheckbox {
     id: string,
     categoryName: string,
     checked: boolean
@@ -34,6 +34,7 @@ export class GridPageStore {
     setCategoryCheckboxes = (categoryCheckboxes: categoryCheckbox[]) => {
         this.categoryCheckboxes = categoryCheckboxes;
     };
+
 
     setSearchFormValue = (textInput: string) => {this.searchFormValue = textInput};
 

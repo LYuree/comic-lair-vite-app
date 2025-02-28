@@ -8,6 +8,7 @@ import { observer } from "mobx-react";
 import { rootStore } from "../store";
 import { useEffect, useRef } from "react";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
+import { categoryCheckbox } from "../store/gridPageStore";
 
 const ProductPage = observer(() => {
 
@@ -55,10 +56,9 @@ const ProductPage = observer(() => {
                                                 // checkbox - фильтры по категориям (длина массива
                                                 // равна числу уникальных категорий)
     const clearFilters = function () {
-        for (const ref of checkboxesRef.current)
-            if(ref) ref.checked = false;
-            // в массиве ссылок откуда-то появляются null -
-            // увы, пока не разобрался, откуда
+        const newCheckBoxes = categoryCheckboxes.map(checkbox => {return {...checkbox, checked: false}})
+        setCategoryCheckboxes(newCheckBoxes);        
+        
     }
 
     const applyFilters = function() {
