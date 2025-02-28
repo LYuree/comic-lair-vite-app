@@ -20,7 +20,7 @@ export interface cartItem {
 
 export const fetchCartProducts = async (): Promise<ProductsData> => {
     const {profileStore : {
-        currentUser, setCurrentUser,
+        setCurrentUser,
         }} = rootStore;
     try {
         const fetchResponse = {data: []};
