@@ -28,7 +28,7 @@ const ProductPage = observer(() => {
     } = rootStore;
     
     useEffect(() => {
-        if(Array.isArray(products) && products.length === 0) fetchProducts();
+        fetchProducts();
     }, []);
 
     const numberOfPages = Math.ceil(displayedProducts.data.length / itemsPerPage);
