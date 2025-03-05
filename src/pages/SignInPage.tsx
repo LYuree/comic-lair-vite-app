@@ -1,110 +1,119 @@
-import React, { useState } from "react";
-import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { rootStore } from '../store';
+;
 
-import { login } from "../services/auth.service";
+const SignIn: React.FC = () => {
+  const [userName, setUserName] = useState('');
+  const [passWord, setPassWord] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-type Props = {}
+  const navigate = useNavigate();
 
-const SignInPage: React.FC<Props> = () => {
-  let navigate: NavigateFunction = useNavigate();
+  const {
+    profileStore : {currentUserToken, setCurrentUserToken}
+  } = rootStore;
 
-  const [loading, setLoading] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
-
-  const initialValues: {
-    username: string;
-    password: string;
-  } = {
-    username: "",
-    password: "",
+  const validateForm = () => {
+    if (!userName || !passWord) {
+      setError('Username and password are required.');
+      return false;
+    }
+    setError('');
+    return true;
   };
 
-  const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Заполните это поле!"),
-    password: Yup.string().required("Заполните это поле!"),
-  });
-
-  const handleLogin = (formValue: { username: string; password: string }) => {
-    const { username, password } = formValue;
-
-    setMessage("");
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!validateForm()) return; // Ensure the form is validated
     setLoading(true);
 
-    login(username, password).then(
-      () => {
-        navigate("/profile");
-        window.location.reload();
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    const formDetails = new URLSearchParams();
+    formDetails.append('username', userName); // Use 'username' instead of 'userName'
+    formDetails.append('password', passWord); // Use 'password' instead of 'passWord'
 
-        setLoading(false);
-        setMessage(resMessage);
+    try {
+      const response = await axios.post('http://localhost:8000/users/token', formDetails, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded', // Set the correct content type
+        },
+      });
+      const { access_token } = response.data;
+      setLoading(false);
+      // localStorage.setItem('token', access_token);
+      setCurrentUserToken(access_token);
+      console.log(`Login successful`);
+      navigate("/profile")
+    } catch (err) {
+      setLoading(false);
+      if (axios.isAxiosError(err) && err.response) {
+        if (err.response.status === 401) {
+          setError('Invalid username or password.');
+        } else {
+          setError('An error occurred. Please try again later.');
+        }
+      } else {
+        setError('An unexpected error occurred.');
       }
-    );
+    }
   };
 
   return (
-    <div className="bg-white w-96 mx-auto pt-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">Вход в аккаунт</h2>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleLogin}
-        >
-          <Form>
-            <div className="form-group">
-              <label htmlFor="username" className="block text-gray-700">Логин</label>
-              <Field name="username" type="text" className="form-control" />
-              <ErrorMessage
-                name="username"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="password">Пароль</label>
-              <Field name="password" type="password" className="form-control" />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-
-            <div className="form-group">
-              <button type="submit" className="w-full bg-[#bd0000] text-white p-2 mt-4 hover:bg-[maroon]" disabled={loading}>
-                {loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Войти</span>
-              </button>
-            </div>
-
-            {message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {message}
-                </div>
-              </div>
-            )}
-          </Form>
-        </Formik>
-        <div className="mt-4 text-center">
-          <Link to={"/signup"} className="text-[maroon] hover:underline">Зарегистрироваться</Link>
-          <span className="mx-2">|</span>
-          <Link to={"*"} className="text-[maroon] hover:underline">Восстановить пароль</Link>
-        </div>
+    <div className="min-h-[calc(100vh-232px)] flex items-center justify-center mt-12">
+      <div className="bg-white p-8 lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
+        {error && (
+          <div className="mb-4 p-2 bg-red-100 border border-red-400 text-red-700">
+            {error}
+          </div>
+        )}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              value={passWord}
+              onChange={(e) => setPassWord(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full flex justify-center py-2 px-4 border border-transparent md shadow-sm text-sm font-medium text-white bg-[#bd0000] hover:bg-[maroon]"
+            >
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </div>
+          <div className="mt-4 text-center">
+            <Link to={"/signup"} className="text-[maroon] hover:underline">Зарегистрироваться</Link>
+              <span className="mx-2">|</span>
+            <Link to={"*"} className="text-[maroon] hover:underline">Восстановить пароль</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
- 
-export default SignInPage;
+
+export default SignIn;

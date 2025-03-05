@@ -1,4 +1,5 @@
 import axios from "axios";
+import { rootStore } from "../store";
 
 const API_URL = "http://127.0.0.1:8000/";
 
@@ -30,7 +31,11 @@ export const login = (username: string, password: string) => {
 
 // выход из аккаунта
 export const logout = () => {
-  localStorage.removeItem("user");
+  // localStorage.removeItem("user");
+  const {
+    profileStore: { setCurrentUserToken }
+  } = rootStore;
+  setCurrentUserToken(null);
 };
 
 // взять данные о пользователе (включая токен) из localStorage

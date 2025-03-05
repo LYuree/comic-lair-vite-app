@@ -4,6 +4,7 @@ import { IOrderJSON, fetchOrderDetails } from "../api/products/fetchOrderDetails
 export class ProfileStore{
     profileLoading: boolean = false;
     currentUser: string | null = null;
+    currentUserToken: string | null = null;
     userOrderDetails: IOrderJSON[] = [];
     error: string | null = null;
 
@@ -17,6 +18,8 @@ export class ProfileStore{
     };
 
     setCurrentUser = (currentUser: string | null) => (this.currentUser = currentUser);
+
+    setCurrentUserToken = (token: string | null) => (this.currentUserToken = token);
 
     setProfileLoading = (isLoading: boolean) => {
         this.profileLoading = isLoading;

@@ -19,29 +19,49 @@ import * as AuthService from "./services/auth.service";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
 import ProductDetails from "./pages/ProductDetails.tsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.tsx";
-import Login from "./components/Login/Login.tsx";
+import axios from "axios";
 
 function App() {
   const [showModeratorBoard, setShowModeratorBoard] = useState<boolean>(false);
   const [showAdminBoard, setShowAdminBoard] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<IUser | undefined>(undefined);
 
+  // useEffect(() => {
+  //   const user = AuthService.getCurrentUser();
+
+  //   if (user) {
+  //     setCurrentUser(user);
+  //     // For future use: user roles
+  //     // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+  //     // setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+  //   }
+
+  //   eventBus.on("logout", logOut);
+
+  //   return () => {
+  //     EventBus.remove("logout", logOut);
+  //   };
+  // }, []);
+  const [currentUserRole, setCurrentUserRole] = useState("");
+
+
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-      // For future use: user roles
-      // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      // setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-    }
-
-    eventBus.on("logout", logOut);
-
-    return () => {
-      EventBus.remove("logout", logOut);
+    const getCurrentUserRole = async () => {
+      try {
+        const response = await axios.get('/get-role', { withCredentials: true });
+        setCurrentUserRole(response.data.role);
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          console.error(err.response?.data.detail || 'An error occurred');
+        } else {
+          console.error('An unexpected error occurred');
+        }
+      }
     };
-  }, []);
+
+    getCurrentUserRole();
+
+  })
 
   const logOut = () => {
     AuthService.logout();
@@ -49,6 +69,7 @@ function App() {
     setShowAdminBoard(false);
     setCurrentUser(undefined);
   };
+
 
   return (
     <div className="app">
@@ -60,13 +81,12 @@ function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/product_details/:id" element={<ProductDetails />} />
         <Route path="*" element={<PageNotFound />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage currentUserRole={currentUserRole}/>} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckOutPage />} />
         </Route>
