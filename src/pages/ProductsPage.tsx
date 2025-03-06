@@ -189,7 +189,7 @@ const ProductsPage = observer(() => {
                                 </div>
                                 <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
                                     <h2 className="font-bold" key={crypto.randomUUID()}>КАТЕГОРИИ</h2>
-                                    {categoryCheckboxes.map((categoryCheckbox, i) =>
+                                    {categoryCheckboxes.map((categoryCheckbox, _) =>
                                         <label htmlFor="" className="block" key={crypto.randomUUID()}>
                                             <input type="checkbox" name="category"
                                                 id={categoryCheckbox.id}
@@ -204,7 +204,7 @@ const ProductsPage = observer(() => {
                                 </div>
                                 <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
                                     <h2 className="font-bold" key={crypto.randomUUID()}>ОБЛОЖКА</h2>
-                                    {coverCheckboxes.map((coverCheckbox, i) =>
+                                    {coverCheckboxes.map((coverCheckbox, _) =>
                                         <label htmlFor="" className="block" key={crypto.randomUUID()}>
                                             <input type="checkbox" name="cover"
                                                 id={coverCheckbox.id}
@@ -219,7 +219,7 @@ const ProductsPage = observer(() => {
                                 </div>
                                 <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
                                     <h2 className="font-bold" key={crypto.randomUUID()}>БРЕНД</h2>
-                                    {brandCheckboxes.map((brandCheckbox, i) =>
+                                    {brandCheckboxes.map((brandCheckbox, _) =>
                                         <label htmlFor="" className="block" key={crypto.randomUUID()}>
                                             <input type="checkbox" name="brand"
                                                 id={brandCheckbox.id}

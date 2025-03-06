@@ -5,30 +5,19 @@ import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import { IOrderJSON } from "../api/products/fetchOrderDetails";
 import { observer } from "mobx-react";
-import IUser from "../types/user.type";
 
-// interface IProfilePageProps {
-//     currentUser: IUser | undefined;
-//   }
-
-interface IOrderItem {
-    id: string,
-    date: string,
-    status: string,
-}
-
-
-// pages/ProfilePage.tsx
-interface IProfilePageProps {
-    // currentUser: IUser | undefined;
-    currentUserRole: string | undefined;
-  }
+// interface IOrderItem {
+//     id: string,
+//     date: string,
+//     status: string,
+// }
   
-  const ProfilePage: FC<IProfilePageProps> = observer(({ currentUserRole }) => {
+  const ProfilePage: FC = observer(() => {
     const navigate = useNavigate();
   
     const {
-      profileStore: { profileLoading, userOrderDetails, fetchOrderDetails },
+      profileStore: { profileLoading, userOrderDetails, fetchOrderDetails,
+      currentUser },
     } = rootStore;
   
     useLayoutEffect(() => {
@@ -38,6 +27,8 @@ interface IProfilePageProps {
     if (profileLoading) {
       return <LoadingScreen />;
     }
+
+    if (!currentUser) return <div>Error. User is null or undefined.</div>
   
     return (
       <>
@@ -59,7 +50,7 @@ interface IProfilePageProps {
             </div>
   
             {/* Admin Section */}
-            {currentUserRole === "admin" && (
+            {currentUser.role === "ADMIN" && (
               <div className="w-full md:w-1/2 p-2">
                 <div className="bg-white shadow-md rounded p-4">
                   <h2 className="text-2xl font-semibold mb-4">Администратор</h2>

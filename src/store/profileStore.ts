@@ -1,10 +1,14 @@
 import { makeAutoObservable } from "mobx";
 import { IOrderJSON, fetchOrderDetails } from "../api/products/fetchOrderDetails";
+import IUser from "../types/user.type";
+
+
 
 export class ProfileStore{
     profileLoading: boolean = false;
-    currentUser: string | null = null;
+    currentUser: IUser | null = null;
     currentUserToken: string | null = null;
+    currentUserRole: string | null = null;
     userOrderDetails: IOrderJSON[] = [];
     error: string | null = null;
 
@@ -17,7 +21,7 @@ export class ProfileStore{
         console.log(!this.userOrderDetails);
     };
 
-    setCurrentUser = (currentUser: string | null) => (this.currentUser = currentUser);
+    setCurrentUser = (currentUser: IUser | null) => (this.currentUser = currentUser);
 
     setCurrentUserToken = (token: string | null) => (this.currentUserToken = token);
 

@@ -1,14 +1,15 @@
 // возвращает заголовок для axiosConfig.headers для отправки запросов на сервер
 
-export default function authHeader() {
-  // взять данные о пользователя (включая токен) из localStorage
-  const userStr = localStorage.getItem("user");
-  let user = null;
-  if (userStr)
-    user = JSON.parse(userStr);
+import { rootStore } from "../store";
 
-  if (user && user.accessToken) {
-    return { Authorization: 'Bearer ' + user.accessToken }; // for Spring Boot back-end
+export default function authHeader() {
+  // const userStr = localStorage.getItem("user");
+  const {
+    profileStore : { currentUserToken }
+  } = rootStore;
+  
+  if (currentUserToken){
+    return { Authorization: 'Bearer ' + currentUserToken}; // for Spring Boot back-end
     // return { 'x-access-token': user.accessToken };       // for Node.js Express back-end
   } else {
     return { Authorization: '' }; // for Spring Boot back-end

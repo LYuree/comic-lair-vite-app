@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { rootStore } from '../store';
+import { jwtDecode } from 'jwt-decode';
+import IUser from '../types/user.type';
 ;
 
 const SignIn: React.FC = () => {
@@ -13,7 +15,7 @@ const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   const {
-    profileStore : {currentUserToken, setCurrentUserToken}
+    profileStore : { setCurrentUser, setCurrentUserToken }
   } = rootStore;
 
   const validateForm = () => {
@@ -43,6 +45,14 @@ const SignIn: React.FC = () => {
       const { access_token } = response.data;
       setLoading(false);
       // localStorage.setItem('token', access_token);
+      const userPayload: any = jwtDecode(access_token);
+      // console.log(user);
+      const user: IUser = {
+        sub: userPayload.sub,
+        id: userPayload.id,
+        role: userPayload.role,
+      }      
+      setCurrentUser(user);
       setCurrentUserToken(access_token);
       console.log(`Login successful`);
       navigate("/profile")

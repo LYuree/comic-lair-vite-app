@@ -7,7 +7,7 @@ const ProtectedRoute: React.FC = () => {
     const token = localStorage.getItem('token');
 
     const {
-      profileStore: {currentUser, setCurrentUser, currentUserToken, setCurrentUserToken}
+      profileStore: { setCurrentUser, currentUserToken, setCurrentUserToken }
     } = rootStore;
 
     useEffect(() => {
@@ -20,6 +20,7 @@ const ProtectedRoute: React.FC = () => {
                 }
             } catch (error) {
                 // localStorage.removeItem('token');
+                setCurrentUser(null);
                 setCurrentUserToken(null);
                 navigate('/signin');
             }
