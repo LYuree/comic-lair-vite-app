@@ -11,3 +11,9 @@ export default interface IUser {
   id: string,
   role: string,
 }
+
+export interface IUserSignup {
+  username: string,
+  email: string,
+  password: string
+}

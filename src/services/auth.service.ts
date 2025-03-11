@@ -3,13 +3,19 @@ import { rootStore } from "../store";
 
 const API_URL = "http://127.0.0.1:8000/";
 
+const active = true;
+const role = "USER";
+
+
 // регистрация
 export const register = (id: string, username: string, email: string, password: string) => {
-  return axios.post(API_URL + "users", {
-    id,
+  return axios.post(API_URL + "users/", {
+    id: id,
     username,
     email,
     password,
+    active,
+    role
   });
 };
 

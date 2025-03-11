@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import IUser from "../types/user.type";
+import { IUserSignup } from "../types/user.type";
 import { register } from "../services/auth.service";
 import Popup from "../components/Popup/Popup";
 import { rootStore } from "../store";
@@ -13,8 +13,10 @@ import { observer } from "mobx-react-lite";
 const SignUpPage: React.FC = observer(() => {
   const [successful, setSuccessful] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  
+  const navigate = useNavigate();
 
-  const initialValues: IUser = {
+  const initialValues: IUserSignup = {
     username: "",
     email: "",
     password: "",
@@ -52,7 +54,7 @@ const SignUpPage: React.FC = observer(() => {
       .required("This field is required!"),
   });
 
-  const handleRegister = (formValue: IUser) => {
+  const handleRegister = (formValue: IUserSignup) => {
     const { username, email, password } = formValue;
 
     register(crypto.randomUUID(), username, email, password).then(
@@ -81,6 +83,7 @@ const SignUpPage: React.FC = observer(() => {
 
   const handleClosePopup = () => {
     setSignupPopupOpen(false);
+    navigate("/signin");
     };
 
   return (
