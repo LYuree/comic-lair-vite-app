@@ -8,7 +8,7 @@ const role = "USER";
 
 
 // регистрация
-export const register = (id: string, username: string, email: string, password: string) => {
+export const register = (id: string, username: string, email: string, password: string, active: boolean, role: string) => {
   return axios.post(API_URL + "users/", {
     id: id,
     username,

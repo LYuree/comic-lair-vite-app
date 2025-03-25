@@ -29,8 +29,6 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/product_details/:id" element={<ProductDetails />} />
         <Route path="*" element={<PageNotFound />} />
-
-        {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/cart" element={<CartPage />} />
