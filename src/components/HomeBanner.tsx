@@ -1,6 +1,7 @@
 import Slider from './Slider/Slider';
 import { Link } from 'react-router-dom';
 
+
 const HomeBanner = () => {
     const slides = [
         {
