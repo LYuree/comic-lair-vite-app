@@ -89,7 +89,7 @@ const ProductsPage = observer(() => {
         const selectedCovers = coverCheckboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.coverType);
         if (selectedCovers.length > 0) {
             newDisplayedProducts.data = newDisplayedProducts.data.filter((product: IProductItem) =>
-                selectedCovers.includes(product.cover)
+                selectedCovers.includes(product.cover_image)
             );
         }
 

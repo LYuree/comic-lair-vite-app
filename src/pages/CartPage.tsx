@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
 import formatPrice from "../utils/formatPrice";
@@ -15,10 +15,10 @@ import Popup from "../components/Popup/Popup";
 const CartPage = observer(() => {
     const {
         cartStore : {
-            cartProducts, cartLoading, setCartLoading,
+            cartProducts, cartLoading,
             fetchCartProducts, setCartProductAmount,
             deleteCartProduct, checkout, totalCost,
-            email, phone, setEmail, setPhone,
+            email, phone, setEmail,
             isCheckoutPopupOpen, setCheckoutPopupOpen},
     }  = rootStore;
 
@@ -63,10 +63,6 @@ const CartPage = observer(() => {
         data={item}
         setAmount={setCartProductAmount}
         deleteItem={deleteCartProduct}/>);
-
-    const handleOpenPopup = () => {
-        setCheckoutPopupOpen(true);
-        };
 
     const handleClosePopup = () => {
         setCheckoutPopupOpen(false);

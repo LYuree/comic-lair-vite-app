@@ -16,7 +16,7 @@ export interface CartItemProps {
 }
 
 const CartItem: FC<CartItemProps> = observer((({data, setAmount, deleteItem}) => {
-    const [itemAmount, setItemAmount] = useState(data.amount);
+    const [itemAmount] = useState(data.amount);
     console.log(data);
     return (
         <div className="
@@ -31,7 +31,7 @@ const CartItem: FC<CartItemProps> = observer((({data, setAmount, deleteItem}) =>
                 <picture>
                     <source/>
                     <img
-                        src={data.images[0].image}
+                        src={data.cover_image}
                         alt={data.name}
                         className="hover:opacity-75 duration-500"
                     />

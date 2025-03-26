@@ -79,10 +79,6 @@ const SignUpPage: React.FC = observer(() => {
     );
   };
 
-  const handleOpenPopup = () => {
-    setSignupPopupOpen(true);
-    };
-
   const handleClosePopup = () => {
     setSignupPopupOpen(false);
     navigate("/signin");
