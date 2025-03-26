@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const AboutPageTimelineDouble = () => {
     return ( 
         <>
@@ -63,7 +65,7 @@ const AboutPageTimelineDouble = () => {
                     <p>Наша цель - стать для вас надёжным поставщиком комиксов - как новых, так и давно вышедших из печати. Мы продаём то, что обожают читать и обсуждать люди в нашем сообществе. Мы усердно трудимся над тем, чтобы подарить вам эмоции, которые захочется испытвать снова и снова!</p>
                     <p className="text-4xl font-bold my-4">Мы - THE NOVEL TOWN</p>
                     <p className="text-3xl my-4">И мы обеспечим вам наилучшие впечатления от путешествия по бескрайнему миру рисованных историй</p>
-                    <a className="text-4xl font-bold text-[maroon] hover:text-[#e35b5b]" href="#">Чего же вы ждёте? ПРИСОЕДИНЯЙТЕСЬ!</a>
+                    <Link to="/signin" className="text-4xl font-bold text-[maroon] hover:text-[#e35b5b]">Чего же вы ждёте? ПРИСОЕДИНЯЙТЕСЬ!</Link>
                 </div>
         </>
      );
