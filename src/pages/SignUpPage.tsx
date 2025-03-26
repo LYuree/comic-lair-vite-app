@@ -59,7 +59,7 @@ const SignUpPage: React.FC = observer(() => {
     const active = false;
     const role = 'USER';
 
-    register(crypto.randomUUID(), username, email, password, active).then(
+    register(crypto.randomUUID(), username, email, password, active, role).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);

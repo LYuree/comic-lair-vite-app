@@ -1,6 +1,6 @@
 import axios from "axios";
 
-interface ICoverImage {
+export interface ICoverImage {
     image: string
 }
 
@@ -17,9 +17,10 @@ export interface IProductItem {
     brand: string,
     digital: boolean,
     categories: string[],
-    cover: string,
+    cover_type: string,
+    cover_image: string,
     amount: number,
-    images: ICoverImage[],
+    // images: ICoverImage[],
     reviews: string[] | null,
 }
 

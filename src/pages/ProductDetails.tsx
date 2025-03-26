@@ -40,7 +40,8 @@ const ProductDetails: React.FC = observer(() => {
         <div className="container mx-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-            <img src={productDetails.images[0].image} alt={productDetails.name} className="w-full h-auto object-contain" />
+            {/* <img src={productDetails.images[0].image} alt={productDetails.name} className="w-full h-auto object-contain" /> */}
+            <img src={productDetails.cover_image} alt={productDetails.name} className="w-full h-auto object-contain" />
             {/* вывод разных картинок одного и того же товара, надо будет доделать*/}
             {/* <div className="mt-4">
                 {productDetails.images.map((image, index) => (

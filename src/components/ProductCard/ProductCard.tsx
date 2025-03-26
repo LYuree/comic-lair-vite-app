@@ -31,7 +31,8 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                     <picture>
                         <source/>
                         <img
-                            src={data.images[0].image}
+                            // src={data.images[0].image}
+                            src={data.cover_image}
                             alt={data.name}
                             className="hover:opacity-75 duration-500"
                         />
@@ -39,8 +40,7 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                 </Link>
             </div>
             <div className="flex flex-col items-center">
-                <div
-                    className="text-[gray] text-xs font-semibold mt-2">{data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}</div>
+                <div className="text-[gray] text-xs font-semibold mt-2">{data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}</div>
                 <div className="text-lg text-center font-bold">{truncateText(data.name)}</div>
                 <div className="flex flex-col items-center text-sm mt-2 text-[gray] font-semibold max-w-[210px]">
                     {data.discount ?
