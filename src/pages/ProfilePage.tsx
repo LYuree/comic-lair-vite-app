@@ -6,6 +6,7 @@ import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import { IOrderJSON } from "../api/products/fetchOrderDetails";
 import { observer } from "mobx-react";
 import { adminCreateProduct } from "../api/products/adminCreateProduct";
+import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
 
 const ProfilePage: FC = observer(() => {
     const navigate = useNavigate();
@@ -89,6 +90,8 @@ const ProfilePage: FC = observer(() => {
 
                     {/* Admin Section */}
                     {currentUser.role === "ADMIN" && (
+                        <>
+                        <AdminDashboard />
                         <div className="w-full md:w-1/2 p-2">
                             <div className="bg-white shadow-md rounded p-4">
                                 <h2 className="text-2xl font-semibold mb-4">Администратор</h2>
@@ -264,6 +267,7 @@ const ProfilePage: FC = observer(() => {
                                 </form>
                             </div>
                         </div>
+                        </>
                     )}
 
                     {/* Regular User Info */}
