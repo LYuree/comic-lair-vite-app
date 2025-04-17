@@ -1,32 +1,21 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import { IUserSignup } from "../types/user.type";
+import IUser from "../types/user.type";
 import { register } from "../services/auth.service";
-import Popup from "../components/Popup/Popup";
-import { rootStore } from "../store";
-import { observer } from "mobx-react-lite";
 
-const SignUpPage: React.FC = observer(() => {
+const SignUpPage: React.FC = () => {
   const [successful, setSuccessful] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  
-  const navigate = useNavigate();
 
-  const initialValues: IUserSignup = {
+  const initialValues: IUser = {
     username: "",
     email: "",
     password: "",
   };
-
-  const {
-    signUpStore: {
-      isSignupPopupOpen, setSignupPopupOpen
-    }
-  } = rootStore;
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -54,16 +43,13 @@ const SignUpPage: React.FC = observer(() => {
       .required("This field is required!"),
   });
 
-  const handleRegister = (formValue: IUserSignup) => {
+  const handleRegister = (formValue: IUser) => {
     const { username, email, password } = formValue;
-    const active = false;
-    const role = 'USER';
 
-    register(crypto.randomUUID(), username, email, password, active, role).then(
+    register(username, email, password).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
-        setSignupPopupOpen(true);
       },
       (error) => {
         const resMessage =
@@ -79,13 +65,7 @@ const SignUpPage: React.FC = observer(() => {
     );
   };
 
-  const handleClosePopup = () => {
-    setSignupPopupOpen(false);
-    navigate("/signin");
-    };
-
   return (
-    <>
     <div className="bg-white pt-16 w-96 mx-auto">
         <Formik
           initialValues={initialValues}
@@ -153,18 +133,7 @@ const SignUpPage: React.FC = observer(() => {
           </Form>
         </Formik>
     </div>
-      {isSignupPopupOpen ? <Popup
-        title={"Остался последний шаг"}
-        content={`На указанный адрес почты было отправлено письмо
-                  со ссылкой для подтверждения. Не забудьте перейти
-                  по ней для завершения регистрации!`}
-        onClose={() => {
-          handleClosePopup();
-        }}
-        /> : ""
-              }
-    </>
   );
-});
+};
 
 export default SignUpPage;

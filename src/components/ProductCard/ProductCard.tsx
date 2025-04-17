@@ -4,8 +4,9 @@ import {TbHeartPlus} from "react-icons/tb";
 import {truncateText} from "../../utils/truncateText.ts";
 import {formatPrice} from "../../utils/formatPrice.ts";
 import {IProductItem} from "../../api/products/fetchProducts.ts";
+import { addToCart } from "../../api/products/addToCart.ts";
+import { getCurrentUser } from "../../services/auth.service.ts";
 import { cartItem } from "../../api/products/fetchCartProducts.ts";
-import { Link } from "react-router-dom";
 
 export interface ProductCardProps {
     data: IProductItem
@@ -27,20 +28,18 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
             "
             key={data.id}>
             <div className="relative overflow-hidden flex justify-center">
-                <Link to={`/product_details/${data.id}`}>
-                    <picture>
-                        <source/>
-                        <img
-                            // src={data.images[0].image}
-                            src={data.cover_image}
-                            alt={data.name}
-                            className="hover:opacity-75 duration-500"
-                        />
-                    </picture>
-                </Link>
+                <picture>
+                    <source/>
+                    <img
+                        src={data.images[0].image}
+                        alt={data.name}
+                        className="hover:opacity-75 duration-500"
+                    />
+                </picture>
             </div>
             <div className="flex flex-col items-center">
-                <div className="text-[gray] text-xs font-semibold mt-2">{data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}</div>
+                <div
+                    className="text-[gray] text-xs font-semibold mt-2">{data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}</div>
                 <div className="text-lg text-center font-bold">{truncateText(data.name)}</div>
                 <div className="flex flex-col items-center text-sm mt-2 text-[gray] font-semibold max-w-[210px]">
                     {data.discount ?
@@ -60,6 +59,7 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                     <button type="submit"
                             className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                             onClick={() => {
+                                // addToCart(getCurrentUser().id, data.id, 1);
                                 const cartStr = localStorage.getItem("cart");
                                 const cart = cartStr ? JSON.parse(cartStr) : null;
                                 if(!cart) {
@@ -82,6 +82,14 @@ const ProductCard: FC<ProductCardProps> = (({data}) => {
                                                 ]
                                         )
                                     )
+                                // else localStorage.setItem("cart",
+                                //     JSON.stringify(
+                                //             [{
+                                //                 product_id: data.id,
+                                //                 quantity: 1
+                                //             }]
+                                //         )
+                                //     );
                                 console.log(`local storage cart: `, localStorage.getItem("cart"));
                                 }
                             }>

@@ -16,6 +16,9 @@ const HomePage = observer(() => {
         fetchProducts();
     }, []);
 
+    // TODO: Сделать лоудер
+    // if (productsLoading) return <LoadingScreen/>
+
     return (
         <>
             {productsLoading ? <LoadingScreen/> :

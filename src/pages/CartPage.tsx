@@ -1,24 +1,34 @@
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
+import { checkout } from "../api/products/checkout";
 import formatPrice from "../utils/formatPrice";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../services/auth.service";
+import validateSession from "../services/validateSession";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import Slider from "../components/Slider/Slider";
 import PhoneNumberInput from "../components/PhoneNumberInput/PhoneNumberInput";
 import Popup from "../components/Popup/Popup";
+import * as AuthService from "../services/auth.service";
 
 
 // const userId = "asdasdads010101";
 
 const CartPage = observer(() => {
+    const navigate = useNavigate();
+    const swiperRef = useRef();
+    // const userId = AuthService.getCurrentUser().id;
+    const userId = "666";
+
     const {
         cartStore : {
-            cartProducts, cartLoading,
+            cartProducts, cartLoading, setCartLoading,
             fetchCartProducts, setCartProductAmount,
             deleteCartProduct, checkout, totalCost,
-            email, phone, setEmail,
+            email, phone, setEmail, setPhone,
             isCheckoutPopupOpen, setCheckoutPopupOpen},
     }  = rootStore;
 
@@ -64,6 +74,10 @@ const CartPage = observer(() => {
         setAmount={setCartProductAmount}
         deleteItem={deleteCartProduct}/>);
 
+    const handleOpenPopup = () => {
+        setCheckoutPopupOpen(true);
+        };
+
     const handleClosePopup = () => {
         setCheckoutPopupOpen(false);
         };
@@ -83,6 +97,9 @@ const CartPage = observer(() => {
                     </div>
                     :
                     <Container>
+                        {/* временно убрал flex у cart-page-slider-wrapper,
+                        потому что flex вызывает баг с бесконечной шириной
+                        у слайдов swiper-js  */}
                         <div className="
                             cart-page-slider-wrapper
                             flex
@@ -98,7 +115,14 @@ const CartPage = observer(() => {
                                         autoPlay={false}
                                         isLooped={false}
                                         navigate={true}
-                                        breakPoints={{}}
+                                        breakPoints={{
+                                            // 368: {
+                                            //     slidesPerView: 1,
+                                            // },
+                                            // 900: {
+                                            //     slidesPerView: 1,
+                                            // }
+                                        }}
                                         />
                             </div>
                             <div className="flex flex-col gap-2">
@@ -128,7 +152,6 @@ const CartPage = observer(() => {
                                             <button type="submit"
                                                 className="btn w-full relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                                                 onClick={() => {
-                                                    const userId = localStorage.getItem("userId");
                                                     if (userId && cartProducts &&
                                                         email && phone){
                                                             checkout(userId, phone, email, cartProducts);

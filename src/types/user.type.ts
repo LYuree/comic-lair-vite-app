@@ -1,19 +1,7 @@
-// export default interface IUser {
-//   id?: any | null,
-//   username: string,
-//   email: string,
-//   password: string,
-//   role: string
-// }
-
 export default interface IUser {
-  sub: string,
-  id: string,
-  role: string,
-}
-
-export interface IUserSignup {
+  id?: any | null,
   username: string,
   email: string,
-  password: string
+  password: string,
+  roles?: Array<string>
 }

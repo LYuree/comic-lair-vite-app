@@ -1,6 +1,8 @@
-import { IProductItem, ProductsData } from "./fetchProducts"
+import { IProductItem, ProductsData, fetchProducts } from "./fetchProducts"
+import { cartProducts } from "../../utils/cartProducts"
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
+import validateSession from "../../services/validateSession";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
 
@@ -19,14 +21,17 @@ export interface cartItem {
 
 
 export const fetchCartProducts = async (): Promise<ProductsData> => {
+    // dev mode
+    localStorage.removeItem("user");
+    localStorage.setItem("user", JSON.stringify({id: "64a654593e91b8e73a351e9sdfsdf", name: "Mykytko", token: "sdsdfsdfs"}));
     const {profileStore : {
-        setCurrentUser,
+        currentUser, setCurrentUser,
         }} = rootStore;
     try {
         const fetchResponse = {data: []};
         // await validateSession();
 
-        // await axios.get<ProductsData>...
+        // await axios.get<ProductsData>(
 
         // сначала получаем данные в формате cartItem,
         // чтобы дальше по их id подтянуть полную
@@ -49,15 +54,45 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                                         }       
                                 )       
                                 return {...response.data, amount: cartItem.quantity};
+                                // console.log(product.data);
+                                // return product.data;
                         }));
                         console.log(cartProductDetails);
                         Object.defineProperty(fetchResponse,
                                 "data",
                                 {
+                                // на всякий случай делаю deep copy
+                                // с помощью JSON-api
+                                // (возможно, это излишне)
                                 value: JSON.parse(JSON.stringify(cartProductDetails)),
                                 writable: false
                                 });
                 });
+
+                        // временная версия
+
+                //         const cartProductDetails = await axios.get<ProductsData>(
+                //                 'http://127.0.0.1:8000/products/')
+                //                 .then((response) => {
+                //                         // console.log("entering the data-wrapping then-block");
+                //                         console.log(response);
+                        
+                //                         // оборачиваем данные с сервера в объект,
+                //                         // присваивая их в качестве значения ключа data
+                //                         Object.defineProperty(fetchResponse,
+                //                                 "data",
+                //                                 {
+                //                                 // на всякий случай делаю deep copy
+                //                                 // с помощью JSON-api
+                //                                 // (возможно, это излишне)
+                //                                 value: JSON.parse(JSON.stringify(response.data)),
+                //                                 writable: false
+                //                                 });
+                //                         });
+                //                         return fetchResponse;
+                //                         return Promise.resolve(fetchResponse);
+
+                // })
                 console.log(fetchResponse);
                 return fetchResponse;
         } catch (error: any) {
@@ -71,3 +106,9 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
                 return Promise.resolve({data: []});
         }
 };
+
+// Версия для моков
+// export const fetchCartProducts = async (): Promise<ProductsData> =>
+//     await new Promise(resolve => {
+//             resolve(cartProducts)
+//     })

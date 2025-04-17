@@ -16,7 +16,7 @@ export interface CartItemProps {
 }
 
 const CartItem: FC<CartItemProps> = observer((({data, setAmount, deleteItem}) => {
-    const [itemAmount] = useState(data.amount);
+    const [itemAmount, setItemAmount] = useState(data.amount);
     console.log(data);
     return (
         <div className="
@@ -27,11 +27,14 @@ const CartItem: FC<CartItemProps> = observer((({data, setAmount, deleteItem}) =>
             pl-16
             "
             key={data.id}>
+            {/*hover:outline
+            hover:outline-violet-300
+            hover:outline-2 */}
             <div className="relative overflow-hidden flex justify-center">
                 <picture>
                     <source/>
                     <img
-                        src={data.cover_image}
+                        src={data.images[0].image}
                         alt={data.name}
                         className="hover:opacity-75 duration-500"
                     />

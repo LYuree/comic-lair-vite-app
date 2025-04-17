@@ -1,14 +1,12 @@
 import { makeAutoObservable } from "mobx";
-import { IOrderJSON, fetchOrderDetails } from "../api/products/fetchOrderDetails";
-import IUser from "../types/user.type";
-
-
+import { IOrderJSON, IOrdersData, fetchOrderDetails } from "../api/products/fetchOrderDetails";
 
 export class ProfileStore{
     profileLoading: boolean = false;
-    currentUser: IUser | null = null;
-    currentUserToken: string | null = null;
-    currentUserRole: string | null = null;
+    currentUser: string | null = null;
+    // userOrderDetails: IOrdersData = {
+    //     data: []
+    // };
     userOrderDetails: IOrderJSON[] = [];
     error: string | null = null;
 
@@ -21,9 +19,7 @@ export class ProfileStore{
         console.log(!this.userOrderDetails);
     };
 
-    setCurrentUser = (currentUser: IUser | null) => (this.currentUser = currentUser);
-
-    setCurrentUserToken = (token: string | null) => (this.currentUserToken = token);
+    setCurrentUser = (currentUser: string | null) => (this.currentUser = currentUser);
 
     setProfileLoading = (isLoading: boolean) => {
         this.profileLoading = isLoading;
@@ -37,9 +33,17 @@ export class ProfileStore{
             // вариант с рабочим бэком
             const userOrderDetails = await fetchOrderDetails();
             console.log(userOrderDetails);
+            // const cartProductsDataArray = JSON.parse(JSON.stringify(cartProductsData));
             console.log(this);
             this.setUserOrderDetails(userOrderDetails);
             this.setProfileLoading(false);
+
+            // вариант на моках
+            // setTimeout(async ()=> {
+            //     const productsData = await fetchCartProducts();
+            //     this.setCartProducts(productsData);
+            //     this.setCartLoading(false);
+            // }, 2000)
 
         } catch (error) {
             console.log(error);
