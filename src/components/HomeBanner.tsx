@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 const HomeBanner = () => {
   const slides = [
     {
-      src: "/src/images/banner1.png",
+      src: "/banner1.png",
       url: "/products",
     },
     {
-      src: "/src/images/banner2.png",
+      src: "/banner2.png",
       url: "/products",
     },
     {
-      src: "/src/images/banner3.png",
+      src: "/banner3.png",
       url: "/products",
     },
   ];

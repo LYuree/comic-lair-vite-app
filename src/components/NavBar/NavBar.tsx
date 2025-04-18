@@ -38,7 +38,8 @@ const NavBar = () => {
               <picture className="relative logo-shadow border-2 border-white">
                 <source />
                 <img
-                  src="/src/images/noveltown_logo_v2.png"
+                  src="/noveltown_logo_v2.png"
+                  // src="/src/images/noveltown_logo_v2.png"
                   alt="The Novel Town Logo"
                 />
               </picture>
