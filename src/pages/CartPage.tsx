@@ -24,7 +24,7 @@ const CartPage = observer(() => {
 
   const {
     cartStore: {
-      cartProducts,
+      // cartProducts,
       cartLoading,
       //   setCartLoading,
       fetchCartProducts,
@@ -75,7 +75,52 @@ const CartPage = observer(() => {
     fetchCartProducts();
   }, []);
 
-  const slides = cartProducts.data.map((item) => (
+  const cartProductsDemo = {
+    data: [
+      {
+        id: "64a654593e91b8e73a351e9b",
+        name: "Ipsum-Man: The Long Way Home #1",
+        description: "Short description",
+        price: 600,
+        discount: 0.3,
+        hit: true,
+        releaseDate: "2024-01-27",
+        brand: "Grim Horse",
+        digital: false,
+        categories: ["Печатная книга", "Комикс"],
+        cover: "Мягкая обложка",
+        amount: 100,
+        images: [
+          {
+            image: "ipsum.png",
+          },
+        ],
+        reviews: null,
+      },
+      {
+        id: "64a4ebe300900d44bb50628psdfsd",
+        name: "Ipsum-Man: The Long Way Home #1",
+        description: "Short description",
+        price: 2999,
+        discount: 0.15,
+        hit: null,
+        releaseDate: "2024-02-25",
+        brand: "Grim Horse",
+        digital: false,
+        categories: ["Печатная книга", "Комикс"],
+        cover: "Мягкая обложка",
+        amount: 100,
+        images: [
+          {
+            image: "free comic cover 210-326.png",
+          },
+        ],
+        reviews: null,
+      },
+    ],
+  };
+
+  const slides = cartProductsDemo.data.map((item) => (
     <CartItem
       key={item.id}
       data={item}
@@ -99,8 +144,8 @@ const CartPage = observer(() => {
       ) : (
         <>
           {!cartLoading &&
-          Array.isArray(cartProducts.data) &&
-          !cartProducts.data.length ? (
+          Array.isArray(cartProductsDemo.data) &&
+          !cartProductsDemo.data.length ? (
             <div className="w-full h-[80vh] flex flex-col justify-center items-center gap-4">
               <span className="text-2xl font-bold">Ваша корзина пуста.</span>
               <a
@@ -191,8 +236,8 @@ const CartPage = observer(() => {
                           type="submit"
                           className="btn w-full relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                           onClick={() => {
-                            if (userId && cartProducts && email && phone) {
-                              checkout(userId, phone, email, cartProducts);
+                            if (userId && cartProductsDemo && email && phone) {
+                              checkout(userId, phone, email, cartProductsDemo);
                               localStorage.setItem("cart", JSON.stringify([]));
                             }
                           }}
