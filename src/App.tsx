@@ -16,7 +16,6 @@ import ProductDetails from "./pages/ProductDetails.tsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.tsx";
 
 function App() {
-
   return (
     <div className="app">
       <ScrollToTop />
