@@ -1,5 +1,4 @@
 import { FC, useLayoutEffect, useState } from "react";
-import { logout } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
@@ -423,26 +422,6 @@ const ProfilePage: FC = observer(() => {
                     >
                       Создать продукт
                     </button>
-                    {/* 
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      sx={{
-                        width: {
-                          xs: "100%",
-                          sm: "50%",
-                          borderRadius: 0,
-                          // position: "relative",
-                          // transform: "translateX(-50%)",
-                          // left: "50%",
-                          // marginTop: "2rem",
-                        },
-                      }}
-                      onClick={() => navigate("/signin")}
-                    >
-                      Создать продукт
-                    </Button> */}
                   </form>
                 </div>
                 <Button
@@ -691,17 +670,6 @@ const ProfilePage: FC = observer(() => {
             </div>
           )}
         </div>
-      </div>
-      <div className="w-full flex justify-center">
-        {/* <button
-          className="w-[50vw] mx-auto bg-blue-500 text-white p-2 hover:bg-blue-600"
-          onClick={() => {
-            logout();
-            navigate("/signin");
-          }}
-        >
-          Выйти
-        </button> */}
       </div>
     </>
   );

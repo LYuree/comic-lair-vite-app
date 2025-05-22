@@ -74,22 +74,6 @@ const ProductDetails: React.FC = observer(() => {
                 className="w-full max-h-[500px] object-contain"
               />
             </div>
-            {/* {productDetails.images && productDetails.images.length > 0 && (
-              <div className="mt-4 flex space-x-2 overflow-x-auto py-2">
-                {productDetails.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="flex-shrink-0 border rounded cursor-pointer hover:border-blue-500"
-                  >
-                    <img
-                      src={image}
-                      alt={`${productDetails.name} - ${index + 1}`}
-                      className="w-20 h-20 object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
-            )} */}
           </div>
 
           {/* Product Info Section */}
@@ -140,7 +124,6 @@ const ProductDetails: React.FC = observer(() => {
               )}
 
             <div className="mt-auto">
-              {/* <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 lg transition duration-200"> */}
               <Button
                 type="submit"
                 variant="contained"
@@ -155,7 +138,6 @@ const ProductDetails: React.FC = observer(() => {
               >
                 Добавить в корзину
               </Button>
-              {/* </button> */}
             </div>
           </div>
         </div>
