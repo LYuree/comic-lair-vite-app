@@ -3,7 +3,7 @@ import { logout } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
-import { IOrderJSON } from "../api/products/fetchOrderDetails";
+// import { IOrderJSON } from "../api/products/fetchOrderDetails";
 import { observer } from "mobx-react";
 import { adminCreateProduct } from "../api/products/adminCreateProduct";
 import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
@@ -37,7 +37,7 @@ const ProfilePage: FC = observer(() => {
   const {
     profileStore: {
       profileLoading,
-      userOrderDetails,
+      // userOrderDetails,
       fetchOrderDetails,
       currentUser,
     },
@@ -168,6 +168,7 @@ const ProfilePage: FC = observer(() => {
             <>
               <AdminDashboard />
               <div className="w-full md:w-1/2 p-2">
+                {/* <div className="w-full p-2"> */}
                 <div className="bg-white shadow-md rounded p-4">
                   <h2 className="text-2xl font-semibold mb-4">Администратор</h2>
                   <p>Добро пожаловать, администратор!</p>
@@ -418,34 +419,61 @@ const ProfilePage: FC = observer(() => {
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="mt-4 bg-blue-500 text-white p-2 hover:bg-blue-600"
+                      className="mt-4 bg-[#bd0000] text-white p-2 hover:bg-[#840000]"
                     >
                       Создать продукт
                     </button>
+                    {/* 
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      sx={{
+                        width: {
+                          xs: "100%",
+                          sm: "50%",
+                          borderRadius: 0,
+                          // position: "relative",
+                          // transform: "translateX(-50%)",
+                          // left: "50%",
+                          // marginTop: "2rem",
+                        },
+                      }}
+                      onClick={() => navigate("/signin")}
+                    >
+                      Создать продукт
+                    </Button> */}
                   </form>
                 </div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  sx={{
+                    width: {
+                      xs: "100%",
+                      sm: "50%",
+                      borderRadius: 0,
+                      position: "relative",
+                      transform: "translateX(-50%)",
+                      left: "50%",
+                      marginTop: "2rem",
+                    },
+                  }}
+                  onClick={() => navigate("/signin")}
+                >
+                  Выйти
+                </Button>
               </div>
             </>
           )}
           {currentUser.role === "USER" && (
-            <div className="w-full md:w-1/2 p-2">
+            // <div className="w-full md:w-1/2 p-2">
+            <div className="w-full p-2">
               <div className="bg-white shadow-md rounded p-4">
-                <h2 className="text-2xl font-semibold mb-4">
-                  Общая информация о пользователе
-                </h2>
                 {/* User info can be displayed here */}
 
                 <Box sx={{ maxWidth: 1200, mx: "auto", p: 3 }}>
-                  <Typography
-                    variant="h4"
-                    component="h1"
-                    align="center"
-                    gutterBottom
-                    sx={{ mb: 4 }}
-                  >
-                    Личный кабинет
-                  </Typography>
-
                   <Box
                     sx={{
                       display: "flex",
@@ -665,7 +693,7 @@ const ProfilePage: FC = observer(() => {
         </div>
       </div>
       <div className="w-full flex justify-center">
-        <button
+        {/* <button
           className="w-[50vw] mx-auto bg-blue-500 text-white p-2 hover:bg-blue-600"
           onClick={() => {
             logout();
@@ -673,7 +701,7 @@ const ProfilePage: FC = observer(() => {
           }}
         >
           Выйти
-        </button>
+        </button> */}
       </div>
     </>
   );
