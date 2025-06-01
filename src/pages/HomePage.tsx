@@ -115,6 +115,19 @@ const HomePage = observer(() => {
                     ))
                   : null}
               </div>
+              <div className="relative bg-black flex flex-col items-center sm:flex-row sm:justify-between items-center p-8 my-8 ">
+                <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
+                  СКИДКА ДО 15% ЗА ПЕРВУЮ ПОКУПКУ
+                </div>
+                <picture>
+                  <source />
+                  <img
+                    src="/src/images/discount2.png"
+                    alt="discount 15%"
+                    className="homepage-discount-pic absolute -top-[0px] -translate-y-1/4 right-0"
+                  />
+                </picture>
+              </div>
             </AnimatedSection>
           </Container>
 
@@ -150,6 +163,25 @@ const HomePage = observer(() => {
                       <ProductCard key={product.id} data={product} />
                     ))
                   : null}
+              </div>
+              <div className="relative bg-black flex justify-between items-center p-8 my-8">
+                <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
+                  БЕСПЛАТНАЯ ДОСТАВКА ОТ 2000Р
+                </div>
+                <picture>
+                  <source />
+                  <img
+                    src="/src/images/spaceship.png"
+                    alt="discount 15%"
+                    className="
+                        absolute
+                        -top-[0px]
+                        -translate-y-1/4
+                        right-0
+                        drop-shadow-[4px_4px_4px_#1c1c1c66]
+                        "
+                  />
+                </picture>
               </div>
             </AnimatedSection>
           </Container>
@@ -196,14 +228,16 @@ const HomePage = observer(() => {
               id="newsletter"
               className="relative bg-black flex justify-between items-center p-8 my-8"
             >
-              <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
-                Будьте в курсе новостей: важнейшие акции и релизы
+              <div className="relative bg-black flex justify-between items-center p-8 my-8">
+                <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
+                  Будьте в курсе новостей: важнейшие акции и релизы
+                </div>
+                <button className="relative inline-block font-medium group py-2 px-4">
+                  <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-[#ffbc13] group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                  <span className="absolute inset-0 w-full h-full bg-black border-2 border-[#ffbc13]"></span>
+                  <span className="relative text-white">ПОДПИСАТЬСЯ</span>
+                </button>
               </div>
-              <button className="relative inline-block font-medium group py-2 px-4">
-                <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-[#ffbc13] group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                <span className="absolute inset-0 w-full h-full bg-black border-2 border-[#ffbc13]"></span>
-                <span className="relative text-white">ПОДПИСАТЬСЯ</span>
-              </button>
             </AnimatedSection>
           </Container>
         </>
