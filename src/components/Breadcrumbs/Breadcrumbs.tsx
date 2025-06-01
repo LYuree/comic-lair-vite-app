@@ -13,7 +13,7 @@ const Breadcrumbs = () => {
   // Customize these names for your routes
   const getDisplayName = (path: string) => {
     const nameMap: Record<string, string> = {
-      products: "Products",
+      products: "Товары",
       about: "О нас",
       signin: "Войти",
       signup: "Регистрация",

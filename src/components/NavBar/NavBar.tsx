@@ -171,7 +171,7 @@ const NavBar = () => {
       {/* Desktop Menu Bar */}
       <div className="sticky top-0 w-full bg-black text-white z-20 py-4 hidden md:block">
         <Container>
-          <ul className="flex flex-row items-center justify-around text-sm">
+          <ul className="flex flex-row items-center justify-between text-sm">
             {menuItems.map((item, index) => (
               <li key={index}>
                 <Link
