@@ -132,24 +132,6 @@ const HomePage = observer(() => {
           </Container>
 
           <Container>
-            <AnimatedSection
-              id="discount-banner"
-              className="relative bg-black flex flex-col items-center sm:flex-row sm:justify-between items-center p-8 my-8"
-            >
-              <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
-                СКИДКА ДО 15% ЗА ПЕРВУЮ ПОКУПКУ
-              </div>
-              <picture>
-                <source />
-                <img
-                  src="/src/images/discount2.png"
-                  alt="discount 15%"
-                  className="homepage-discount-pic absolute -top-[0px] -translate-y-1/4 right-0"
-                />
-              </picture>
-            </AnimatedSection>
-          </Container>
-          <Container>
             <AnimatedSection id="hits" className="bg-white">
               <h2 className="text-4xl text-center mb-16 mt-8 border-b-2 border-black w-3/4 mx-auto min-w-min pb-4">
                 ХИТЫ
@@ -183,25 +165,6 @@ const HomePage = observer(() => {
                   />
                 </picture>
               </div>
-            </AnimatedSection>
-          </Container>
-
-          <Container>
-            <AnimatedSection
-              id="free-shipping"
-              className="relative bg-black flex justify-between items-center p-8 my-8"
-            >
-              <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
-                БЕСПЛАТНАЯ ДОСТАВКА ОТ 2000Р
-              </div>
-              <picture>
-                <source />
-                <img
-                  src="/src/images/spaceship.png"
-                  alt="discount 15%"
-                  className="absolute -top-[0px] -translate-y-1/4 right-0 drop-shadow-[4px_4px_4px_#1c1c1c66]"
-                />
-              </picture>
             </AnimatedSection>
           </Container>
 
