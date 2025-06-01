@@ -58,7 +58,7 @@ const ProductsPage = observer(() => {
     };
   });
 
-  const coverTypes = ["Твердая обложка", "Мягкая обложка"];
+  const coverTypes = ["Твёрдая обложка", "Мягкая обложка"];
   const uniqueCoverCheckboxes = coverTypes.map((coverType) => {
     return {
       id: crypto.randomUUID(),
@@ -133,7 +133,7 @@ const ProductsPage = observer(() => {
       .map((checkbox) => checkbox.coverType);
     if (selectedCovers.length > 0) {
       newDisplayedProducts.data = newDisplayedProducts.data.filter(
-        (product: IProductItem) => selectedCovers.includes(product.cover_image)
+        (product: IProductItem) => selectedCovers.includes(product.cover_type)
       );
     }
 

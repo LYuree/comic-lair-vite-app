@@ -92,7 +92,7 @@ const NavBar = () => {
                   className="w-10 h-10 object-contain"
                 />
               </picture>
-              <div className="flex flex-col">
+              <div className="hidden sm:flex flex-col">
                 <p className="font-bold text-lg">The Novel Town</p>
                 <div className="text-xs hidden sm:block">
                   <p>Магазин графических</p>
@@ -199,16 +199,15 @@ const NavBar = () => {
           ${isMenuOpen ? "translate-y-0" : "-translate-y-10"}
         `}
         >
-          <div className="absolute top-9 right-4 cursor-pointer">
+          {/* <div className="absolute top-9 right-4 cursor-pointer">
             <button
               className="text-white p-2 cursor-pointer z-100"
               onClick={() => setIsMenuOpen(false)}
               aria-label="Close menu"
             >
-              {/* <IoClose className="text-3xl" /> */}
               <ImCross className="z-102" />
             </button>
-          </div>
+          </div> */}
 
           {/* Mobile Search Form */}
           <form
@@ -225,9 +224,18 @@ const NavBar = () => {
               className="w-full py-2 px-4 bg-white/10 text-white rounded-lg border border-white focus:outline-none"
               onChange={(e) => handleSearch(e.target.value)}
             />
-            <button type="submit" className="absolute right-0 mr-3">
+            <button type="submit" className="relative right-8 mr-3">
               <IoSearch className="text-xl text-white" />
             </button>
+            <div className="relative right-4 cursor-pointer">
+              <button
+                className="text-white p-2 cursor-pointer z-100"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <ImCross className="z-102" />
+              </button>
+            </div>
           </form>
 
           {/* Mobile Menu Items */}

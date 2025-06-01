@@ -49,7 +49,7 @@ const HomeBanner = () => {
           <picture className="relative w-full h-full bg-center bg-cover">
             <source media="(max-width: 600px)" srcSet={slide.src_360w} />
             {/* <source media="(max-width: 1200px) and (min-width: 601px)" srcSet={slide.} /> */}
-            <source media="(min-width: 1201px)" />
+            <source media="(min-width: 1201px)" srcSet={slide.src} />
             <img src={slide.src} alt="" />
           </picture>
         </Link>
