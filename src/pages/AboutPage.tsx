@@ -1,10 +1,8 @@
 import { FaUnsplash } from "react-icons/fa";
-import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 const AboutPage = () => {
   return (
     <>
-      <Breadcrumbs />
       <div className="max w-full mx-auto mt-4 relative">
         <picture className="relative w-full h-full bg-center bg-cover">
           <source

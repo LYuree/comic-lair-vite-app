@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { rootStore } from "../../store";
 import { IProductItem } from "../../api/products/fetchProducts";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 // Define menu items for better maintainability
 const menuItems = [
@@ -182,6 +183,7 @@ const NavBar = () => {
               </li>
             ))}
           </ul>
+          <Breadcrumbs />
         </Container>
       </div>
 
