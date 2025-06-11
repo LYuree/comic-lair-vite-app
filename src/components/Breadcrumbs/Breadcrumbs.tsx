@@ -32,10 +32,10 @@ const Breadcrumbs = () => {
         <li>
           <Link
             to="/"
-            className="text-white hover:text-gray-500"
+            className="text-white hover:text-gray-500 flex gap-2"
             aria-label="Home"
           >
-            <HomeIcon className="h-5 w-5 flex-shrink-0" />
+            <HomeIcon className="h-5 w-5 flex-shrink-0" /> Главная
           </Link>
         </li>
         {pathnames.map((path, index) => {

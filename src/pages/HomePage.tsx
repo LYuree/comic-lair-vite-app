@@ -115,8 +115,8 @@ const HomePage = observer(() => {
                     ))
                   : null}
               </div>
-              <div className="relative bg-black flex flex-col items-center sm:flex-row sm:justify-between items-center p-8 my-8 ">
-                <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
+              <div className="relative bg-black flex flex-col sm:flex-row sm:justify-between sm:items-center p-8 my-8">
+                <div className="text-white font-bold text-base max-w-[120px] md:max-w-full md:text-2xl lg:text-3xl">
                   СКИДКА ДО 15% ЗА ПЕРВУЮ ПОКУПКУ
                 </div>
                 <picture>
@@ -124,7 +124,7 @@ const HomePage = observer(() => {
                   <img
                     src="/src/images/discount2.png"
                     alt="discount 15%"
-                    className="homepage-discount-pic absolute -top-[0px] -translate-y-1/4 right-0"
+                    className="homepage-discount-pic absolute -top-[0px] -translate-y-[10%] right-0"
                   />
                 </picture>
               </div>
@@ -146,8 +146,8 @@ const HomePage = observer(() => {
                     ))
                   : null}
               </div>
-              <div className="relative bg-black flex justify-between items-center p-8 my-8">
-                <div className="text-white font-bold text-lg md:text-2xl lg:text-3xl">
+              <div className="relative bg-black flex flex-col sm:flex-row sm:justify-between sm:items-center p-8 my-8">
+                <div className="text-white font-bold text-base max-w-[120px] md:max-w-full md:text-2xl lg:text-3xl">
                   БЕСПЛАТНАЯ ДОСТАВКА ОТ 2000Р
                 </div>
                 <picture>
@@ -157,10 +157,12 @@ const HomePage = observer(() => {
                     alt="discount 15%"
                     className="
                         absolute
-                        -top-[0px]
-                        -translate-y-1/4
+                        top-1/2
+                        -translate-y-1/2
                         right-0
                         drop-shadow-[4px_4px_4px_#1c1c1c66]
+                        max-w-[200px]
+                        sm:max-w-full
                         "
                   />
                 </picture>
