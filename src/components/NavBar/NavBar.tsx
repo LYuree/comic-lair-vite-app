@@ -1,5 +1,5 @@
 import { ImCross } from "react-icons/im";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoSearch } from "react-icons/io5";
 import Container from "../Container";
 import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
@@ -22,6 +22,9 @@ const NavBar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const searchFormInputRef = useRef(null);
+  const searchFormInputMobileRef = useRef(null);
 
   // Handle body overflow when menu is open
   useEffect(() => {
@@ -119,6 +122,7 @@ const NavBar = () => {
                           border-2 border-white
                           w-full py-1 px-2
                           cursor-pointer"
+                ref={searchFormInputRef}
                 onChange={(e) => handleSearch(e.target.value)}
               />
               <button type="submit" className="absolute right-0 mr-2">
@@ -225,19 +229,21 @@ const NavBar = () => {
               placeholder="Поиск..."
               className="w-full py-2 px-4 bg-white/10 text-white rounded-lg border border-white focus:outline-none"
               onChange={(e) => handleSearch(e.target.value)}
+              ref={searchFormInputMobileRef}
             />
             <button type="submit" className="relative right-8 mr-3">
               <IoSearch className="text-xl text-white" />
             </button>
-            <div className="relative right-4 cursor-pointer">
-              <button
-                className="text-white p-2 cursor-pointer z-100"
-                onClick={() => setIsMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <ImCross className="z-102" />
-              </button>
-            </div>
+            {/* <div className="relative right-4 cursor-pointer"> */}
+            <button
+              type="button"
+              className="text-white p-2 cursor-pointer z-100"
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <ImCross className="z-102" />
+            </button>
+            {/* </div> */}
           </form>
 
           {/* Mobile Menu Items */}

@@ -99,10 +99,10 @@ const HomePage = observer(() => {
 
           <Container>
             <AnimatedSection id="new-releases" className="bg-white relative">
-              <div className="text-center text-5xl mt-24 pb-8 border-b-2 border-black w-3/4 mx-auto">
+              <div className="text-center text-2xl md:text-5xl mt-12 pb-8 border-b-2 border-black w-3/4 mx-auto">
                 ОТКРОЙТЕ ДЛЯ СЕБЯ
               </div>
-              <h2 className="text-4xl text-center mb-16 mt-8">
+              <h2 className="text-2xl md:text-4xl text-center mb-16 mt-8">
                 НОВЕЙШИЕ РЕЛИЗЫ
               </h2>
               <div
@@ -124,7 +124,7 @@ const HomePage = observer(() => {
                   <img
                     src="/src/images/discount2.png"
                     alt="discount 15%"
-                    className="homepage-discount-pic absolute -top-[0px] -translate-y-[10%] right-0"
+                    className="homepage-discount-pic absolute -top-[0px] -translate-y-[20%] right-0"
                   />
                 </picture>
               </div>
@@ -133,7 +133,7 @@ const HomePage = observer(() => {
 
           <Container>
             <AnimatedSection id="hits" className="bg-white">
-              <h2 className="text-4xl text-center mb-16 mt-8 border-b-2 border-black w-3/4 mx-auto min-w-min pb-4">
+              <h2 className="text-2xl md:text-4xl text-center mb-16 mt-8 border-b-2 border-black w-3/4 mx-auto min-w-min pb-4">
                 ХИТЫ
               </h2>
               <div
@@ -172,7 +172,7 @@ const HomePage = observer(() => {
 
           <Container>
             <AnimatedSection id="sales" className="bg-white">
-              <h2 className="text-4xl text-center mb-16 mt-8 border-b-2 border-black w-3/4 mx-auto min-w-min pb-4">
+              <h2 className="text-2xl md:text-4xl text-center mb-16 mt-8 border-b-2 border-black w-3/4 mx-auto min-w-min pb-4">
                 СКИДКИ
               </h2>
               <div

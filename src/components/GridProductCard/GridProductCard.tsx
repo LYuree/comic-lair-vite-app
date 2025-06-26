@@ -4,6 +4,7 @@ import { TbHeartPlus } from "react-icons/tb";
 import { truncateText } from "../../utils/truncateText.ts";
 import { formatPrice } from "../../utils/formatPrice.ts";
 import { IProductItem } from "../../api/products/fetchProducts.ts";
+import { AiOutlineShopping } from "react-icons/ai";
 
 interface GridProductCardProps {
   data: IProductItem;
@@ -67,7 +68,7 @@ const GridProductCard: FC<GridProductCardProps> = ({ data, key }) => {
           >
             <span className="w-56 h-48 bg-[maroon] absolute bottom-0 left-0 translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
             <span className="relative w-full text-center text-[black] transition-colors duration-300 ease-in-out group-hover:text-white">
-              В КОРЗИНУ
+              <AiOutlineShopping className="cursor-pointer text-2xl mx-auto" />
             </span>
           </button>
         </div>

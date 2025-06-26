@@ -1,13 +1,31 @@
 import { IoSearch } from "react-icons/io5";
 import { IProductItem } from "../api/products/fetchProducts";
 import Container from "../components/Container";
-import ProductCard from "../components/ProductCard/ProductCard";
+// import ProductCard from "../components/ProductCard/ProductCard";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { TbArrowsSort } from "react-icons/tb";
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
 import { useEffect } from "react";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
+import {
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Pagination,
+  SelectChangeEvent,
+  TextField,
+  Box,
+  Grid,
+  Typography,
+  Button,
+  Slider,
+  Chip,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import GridProductCard from "../components/GridProductCard/GridProductCard";
 
 const ProductsPage = observer(() => {
   const {
@@ -27,21 +45,24 @@ const ProductsPage = observer(() => {
       setCurrentPage,
       categoryCheckboxes,
       setCategoryCheckboxes,
-      toggleCategoryCheckbox,
+      // toggleCategoryCheckbox,
       searchFormValue,
       setSearchFormValue,
       coverCheckboxes,
       setCoverCheckboxes,
-      toggleCoverCheckbox,
+      // toggleCoverCheckbox,
       brandCheckboxes,
       setBrandCheckboxes,
-      toggleBrandCheckbox,
+      // toggleBrandCheckbox,
       minPrice,
       maxPrice,
       setMaxPrice,
       setPriceRange,
     },
   } = rootStore;
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     fetchProducts();
@@ -87,7 +108,7 @@ const ProductsPage = observer(() => {
     setMaxPrice(maxAvailablePrice);
   }, [products]);
 
-  const handlePageChange = function (newPage: number) {
+  const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
     setCurrentPage(newPage);
   };
 
@@ -171,6 +192,43 @@ const ProductsPage = observer(() => {
     }
   };
 
+  const handleCategoryChange = (event: SelectChangeEvent<string[]>) => {
+    const selected = event.target.value as string[];
+    const newCategoryCheckboxes = categoryCheckboxes.map((checkbox) => ({
+      ...checkbox,
+      checked: selected.includes(checkbox.categoryName),
+    }));
+    setCategoryCheckboxes(newCategoryCheckboxes);
+  };
+
+  const handleCoverChange = (event: SelectChangeEvent<string[]>) => {
+    const selected = event.target.value as string[];
+    const newCoverCheckboxes = coverCheckboxes.map((checkbox) => ({
+      ...checkbox,
+      checked: selected.includes(checkbox.coverType),
+    }));
+    setCoverCheckboxes(newCoverCheckboxes);
+  };
+
+  const handleBrandChange = (event: SelectChangeEvent<string[]>) => {
+    const selected = event.target.value as string[];
+    const newBrandCheckboxes = brandCheckboxes.map((checkbox) => ({
+      ...checkbox,
+      checked: selected.includes(checkbox.brandName),
+    }));
+    setBrandCheckboxes(newBrandCheckboxes);
+  };
+
+  const selectedCategories = categoryCheckboxes
+    .filter((c) => c.checked)
+    .map((c) => c.categoryName);
+  const selectedCovers = coverCheckboxes
+    .filter((c) => c.checked)
+    .map((c) => c.coverType);
+  const selectedBrands = brandCheckboxes
+    .filter((c) => c.checked)
+    .map((c) => c.brandName);
+
   return (
     <>
       {productsLoading ? (
@@ -178,279 +236,325 @@ const ProductsPage = observer(() => {
       ) : (
         <>
           <Container>
-            <div className="grow relative flex items-center my-12">
-              <input
-                type="text"
-                name="grid-search-form"
-                id="grid-search-form"
+            <Box sx={{ my: 4 }}>
+              <TextField
+                fullWidth
+                variant="outlined"
                 placeholder="Поиск..."
-                className="relative outline-none bg-transparent border-2 border-black
-                                w-full py-1 px-2
-                                cursor-pointer"
                 value={searchFormValue}
                 onChange={(e) => handleSearch(e.target.value)}
+                InputProps={{
+                  endAdornment: <IoSearch />,
+                }}
               />
-              <label
-                htmlFor="grid-search-form"
-                className="absolute right-0 mr-2"
-              >
-                <IoSearch
-                  className="relative right-0
-                                cursor-pointer text-xl"
-                />
-              </label>
-            </div>
-            <div className="grid-controls flex flex-row w-full gap-24 my-6 items-center">
-              <div>Найдено {displayedProducts.data.length} результатов</div>
-              <div className="flex flex-row ml-auto">
-                <div className="flex flex-row items-center mx-8">
-                  <TfiLayoutGrid3 />
-                  <select
-                    className="product-grid-page-select"
-                    name=""
-                    id=""
+            </Box>
+
+            <Box
+              sx={{
+                my: 2,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <Typography sx={{ mb: "1rem" }}>
+                Найдено {displayedProducts.data.length} результатов
+              </Typography>
+              <Box sx={{ display: "flex", gap: 2, mb: "2rem" }}>
+                <Button variant="contained" onClick={applyFilters}>
+                  Применить
+                </Button>
+                <Button variant="outlined" onClick={clearFilters}>
+                  Очистить
+                </Button>
+              </Box>
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+                <FormControl size="small" sx={{ minWidth: 120 }}>
+                  <InputLabel>Кол-во</InputLabel>
+                  <Select
+                    value={itemsPerPage.toString()}
                     onChange={(e) => {
                       setItemsPerPage(+e.target.value);
-                      handlePageChange(1);
+                      setCurrentPage(1);
                     }}
-                    value={itemsPerPage}
+                    label="Кол-во"
+                    startAdornment={
+                      <TfiLayoutGrid3 style={{ marginRight: 8 }} />
+                    }
                   >
-                    <option value="3">3</option>
-                    <option value="12">12</option>
-                    <option value="24">24</option>
-                    <option value="36">36</option>
-                  </select>
-                </div>
-                <div className="flex flex-row items-center mx-8">
-                  <div>
-                    <TbArrowsSort />
-                  </div>
-                  <select
-                    className="product-grid-page-select"
-                    name=""
-                    id=""
+                    <MenuItem value="3">3</MenuItem>
+                    <MenuItem value="12">12</MenuItem>
+                    <MenuItem value="24">24</MenuItem>
+                    <MenuItem value="36">36</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl size="small" sx={{ minWidth: 120 }}>
+                  <InputLabel>Сортировка</InputLabel>
+                  <Select
                     value={sortingMethod}
                     onChange={(e) => {
                       setSortingMethod(e.target.value);
-                      handlePageChange(1);
+                      setCurrentPage(1);
                     }}
+                    label="Сортировка"
+                    startAdornment={<TbArrowsSort style={{ marginRight: 8 }} />}
                   >
-                    <option value="popular_first">По популярности</option>
-                    <option value="cheapest_first">От самых дешёвых</option>
-                    <option value="expensive_first">От самых дорогих</option>
-                    <option value="A_Z">По алфавиту А-Я</option>
-                    <option value="Z_A">По алфавиту Я-А</option>
-                    <option value="newest_first">От самых новых</option>
-                    <option value="oldest_first">От самых старых</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row content-center">
-              <div className="flex flex-col filters gap-2">
-                <div className="filter-controls">
-                  <div
-                    className="text-2xl font-bold cursor-pointer my-2 hover:text-[maroon] duration-500"
-                    onClick={() => applyFilters()}
-                  >
-                    ПРИМЕНИТЬ
-                  </div>
-                  <div
-                    className="text-2xl font-bold cursor-pointer text-[maroon]"
-                    onClick={() => clearFilters()}
-                  >
-                    ОЧИСТИТЬ
-                  </div>
-                </div>
-                <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
-                  <h2 className="font-bold" key={crypto.randomUUID()}>
-                    КАТЕГОРИИ
-                  </h2>
-                  {categoryCheckboxes.map((categoryCheckbox, _) => (
-                    <label
-                      htmlFor=""
-                      className="block"
-                      key={crypto.randomUUID()}
-                    >
-                      <input
-                        type="checkbox"
-                        name="category"
-                        id={categoryCheckbox.id}
-                        key={categoryCheckbox.id}
-                        value={categoryCheckbox.categoryName}
-                        checked={categoryCheckbox.checked}
-                        onChange={(e) => {
-                          toggleCategoryCheckbox(
-                            categoryCheckbox.id,
-                            e.target.checked
-                          );
-                        }}
-                      />
-                      {categoryCheckbox.categoryName}
-                    </label>
-                  ))}
-                </div>
-                <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
-                  <h2 className="font-bold" key={crypto.randomUUID()}>
-                    ОБЛОЖКА
-                  </h2>
-                  {coverCheckboxes.map((coverCheckbox, _) => (
-                    <label
-                      htmlFor=""
-                      className="block"
-                      key={crypto.randomUUID()}
-                    >
-                      <input
-                        type="checkbox"
-                        name="cover"
-                        id={coverCheckbox.id}
-                        key={coverCheckbox.id}
-                        value={coverCheckbox.coverType}
-                        checked={coverCheckbox.checked}
-                        onChange={(e) => {
-                          toggleCoverCheckbox(
-                            coverCheckbox.id,
-                            e.target.checked
-                          );
-                        }}
-                      />
-                      {coverCheckbox.coverType}
-                    </label>
-                  ))}
-                </div>
-                <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
-                  <h2 className="font-bold" key={crypto.randomUUID()}>
-                    БРЕНД
-                  </h2>
-                  {brandCheckboxes.map((brandCheckbox, _) => (
-                    <label
-                      htmlFor=""
-                      className="block"
-                      key={crypto.randomUUID()}
-                    >
-                      <input
-                        type="checkbox"
-                        name="brand"
-                        id={brandCheckbox.id}
-                        key={brandCheckbox.id}
-                        value={brandCheckbox.brandName}
-                        checked={brandCheckbox.checked}
-                        onChange={(e) => {
-                          toggleBrandCheckbox(
-                            brandCheckbox.id,
-                            e.target.checked
-                          );
-                        }}
-                      />
-                      {brandCheckbox.brandName}
-                    </label>
-                  ))}
-                </div>
-                <div className="flex flex-col gap-1" key={crypto.randomUUID()}>
-                  <h2 className="font-bold" key={crypto.randomUUID()}>
-                    ЦЕНА
-                  </h2>
-                  <input
-                    type="range"
-                    min="0"
-                    max="1000"
-                    step="1"
-                    value={minPrice}
-                    onChange={(e) =>
-                      setPriceRange(Number(e.target.value), maxPrice)
-                    }
-                  />
-                  <input
-                    type="range"
-                    min="0"
-                    max={maxAvailablePrice}
-                    step="1"
-                    value={maxPrice}
-                    onChange={(e) =>
-                      setPriceRange(minPrice, Number(e.target.value))
-                    }
-                  />
-                  <div>
-                    Цена: от {minPrice} до {maxPrice}
-                  </div>
-                </div>
-              </div>
+                    <MenuItem value="popular_first">По популярности</MenuItem>
+                    <MenuItem value="cheapest_first">От самых дешёвых</MenuItem>
+                    <MenuItem value="expensive_first">
+                      От самых дорогих
+                    </MenuItem>
+                    <MenuItem value="A_Z">По алфавиту А-Я</MenuItem>
+                    <MenuItem value="Z_A">По алфавиту Я-А</MenuItem>
+                    <MenuItem value="newest_first">От самых новых</MenuItem>
+                    <MenuItem value="oldest_first">От самых старых</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Box>
 
-              <div className="bg-white ml-16">
-                <div className="products-page-grid">
+            <Grid container spacing={4}>
+              {isSmallScreen && (
+                <Grid size={{ xs: 12 }}>
+                  <Box
+                    sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+                  >
+                    <FormControl fullWidth size="small">
+                      <InputLabel>Категории</InputLabel>
+                      <Select
+                        multiple
+                        value={selectedCategories}
+                        onChange={handleCategoryChange}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
+                            {(selected as string[]).map((value) => (
+                              <Chip key={value} label={value} size="small" />
+                            ))}
+                          </Box>
+                        )}
+                      >
+                        {categoryCheckboxes.map((category) => (
+                          <MenuItem
+                            key={category.id}
+                            value={category.categoryName}
+                          >
+                            {category.categoryName}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <FormControl fullWidth size="small">
+                      <InputLabel>Обложка</InputLabel>
+                      <Select
+                        multiple
+                        value={selectedCovers}
+                        onChange={handleCoverChange}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
+                            {(selected as string[]).map((value) => (
+                              <Chip key={value} label={value} size="small" />
+                            ))}
+                          </Box>
+                        )}
+                      >
+                        {coverCheckboxes.map((cover) => (
+                          <MenuItem key={cover.id} value={cover.coverType}>
+                            {cover.coverType}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <FormControl fullWidth size="small">
+                      <InputLabel>Бренд</InputLabel>
+                      <Select
+                        multiple
+                        value={selectedBrands}
+                        onChange={handleBrandChange}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
+                            {(selected as string[]).map((value) => (
+                              <Chip key={value} label={value} size="small" />
+                            ))}
+                          </Box>
+                        )}
+                      >
+                        {brandCheckboxes.map((brand) => (
+                          <MenuItem key={brand.id} value={brand.brandName}>
+                            {brand.brandName}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <Box>
+                      <Typography gutterBottom>
+                        Цена: от {minPrice} до {maxPrice}
+                      </Typography>
+                      <Slider
+                        value={[minPrice, maxPrice]}
+                        onChange={(_, newValue) => {
+                          setPriceRange(
+                            (newValue as number[])[0],
+                            (newValue as number[])[1]
+                          );
+                        }}
+                        valueLabelDisplay="auto"
+                        min={0}
+                        max={maxAvailablePrice}
+                      />
+                    </Box>
+                  </Box>
+                </Grid>
+              )}
+
+              {!isSmallScreen && (
+                <Grid size={{ md: 3 }}>
+                  <Box
+                    sx={{ display: "flex", flexDirection: "column", gap: 3 }}
+                  >
+                    <Box sx={{ display: "flex", gap: 2 }}>
+                      <Button variant="contained" onClick={applyFilters}>
+                        Применить
+                      </Button>
+                      <Button variant="outlined" onClick={clearFilters}>
+                        Очистить
+                      </Button>
+                    </Box>
+
+                    <FormControl fullWidth size="small">
+                      <InputLabel>Категории</InputLabel>
+                      <Select
+                        multiple
+                        value={selectedCategories}
+                        onChange={handleCategoryChange}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
+                            {(selected as string[]).map((value) => (
+                              <Chip key={value} label={value} size="small" />
+                            ))}
+                          </Box>
+                        )}
+                      >
+                        {categoryCheckboxes.map((category) => (
+                          <MenuItem
+                            key={category.id}
+                            value={category.categoryName}
+                          >
+                            {category.categoryName}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                    <FormControl fullWidth size="small">
+                      <InputLabel>Обложка</InputLabel>
+                      <Select
+                        multiple
+                        value={selectedCovers}
+                        onChange={handleCoverChange}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
+                            {(selected as string[]).map((value) => (
+                              <Chip key={value} label={value} size="small" />
+                            ))}
+                          </Box>
+                        )}
+                      >
+                        {coverCheckboxes.map((cover) => (
+                          <MenuItem key={cover.id} value={cover.coverType}>
+                            {cover.coverType}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <FormControl fullWidth size="small">
+                      <InputLabel>Бренд</InputLabel>
+                      <Select
+                        multiple
+                        value={selectedBrands}
+                        onChange={handleBrandChange}
+                        renderValue={(selected) => (
+                          <Box
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
+                            {(selected as string[]).map((value) => (
+                              <Chip key={value} label={value} size="small" />
+                            ))}
+                          </Box>
+                        )}
+                      >
+                        {brandCheckboxes.map((brand) => (
+                          <MenuItem key={brand.id} value={brand.brandName}>
+                            {brand.brandName}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <Box>
+                      <Typography gutterBottom>
+                        Цена: от {minPrice} до {maxPrice}
+                      </Typography>
+                      <Slider
+                        value={[minPrice, maxPrice]}
+                        onChange={(_, newValue) => {
+                          setPriceRange(
+                            (newValue as number[])[0],
+                            (newValue as number[])[1]
+                          );
+                        }}
+                        valueLabelDisplay="auto"
+                        min={0}
+                        max={maxAvailablePrice}
+                      />
+                    </Box>
+                  </Box>
+                </Grid>
+              )}
+
+              <Grid size={{ xs: 12, md: isSmallScreen ? 12 : 9 }}>
+                <Grid container spacing={3}>
                   {displayedProducts.data
                     .slice(
                       (currentPage - 1) * itemsPerPage,
                       currentPage * itemsPerPage
                     )
-                    .map((product: IProductItem) => {
-                      return (
-                        <ProductCard
-                          key={product.id}
-                          data={product}
-                        ></ProductCard>
-                      );
-                    })}
-                </div>
-              </div>
-            </div>
-
-            {
-              numberOfPages > 1 ? (
-                <div className="flex flex-row justify-center my-12">
-                  <ul className="grid-pagination-controls flex gap-6 text-2xl">
-                    <li
-                      className="page-item"
-                      onClick={() => handlePageChange(1)}
-                    >
-                      <a href="#">{"<<"}</a>
-                    </li>
-                    <li
-                      className="page-item"
-                      onClick={() => {
-                        if (currentPage > 1) handlePageChange(currentPage - 1);
-                      }}
-                    >
-                      <a>{"<"}</a>
-                    </li>
-                    {currentPage > 3 ? <li className="page-item">...</li> : ""}
-
-                    {[
-                      ...Array(
-                        Math.ceil(displayedProducts.data.length / itemsPerPage)
-                      ),
-                    ].map((_, i) => (
-                      <li
-                        className={`page__number ${
-                          currentPage === i + 1 ? "selected__page__number" : ""
-                        }`}
-                        key={i + 1}
-                        onClick={() => handlePageChange(i + 1)}
-                      >
-                        <a>{i + 1}</a>
-                      </li>
+                    .map((product: IProductItem) => (
+                      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+                        <GridProductCard key={product.id} data={product} />
+                      </Grid>
                     ))}
-                    <li
-                      className="page-item"
-                      onClick={() => {
-                        if (currentPage < numberOfPages)
-                          handlePageChange(currentPage + 1);
-                      }}
-                    >
-                      <a>{">"}</a>
-                    </li>
-                    <li
-                      className="page-item"
-                      onClick={() => handlePageChange(numberOfPages)}
-                    >
-                      <a>{">>"}</a>
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                ""
-              ) //пагинация отключена, кнопки страниц не отображаем
-            }
+                </Grid>
+
+                {numberOfPages > 1 && (
+                  <Box
+                    sx={{ display: "flex", justifyContent: "center", mt: 4 }}
+                  >
+                    <Pagination
+                      count={numberOfPages}
+                      page={currentPage}
+                      onChange={handlePageChange}
+                      color="primary"
+                      showFirstButton
+                      showLastButton
+                    />
+                  </Box>
+                )}
+              </Grid>
+            </Grid>
           </Container>
         </>
       )}

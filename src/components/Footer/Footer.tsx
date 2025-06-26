@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="bg-[maroon]">
         <Container>
           <div className="flex flex-col md:flex-row justify-between items-center py-8">
-            <div className="text-4xl md:text-6xl font-bold text-center md:text-left mb-4 md:mb-0">
+            <div className="text-xl md:text-6xl font-bold text-center md:text-left mb-4 md:mb-0">
               THE NOVEL TOWN
             </div>
             <div className="flex justify-center md:justify-end items-center gap-3">
@@ -31,10 +31,12 @@ const Footer = () => {
         </Container>
       </div>
       <Container>
-        <div className="flex flex-col md:flex-row justify-between pt-16 pb-8">
+        <div className="flex flex-col md:flex-row md:items-start justify-between items-center pt-16 pb-8">
           <FooterList>
-            <h3 className="font-bold text-lg md:text-3xl mb-3">МАГАЗИН</h3>
-            <div className="children-hover-gray">
+            <h3 className="font-bold text-lg text-center md:text-3xl mb-3">
+              МАГАЗИН
+            </h3>
+            <div className="children-hover-gray flex flex-col items-center md:items-start">
               <a href="#">Электронные комиксы</a>
               <a href="#">Печатные комиксы</a>
               <a href="#">Оплата</a>
@@ -44,17 +46,17 @@ const Footer = () => {
             </div>
           </FooterList>
           <FooterList>
-            <h3 className="font-bold text-lg md:text-3xl mb-3">
+            <h3 className="font-bold text-lg text-center md:text-start md:text-3xl mb-3">
               THE NOVEL TOWN
             </h3>
-            <div className="children-hover-gray">
+            <div className="children-hover-gray flex flex-col items-center md:items-start">
               <a href="#">О нас</a>
               <a href="#">Контакты</a>
               <a href="#">Партнёрам</a>
             </div>
           </FooterList>
           <FooterList>
-            <div className="children-hover-gray">
+            <div className="children-hover-gray flex flex-col items-center md:items-start">
               <a href="#">Пользовательское соглашение</a>
               <a href="#">Политика конфиденциальности</a>
             </div>
