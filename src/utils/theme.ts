@@ -7,6 +7,9 @@ const customTheme = createTheme({
       main: "#bd0000", // Replace with your desired primary color
     },
   },
+  typography: {
+    fontFamily: `"Montserrat", "Arial", "sans-serif"`,
+  },
 });
 
 export default customTheme;

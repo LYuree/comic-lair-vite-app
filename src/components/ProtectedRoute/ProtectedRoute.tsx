@@ -1,34 +1,45 @@
 import React, { useEffect } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { rootStore } from "../../store";
+// import axios from "axios";
+import api from "../../services/api";
 
 const ProtectedRoute: React.FC = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   const {
-    profileStore: { setCurrentUser, currentUserToken, setCurrentUserToken },
+    profileStore: {
+      currentUserToken,
+      // setCurrentUserToken,
+      // setCurrentUser
+    },
   } = rootStore;
 
   useEffect(() => {
     const verifyToken = async () => {
-      // const token = localStorage.getItem('token');
       try {
-        const response = await fetch(
-          `http://localhost:8000/verify-token/${currentUserToken}`
-        );
-        if (!response.ok) {
+        const response = await api.get("/verify-token", {
+          // headers: {
+          //   Authorization: `Bearer ${currentUserToken}`,
+          // },
+          withCredentials: true,
+        });
+
+        // Check if the response indicates a failure (e.g., status code not in the 200 range)
+        if (response.status !== 200) {
           throw new Error("Token verification failed");
         }
       } catch (error) {
-        // localStorage.removeItem('token');
-        setCurrentUser(null);
-        setCurrentUserToken(null);
+        // Handle error: clear user data and navigate to sign-in
+
+        // setCurrentUser(null);
+        // setCurrentUserToken(null);
         navigate("/signin");
       }
     };
+
     verifyToken();
-  }, [navigate]);
+  }, []);
 
   // If authorized, return an outlet that will render child elements
   // If not, return element that will navigate to signin page

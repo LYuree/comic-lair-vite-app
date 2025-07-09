@@ -269,7 +269,15 @@ const ProductsPage = observer(() => {
                   Очистить
                 </Button>
               </Box>
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+              {/* <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}> */}
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                }}
+              >
                 <FormControl size="small" sx={{ minWidth: 120 }}>
                   <InputLabel>Кол-во</InputLabel>
                   <Select
@@ -421,15 +429,6 @@ const ProductsPage = observer(() => {
                   <Box
                     sx={{ display: "flex", flexDirection: "column", gap: 3 }}
                   >
-                    <Box sx={{ display: "flex", gap: 2 }}>
-                      <Button variant="contained" onClick={applyFilters}>
-                        Применить
-                      </Button>
-                      <Button variant="outlined" onClick={clearFilters}>
-                        Очистить
-                      </Button>
-                    </Box>
-
                     <FormControl fullWidth size="small">
                       <InputLabel>Категории</InputLabel>
                       <Select

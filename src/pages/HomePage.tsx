@@ -124,7 +124,7 @@ const HomePage = observer(() => {
                   <img
                     src="/src/images/discount2.png"
                     alt="discount 15%"
-                    className="homepage-discount-pic absolute -top-[0px] -translate-y-[20%] right-0"
+                    className="homepage-discount-pic absolute right-0 lg:-top-[0px] lg:-translate-y-[20%] -translate-y-[50%]"
                   />
                 </picture>
               </div>
