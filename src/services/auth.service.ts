@@ -1,10 +1,8 @@
 import axios from "axios";
 import { rootStore } from "../store";
 
-const API_URL = "http://127.0.0.1:8000/";
-
-const active = true;
-const role = "USER";
+// const API_URL = "http://127.0.0.1:8000/";
+const API_URL = "http://localhost:8000/";
 
 // регистрация
 export const register = (
@@ -86,11 +84,18 @@ export const login = async (
   return response.data;
 };
 
-export const refreshToken = async (refreshToken: string): Promise<string> => {
-  const response = await axios.post<{ access_token: string }>(
-    `${API_URL}/users/refresh-token`,
-    { refresh_token: refreshToken }
-  );
+// export const refreshToken = async (refreshToken: string): Promise<string> => {
+//   const response = await axios.post<{ access_token: string }>(
+//     `${API_URL}/users/refresh-token`,
+//     { refresh_token: refreshToken }
+//   );
 
+//   return response.data.access_token;
+// };
+
+export const refreshToken = async (): Promise<string> => {
+  const response = await axios.get(`${API_URL}users/refresh-token`, {
+    withCredentials: true, // ensures cookies are sent
+  });
   return response.data.access_token;
 };

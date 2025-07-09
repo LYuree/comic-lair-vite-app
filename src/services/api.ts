@@ -7,15 +7,11 @@ const API_URL = "http://127.0.0.1:8000/";
 
 const api = axios.create({
   baseURL: API_URL,
+  withCredentials: true,
 });
 
 const {
-  profileStore: {
-    // currentUserToken,
-    // currentUserRefreshToken,
-    setCurrentUserToken,
-    setCurrentUserRefreshToken,
-  },
+  profileStore: { setCurrentUserToken, setCurrentUserRefreshToken },
 } = rootStore;
 
 // Add a request interceptor
@@ -40,17 +36,6 @@ api.interceptors.request.use(
   }
 );
 
-// api.interceptors.request.use(
-//   (config) => {
-//     console.log(currentUserToken);
-//     if (currentUserToken) {
-//       config.headers["Authorization"] = `Bearer ${currentUserToken}`;
-//     }
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
-
 // Add a response interceptor
 api.interceptors.response.use(
   (response) => response,
@@ -64,31 +49,31 @@ api.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
-      const userRefreshToken = rootStore.profileStore.currentUserRefreshToken;
+      // const userRefreshToken = rootStore.profileStore.currentUserRefreshToken;
 
-      if (userRefreshToken) {
-        try {
-          const newAccessToken = await refreshToken(userRefreshToken);
-          setCurrentUserToken(newAccessToken);
+      // if (userRefreshToken) {
+      try {
+        const newAccessToken = await refreshToken();
+        setCurrentUserToken(newAccessToken);
 
-          // Update the Authorization header
-          api.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer ${newAccessToken}`;
-          originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+        // Update the Authorization header
+        api.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${newAccessToken}`;
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
 
-          // Retry the original request
-          return api(originalRequest);
-        } catch (refreshError) {
-          // Refresh token failed - logout user
-          setCurrentUserToken(null);
-          setCurrentUserRefreshToken(null);
+        // Retry the original request
+        return api(originalRequest);
+      } catch (refreshError) {
+        // Refresh token failed - logout user
+        setCurrentUserToken(null);
+        setCurrentUserRefreshToken(null);
 
-          // Redirect to login
-          window.location.href = "/login";
-          return Promise.reject(refreshError);
-        }
+        // Redirect to login
+        // window.location.href = "/signin";
+        return Promise.reject(refreshError);
       }
+      // }
     }
 
     return Promise.reject(error);

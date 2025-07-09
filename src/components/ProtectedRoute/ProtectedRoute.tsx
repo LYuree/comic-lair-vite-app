@@ -1,27 +1,22 @@
 import React, { useEffect } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { rootStore } from "../../store";
-// import axios from "axios";
 import api from "../../services/api";
+
+const API_URL = "http://localhost:8000/";
 
 const ProtectedRoute: React.FC = () => {
   const navigate = useNavigate();
 
   const {
-    profileStore: {
-      currentUserToken,
-      // setCurrentUserToken,
-      // setCurrentUser
-    },
+    profileStore: { currentUserToken },
   } = rootStore;
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await api.get("/verify-token", {
-          // headers: {
-          //   Authorization: `Bearer ${currentUserToken}`,
-          // },
+        // token is sent in the Authorization header
+        const response = await api.get(`${API_URL}verify-token`, {
           withCredentials: true,
         });
 
@@ -30,10 +25,8 @@ const ProtectedRoute: React.FC = () => {
           throw new Error("Token verification failed");
         }
       } catch (error) {
-        // Handle error: clear user data and navigate to sign-in
-
-        // setCurrentUser(null);
-        // setCurrentUserToken(null);
+        // Handle error: navigate to sign-in
+        // (the user state data is cleared by the api)
         navigate("/signin");
       }
     };
