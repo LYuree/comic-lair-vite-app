@@ -14,8 +14,9 @@ import ProfilePage from "./pages/ProfilePage.tsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
 import ProductDetails from "./pages/ProductDetails.tsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.tsx";
+import { observer } from "mobx-react";
 
-function App() {
+const App = observer(() => {
   return (
     <div className="app">
       <ScrollToTop />
@@ -37,6 +38,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+});
 
 export default App;

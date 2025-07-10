@@ -5,25 +5,56 @@ import { rootStore } from "../../store";
 import api from "../../services/api";
 import { observer } from "mobx-react";
 
+// const ProtectedRoute: React.FC = observer(() => {
+//   const navigate = useNavigate();
+//   const profileStore = rootStore.profileStore;
+//   const [token, setToken] = React.useState(profileStore.currentUserToken);
+
+//   useEffect(() => {
+//     setToken(profileStore.currentUserToken);
+//     const verifyToken = async () => {
+//       try {
+//         await api.get("verify-token");
+//       } catch (error) {
+//         console.error("Token verification failed:", error);
+//         navigate("/signin");
+//       }
+//     };
+//     verifyToken();
+//   }, [navigate, profileStore.currentUserToken]);
+
+//   alert(Boolean(token));
+
+//   return token ? <Outlet /> : <Navigate to="/signin" />;
+// });
+
 const ProtectedRoute: React.FC = observer(() => {
-  const navigate = useNavigate();
   const profileStore = rootStore.profileStore;
-  const [token, setToken] = React.useState(profileStore.currentUserToken);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setToken(profileStore.currentUserToken);
     const verifyToken = async () => {
       try {
         await api.get("verify-token");
       } catch (error) {
         console.error("Token verification failed:", error);
-        navigate("/signin");
+        // Optionally clear token here
+      } finally {
+        profileStore.setAuthChecked(true);
       }
     };
-    verifyToken();
-  }, [navigate, profileStore.currentUserToken]);
 
-  return token ? <Outlet /> : <Navigate to="/signin" />;
+    if (!profileStore.authChecked) {
+      verifyToken();
+    }
+  }, [profileStore, navigate]);
+
+  if (!profileStore.authChecked) {
+    // Show loading spinner or nothing until auth check completes
+    return <div>Loading...</div>;
+  }
+
+  return profileStore.currentUserToken ? <Outlet /> : <Navigate to="/signin" />;
 });
 
 export default ProtectedRoute;

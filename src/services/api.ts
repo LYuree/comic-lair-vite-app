@@ -2,6 +2,16 @@
 import axios from "axios";
 import { refreshToken } from "./auth.service";
 import { rootStore } from "../store";
+import { jwtDecode } from "jwt-decode";
+
+import type { JwtPayload } from "jsonwebtoken";
+
+export interface MyJwtPayload extends JwtPayload {
+  id: string;
+  role: string;
+  sub: string;
+  // add other custom claims if needed
+}
 
 const API_URL = "http://localhost:8000/";
 
@@ -14,7 +24,7 @@ const {
   profileStore: {
     setCurrentUserToken,
     setCurrentUserRefreshToken,
-    currentUserToken,
+    // currentUserToken,
   },
 } = rootStore;
 
@@ -69,6 +79,12 @@ api.interceptors.response.use(
       try {
         const newAccessToken = await refreshToken();
         setCurrentUserToken(newAccessToken);
+        const decoded = jwtDecode<MyJwtPayload>(newAccessToken);
+        rootStore.profileStore.setCurrentUser({
+          id: decoded.id,
+          role: decoded.role,
+          sub: decoded.sub,
+        });
         alert(rootStore.profileStore.currentUserToken);
 
         // Update the Authorization header

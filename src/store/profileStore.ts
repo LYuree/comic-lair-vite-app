@@ -18,6 +18,12 @@ export class ProfileStore {
     makeAutoObservable(this);
   }
 
+  authChecked: boolean = false;
+
+  setAuthChecked = (value: boolean) => {
+    this.authChecked = value;
+  };
+
   setUserOrderDetails = (userOrderDetails: IOrderJSON[]) => {
     this.userOrderDetails = userOrderDetails;
     console.log(!this.userOrderDetails);
