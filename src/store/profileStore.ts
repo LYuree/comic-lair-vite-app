@@ -26,8 +26,14 @@ export class ProfileStore {
   setCurrentUser = (currentUser: IUser | null) =>
     (this.currentUser = currentUser);
 
-  setCurrentUserToken = (token: string | null) =>
-    (this.currentUserToken = token);
+  setCurrentUserToken = (token: string | null) => {
+    if (this.currentUserToken === token) {
+      alert(`Token unchanged: ${token}`);
+    } else {
+      alert(`Token changed from ${this.currentUserToken} to ${token}`);
+      this.currentUserToken = token;
+    }
+  };
 
   setCurrentUserRefreshToken = (token: string | null) =>
     (this.currentUserRefreshToken = token);

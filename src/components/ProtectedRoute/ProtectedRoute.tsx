@@ -1,42 +1,29 @@
+// components/ProtectedRoute.tsx
 import React, { useEffect } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { rootStore } from "../../store";
 import api from "../../services/api";
+import { observer } from "mobx-react";
 
-const API_URL = "http://localhost:8000/";
-
-const ProtectedRoute: React.FC = () => {
+const ProtectedRoute: React.FC = observer(() => {
   const navigate = useNavigate();
-
-  const {
-    profileStore: { currentUserToken },
-  } = rootStore;
+  const profileStore = rootStore.profileStore;
+  const [token, setToken] = React.useState(profileStore.currentUserToken);
 
   useEffect(() => {
+    setToken(profileStore.currentUserToken);
     const verifyToken = async () => {
       try {
-        // token is sent in the Authorization header
-        const response = await api.get(`${API_URL}verify-token`, {
-          withCredentials: true,
-        });
-
-        // Check if the response indicates a failure (e.g., status code not in the 200 range)
-        if (response.status !== 200) {
-          throw new Error("Token verification failed");
-        }
+        await api.get("verify-token");
       } catch (error) {
-        // Handle error: navigate to sign-in
-        // (the user state data is cleared by the api)
+        console.error("Token verification failed:", error);
         navigate("/signin");
       }
     };
-
     verifyToken();
-  }, []);
+  }, [navigate, profileStore.currentUserToken]);
 
-  // If authorized, return an outlet that will render child elements
-  // If not, return element that will navigate to signin page
-  return currentUserToken ? <Outlet /> : <Navigate to="/signin" />;
-};
+  return token ? <Outlet /> : <Navigate to="/signin" />;
+});
 
 export default ProtectedRoute;

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { rootStore } from "../store";
 
-// const API_URL = "http://127.0.0.1:8000/";
 const API_URL = "http://localhost:8000/";
 
 // регистрация
@@ -93,9 +92,37 @@ export const login = async (
 //   return response.data.access_token;
 // };
 
+// export const refreshToken = async (): Promise<string> => {
+//   const response = await axios.get(`${API_URL}users/refresh-token`, {
+//     withCredentials: true, // ensures cookies are sent
+//   });
+//   return response.data.access_token;
+// };
+
 export const refreshToken = async (): Promise<string> => {
-  const response = await axios.get(`${API_URL}users/refresh-token`, {
-    withCredentials: true, // ensures cookies are sent
-  });
-  return response.data.access_token;
+  try {
+    const response = await axios.get(`${API_URL}users/refresh-token`, {
+      withCredentials: true,
+    });
+    return response.data.access_token;
+  } catch (error) {
+    console.error("Refresh token failed:", error);
+    throw error;
+  }
 };
+
+// export const refreshToken = async (): Promise<string> => {
+//   try {
+//     const refreshToken = rootStore.profileStore.currentUserRefreshToken;
+//     if (!refreshToken) throw new Error("No refresh token");
+
+//     const response = await axios.post("/users/refresh-token", {
+//       refresh_token: refreshToken,
+//     });
+
+//     return response.data.access_token;
+//   } catch (error) {
+//     console.error("Refresh token failed:", error);
+//     throw error;
+//   }
+// };

@@ -3,7 +3,7 @@ import axios from "axios";
 import { refreshToken } from "./auth.service";
 import { rootStore } from "../store";
 
-const API_URL = "http://127.0.0.1:8000/";
+const API_URL = "http://localhost:8000/";
 
 const api = axios.create({
   baseURL: API_URL,
@@ -11,22 +11,21 @@ const api = axios.create({
 });
 
 const {
-  profileStore: { setCurrentUserToken, setCurrentUserRefreshToken },
+  profileStore: {
+    setCurrentUserToken,
+    setCurrentUserRefreshToken,
+    currentUserToken,
+  },
 } = rootStore;
 
 // Add a request interceptor
 
-console.log("interceptor works");
-
 api.interceptors.request.use(
   (config) => {
-    console.log("interceptor works");
     // const token = currentUserToken; // Ensure you're getting the current token
     const token = rootStore.profileStore.currentUserToken;
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
-
-      console.log("Authorization header set:", config.headers.Authorization);
     }
     return config;
   },
@@ -40,8 +39,23 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
+    // debug
+    // const refresh_token = await api.get("/check-cookie");
+    // console.log(refresh_token);
+    // alert(currentUserToken);
+
     const originalRequest = error.config;
-    console.log("response interceptor going");
+
+    // the following code prevents the attempt to refresh
+    // the token upon wrong credentials being provided;
+
+    if (
+      originalRequest.url?.includes("/users/token") || // login endpoint
+      originalRequest.url?.includes("/users/refresh-token")
+    ) {
+      // Just reject, do not refresh token here
+      return Promise.reject(error);
+    }
 
     // If error is 401 and we haven't already retried
     if (
@@ -55,6 +69,7 @@ api.interceptors.response.use(
       try {
         const newAccessToken = await refreshToken();
         setCurrentUserToken(newAccessToken);
+        alert(rootStore.profileStore.currentUserToken);
 
         // Update the Authorization header
         api.defaults.headers.common[
