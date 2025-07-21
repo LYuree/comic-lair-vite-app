@@ -1,9 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
 import { IUserSignup } from "../types/user.type";
 import { register } from "../services/auth.service";
 import Popup from "../components/Popup/Popup";
@@ -13,7 +11,7 @@ import { observer } from "mobx-react-lite";
 const SignUpPage: React.FC = observer(() => {
   const [successful, setSuccessful] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  
+
   const navigate = useNavigate();
 
   const initialValues: IUserSignup = {
@@ -23,9 +21,7 @@ const SignUpPage: React.FC = observer(() => {
   };
 
   const {
-    signUpStore: {
-      isSignupPopupOpen, setSignupPopupOpen
-    }
+    signUpStore: { isSignupPopupOpen, setSignupPopupOpen },
   } = rootStore;
 
   const validationSchema = Yup.object().shape({
@@ -34,9 +30,7 @@ const SignUpPage: React.FC = observer(() => {
         "len",
         "Длина никнейма должна быть от 3 до 20 символов.",
         (val: any) =>
-          val &&
-          val.toString().length >= 3 &&
-          val.toString().length <= 20
+          val && val.toString().length >= 3 && val.toString().length <= 20
       )
       .required("Заполните это поле!"),
     email: Yup.string()
@@ -47,9 +41,7 @@ const SignUpPage: React.FC = observer(() => {
         "len",
         "Длина пароля должна быть от 6 до 40 символов.",
         (val: any) =>
-          val &&
-          val.toString().length >= 6 &&
-          val.toString().length <= 40
+          val && val.toString().length >= 6 && val.toString().length <= 40
       )
       .required("This field is required!"),
   });
@@ -57,7 +49,7 @@ const SignUpPage: React.FC = observer(() => {
   const handleRegister = (formValue: IUserSignup) => {
     const { username, email, password } = formValue;
     const active = false;
-    const role = 'USER';
+    const role = "USER";
 
     register(crypto.randomUUID(), username, email, password, active, role).then(
       (response) => {
@@ -82,11 +74,11 @@ const SignUpPage: React.FC = observer(() => {
   const handleClosePopup = () => {
     setSignupPopupOpen(false);
     navigate("/signin");
-    };
+  };
 
   return (
     <>
-    <div className="bg-white pt-16 w-96 mx-auto">
+      <div className="bg-white pt-16 w-96 mx-auto">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -130,10 +122,20 @@ const SignUpPage: React.FC = observer(() => {
                 </div>
 
                 <div className="form-group">
-                  <button className="w-full mt-4 bg-[#bd0000] text-white p-2  hover:bg-[maroon]" type="submit">Зарегистрироваться</button>
+                  <button
+                    className="w-full mt-4 bg-[#bd0000] text-white p-2  hover:bg-[maroon]"
+                    type="submit"
+                  >
+                    Зарегистрироваться
+                  </button>
                 </div>
                 <div className="mt-4 text-center">
-                  <Link to={"/signin"} className="text-[maroon] hover:underline">Уже есть аккаунт? Войти</Link>
+                  <Link
+                    to={"/signin"}
+                    className="text-[maroon] hover:underline"
+                  >
+                    Уже есть аккаунт? Войти
+                  </Link>
                 </div>
               </div>
             )}
@@ -152,17 +154,20 @@ const SignUpPage: React.FC = observer(() => {
             )}
           </Form>
         </Formik>
-    </div>
-      {isSignupPopupOpen ? <Popup
-        title={"Остался последний шаг"}
-        content={`На указанный адрес почты было отправлено письмо
+      </div>
+      {isSignupPopupOpen ? (
+        <Popup
+          title={"Остался последний шаг"}
+          content={`На указанный адрес почты было отправлено письмо
                   со ссылкой для подтверждения. Не забудьте перейти
                   по ней для завершения регистрации!`}
-        onClose={() => {
-          handleClosePopup();
-        }}
-        /> : ""
-              }
+          onClose={() => {
+            handleClosePopup();
+          }}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 });

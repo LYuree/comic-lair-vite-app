@@ -31,13 +31,9 @@ export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
     // await validateSession();
 
     await axios
-      .get<IOrderDetails[]>(
-        // `http://127.0.0.1:8000/orders/${AuthService.getCurrentUser().id}`,
-        `http://127.0.0.1:8000/orders/${currentUser?.id}`,
-        {
-          headers: authHeader(),
-        }
-      )
+      .get<IOrderDetails[]>(`http://127.0.0.1:8000/orders/${currentUser?.id}`, {
+        headers: authHeader(),
+      })
       .then((response) => {
         const orderItems = response.data;
         const orderDetails: IOrderJSON[] = orderItems.map(

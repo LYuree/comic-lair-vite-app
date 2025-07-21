@@ -234,7 +234,6 @@ const NavBar = () => {
             <button type="submit" className="relative right-8 mr-3">
               <IoSearch className="text-xl text-white" />
             </button>
-            {/* <div className="relative right-4 cursor-pointer"> */}
             <button
               type="button"
               className="text-white p-2 cursor-pointer z-100"
@@ -243,7 +242,6 @@ const NavBar = () => {
             >
               <ImCross className="z-102" />
             </button>
-            {/* </div> */}
           </form>
 
           {/* Mobile Menu Items */}

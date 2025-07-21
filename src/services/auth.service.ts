@@ -22,25 +22,8 @@ export const register = (
   });
 };
 
-// авторизация
-// export const login = (username: string, password: string) => {
-//   return axios
-//     .post(API_URL + "signin", {
-//       username,
-//       password,
-//     })
-//     .then((response) => {
-//       if (response.data.accessToken) {
-//         localStorage.setItem("user", JSON.stringify(response.data));
-//       }
-
-//       return response.data;
-//     });
-// };
-
 // выход из аккаунта
 export const logout = () => {
-  // localStorage.removeItem("user");
   const {
     profileStore: { setCurrentUserToken },
   } = rootStore;
@@ -83,22 +66,6 @@ export const login = async (
   return response.data;
 };
 
-// export const refreshToken = async (refreshToken: string): Promise<string> => {
-//   const response = await axios.post<{ access_token: string }>(
-//     `${API_URL}/users/refresh-token`,
-//     { refresh_token: refreshToken }
-//   );
-
-//   return response.data.access_token;
-// };
-
-// export const refreshToken = async (): Promise<string> => {
-//   const response = await axios.get(`${API_URL}users/refresh-token`, {
-//     withCredentials: true, // ensures cookies are sent
-//   });
-//   return response.data.access_token;
-// };
-
 export const refreshToken = async (): Promise<string> => {
   try {
     const response = await axios.get(`${API_URL}users/refresh-token`, {
@@ -110,19 +77,3 @@ export const refreshToken = async (): Promise<string> => {
     throw error;
   }
 };
-
-// export const refreshToken = async (): Promise<string> => {
-//   try {
-//     const refreshToken = rootStore.profileStore.currentUserRefreshToken;
-//     if (!refreshToken) throw new Error("No refresh token");
-
-//     const response = await axios.post("/users/refresh-token", {
-//       refresh_token: refreshToken,
-//     });
-
-//     return response.data.access_token;
-//   } catch (error) {
-//     console.error("Refresh token failed:", error);
-//     throw error;
-//   }
-// };

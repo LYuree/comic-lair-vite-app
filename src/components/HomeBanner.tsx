@@ -5,13 +5,13 @@ const HomeBanner = () => {
   const slides = [
     {
       src: "/src/images/banner1.png",
-      src_360w: "/src/images/banner1_360w_mobile.webp",
+      src_360w: "/src/images/hero_banner_mobile.webp",
 
       url: "/products",
     },
     {
       src: "/src/images/banner2.png",
-      src_360w: "/src/images/banner2_360w_mobile.webp",
+      src_360w: "/src/images/hero_banner_2_mobile.webp",
 
       url: "/products",
     },
@@ -22,22 +22,6 @@ const HomeBanner = () => {
       url: "/products",
     },
   ];
-
-  //   const slideNodes = slides.map((slide) => {
-  //     return (
-  //       <div
-  //         className="max w-full h-[475px] mx-auto mt-4 relative
-  //         duration-500"
-  //       >
-  //         <Link to={slide.url} key={crypto.randomUUID()}>
-  //           <div
-  //             style={{ backgroundImage: `url(${slide.src})` }}
-  //             className="relative w-full h-full bg-center bg-cover"
-  //           ></div>
-  //         </Link>
-  //       </div>
-  //     );
-  //   });
 
   const slideNodes = slides.map((slide) => {
     return (

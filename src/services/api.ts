@@ -1,4 +1,3 @@
-// services/api.ts
 import axios from "axios";
 import { refreshToken } from "./auth.service";
 import { rootStore } from "../store";
@@ -10,7 +9,6 @@ export interface MyJwtPayload extends JwtPayload {
   id: string;
   role: string;
   sub: string;
-  // add other custom claims if needed
 }
 
 const API_URL = "http://localhost:8000/";
@@ -21,18 +19,11 @@ const api = axios.create({
 });
 
 const {
-  profileStore: {
-    setCurrentUserToken,
-    setCurrentUserRefreshToken,
-    // currentUserToken,
-  },
+  profileStore: { setCurrentUserToken, setCurrentUserRefreshToken },
 } = rootStore;
-
-// Add a request interceptor
 
 api.interceptors.request.use(
   (config) => {
-    // const token = currentUserToken; // Ensure you're getting the current token
     const token = rootStore.profileStore.currentUserToken;
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
@@ -49,11 +40,6 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // debug
-    // const refresh_token = await api.get("/check-cookie");
-    // console.log(refresh_token);
-    // alert(currentUserToken);
-
     const originalRequest = error.config;
 
     // the following code prevents the attempt to refresh
@@ -73,9 +59,6 @@ api.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
-      // const userRefreshToken = rootStore.profileStore.currentUserRefreshToken;
-
-      // if (userRefreshToken) {
       try {
         const newAccessToken = await refreshToken();
         setCurrentUserToken(newAccessToken);
@@ -99,12 +82,8 @@ api.interceptors.response.use(
         // Refresh token failed - logout user
         setCurrentUserToken(null);
         setCurrentUserRefreshToken(null);
-
-        // Redirect to login
-        // window.location.href = "/signin";
         return Promise.reject(refreshError);
       }
-      // }
     }
 
     return Promise.reject(error);

@@ -32,8 +32,8 @@ const SignIn: React.FC = () => {
     setLoading(true);
 
     const formDetails = new URLSearchParams();
-    formDetails.append("username", userName); // Use 'username' instead of 'userName'
-    formDetails.append("password", passWord); // Use 'password' instead of 'passWord'
+    formDetails.append("username", userName);
+    formDetails.append("password", passWord);
 
     try {
       const response = await api.post(
@@ -41,15 +41,13 @@ const SignIn: React.FC = () => {
         formDetails,
         {
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded", // Set the correct content type
+            "Content-Type": "application/x-www-form-urlencoded",
           },
         }
       );
       const { access_token } = response.data;
       setLoading(false);
-      // localStorage.setItem('token', access_token);
       const userPayload: any = jwtDecode(access_token);
-      // console.log(user);
       const user: IUser = {
         sub: userPayload.sub,
         id: userPayload.id,

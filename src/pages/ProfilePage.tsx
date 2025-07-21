@@ -2,7 +2,6 @@ import { FC, useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
-// import { IOrderJSON } from "../api/products/fetchOrderDetails";
 import { observer } from "mobx-react";
 import { adminCreateProduct } from "../api/products/adminCreateProduct";
 import AdminDashboard from "../components/AdminDashboard/AdminDashboard";

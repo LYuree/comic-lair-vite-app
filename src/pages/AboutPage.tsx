@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { FaUnsplash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const AboutPage = () => {

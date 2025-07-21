@@ -1,14 +1,12 @@
-import React from 'react';
+import React from "react";
 
 interface PopupProps {
-//   isOpen: boolean;
   title: string;
   content: string;
   onClose: () => void;
 }
 
 const Popup: React.FC<PopupProps> = ({ title, content, onClose }) => {
-
   return (
     <div className="fixed z-40 inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white shadow-lg p-5 w-1/3">

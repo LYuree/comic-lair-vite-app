@@ -1,7 +1,6 @@
 import { IoSearch } from "react-icons/io5";
 import { IProductItem } from "../api/products/fetchProducts";
 import Container from "../components/Container";
-// import ProductCard from "../components/ProductCard/ProductCard";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { TbArrowsSort } from "react-icons/tb";
 import { observer } from "mobx-react";
@@ -45,15 +44,12 @@ const ProductsPage = observer(() => {
       setCurrentPage,
       categoryCheckboxes,
       setCategoryCheckboxes,
-      // toggleCategoryCheckbox,
       searchFormValue,
       setSearchFormValue,
       coverCheckboxes,
       setCoverCheckboxes,
-      // toggleCoverCheckbox,
       brandCheckboxes,
       setBrandCheckboxes,
-      // toggleBrandCheckbox,
       minPrice,
       maxPrice,
       setMaxPrice,

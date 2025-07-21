@@ -1,4 +1,3 @@
-"use client";
 import { FC } from "react";
 import { TbHeartPlus } from "react-icons/tb";
 import { truncateText } from "../../utils/truncateText.ts";
