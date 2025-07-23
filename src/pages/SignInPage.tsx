@@ -5,6 +5,7 @@ import { rootStore } from "../store";
 import { jwtDecode } from "jwt-decode";
 import IUser from "../types/user.type";
 import api from "../services/api";
+import { API_URL } from "../utils/API_URL";
 const SignIn: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -36,15 +37,11 @@ const SignIn: React.FC = () => {
     formDetails.append("password", passWord);
 
     try {
-      const response = await api.post(
-        "http://localhost:8000/users/token",
-        formDetails,
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const response = await api.post(`${API_URL}/users/token`, formDetails, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
       const { access_token } = response.data;
       setLoading(false);
       const userPayload: any = jwtDecode(access_token);

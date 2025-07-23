@@ -1,7 +1,8 @@
 import axios from "axios";
 import { rootStore } from "../store";
+import { API_URL } from "../utils/API_URL";
 
-const API_URL = "http://localhost:8000/";
+// const API_URL = "http://localhost:8000/";
 
 // регистрация
 export const register = (
@@ -68,7 +69,7 @@ export const login = async (
 
 export const refreshToken = async (): Promise<string> => {
   try {
-    const response = await axios.get(`${API_URL}users/refresh-token`, {
+    const response = await axios.get(`${API_URL}/users/refresh-token`, {
       withCredentials: true,
     });
     return response.data.access_token;

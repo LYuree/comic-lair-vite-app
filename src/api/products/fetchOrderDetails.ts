@@ -3,6 +3,7 @@ import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
+import { API_URL } from "../../utils/API_URL";
 
 export interface IOrdersData {
   data: IOrderDetails[];
@@ -31,7 +32,7 @@ export const fetchOrderDetails = async (): Promise<IOrderJSON[]> => {
     // await validateSession();
 
     await axios
-      .get<IOrderDetails[]>(`http://127.0.0.1:8000/orders/${currentUser?.id}`, {
+      .get<IOrderDetails[]>(`${API_URL}/orders/${currentUser?.id}`, {
         headers: authHeader(),
       })
       .then((response) => {

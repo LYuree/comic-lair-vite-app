@@ -1,5 +1,6 @@
 import axios from "axios";
 import authHeader from "../../services/auth-header";
+import { API_URL } from "../../utils/API_URL";
 
 type TProductCreate = {
   name: string;
@@ -24,7 +25,7 @@ export const adminCreateProduct = async (product: TProductCreate) => {
       product.release_date.getMonth() + 1
     }-${product.release_date.getUTCDate()}`;
     await axios.post(
-      "http://127.0.0.1:8000/products",
+      `${API_URL}/products`,
       {
         ...product,
         release_date: date.toString(),

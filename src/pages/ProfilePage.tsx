@@ -479,7 +479,7 @@ const ProfilePage: FC = observer(() => {
                                 bgcolor: "primary.main",
                               }}
                             >
-                              <IoPersonCircleOutline sx={{ fontSize: 60 }} />
+                              <IoPersonCircleOutline />
                             </Avatar>
                             <Typography variant="h6">Иван Иванов</Typography>
                             <Typography color="text.secondary">

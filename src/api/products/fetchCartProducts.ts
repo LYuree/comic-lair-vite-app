@@ -3,6 +3,7 @@ import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
+import { API_URL } from "../../utils/API_URL";
 
 interface cartData {
   id: number;
@@ -30,19 +31,16 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
     // информацию о соответствующих товарах
     // из products
     await axios
-      .get<cartData>(
-        `http://127.0.0.1:8000/carts/${AuthService.getCurrentUser().id}`,
-        {
-          headers: authHeader(),
-        }
-      )
+      .get<cartData>(`${API_URL}/carts/${AuthService.getCurrentUser().id}`, {
+        headers: authHeader(),
+      })
       .then(async (response) => {
         // версия для эндпоинта products/{product_id}
         console.log(response);
         const cartProductDetails = await Promise.all(
           response.data.products.map(async (cartItem: cartItem) => {
             const response = await axios.get<IProductItem>(
-              `http://127.0.0.1:8000/products/${cartItem.product_id}`,
+              `${API_URL}/products/${cartItem.product_id}`,
               {
                 headers: authHeader(),
                 withCredentials: true,

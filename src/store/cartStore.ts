@@ -5,6 +5,7 @@ import { cartItem } from "../api/products/fetchCartProducts.ts";
 import { checkout } from "../api/products/checkout.ts";
 import authHeader from "../services/auth-header.ts";
 import axios from "axios";
+import { API_URL } from "../utils/API_URL.ts";
 
 export class CartStore {
   cartProducts: ProductsData = {
@@ -141,7 +142,7 @@ export class CartStore {
       const cartProductsData = await Promise.all(
         cart.map(async (cartItem: cartItem) => {
           const response = await axios.get<IProductItem>(
-            `http://127.0.0.1:8000/products/${cartItem.product_id}`,
+            `${API_URL}/products/${cartItem.product_id}`,
             {
               headers: authHeader(),
               withCredentials: true,

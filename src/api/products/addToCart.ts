@@ -2,6 +2,7 @@ import axios from "axios";
 import authHeader from "../../services/auth-header";
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
+import { API_URL } from "../../utils/API_URL";
 
 // вариант с рабочим бэкендом
 export const addToCart = async (
@@ -15,7 +16,7 @@ export const addToCart = async (
   try {
     // await validateSession();
     await axios.post(
-      `http://127.0.0.1:8000/carts/${userId}/add`,
+      `${API_URL}/carts/${userId}/add`,
       {
         quantity: amount,
         product_id: itemId,
