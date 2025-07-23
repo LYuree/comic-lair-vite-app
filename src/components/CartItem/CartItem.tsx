@@ -12,6 +12,7 @@ import { cartItem } from "../../api/products/fetchCartProducts.ts";
 export interface CartItemProps {
   data: IProductItem;
   setAmount: (userId: string, itemId: number, newAmount: number) => void;
+  // setAmount: (itemId: number, newAmount: number) => void;
   deleteItem: (userId: string, id: number) => void;
 }
 
@@ -92,7 +93,7 @@ const CartItem: FC<CartItemProps> = observer(
             <button
               type="submit"
               className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
-              onClick={(_) => {
+              onClick={() => {
                 deleteItem(getCurrentUser().id, data.id);
                 const cartStr = localStorage.getItem("cart");
                 const cart = cartStr ? JSON.parse(cartStr) : null;

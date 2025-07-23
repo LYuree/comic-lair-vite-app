@@ -9,7 +9,7 @@ import { FC, ReactNode } from "react";
 interface ISwiperProps {
   slides: ReactNode[];
   slidesPerVP: number;
-  breakPoints: object;
+  // breakPoints: object;
   autoPlay: boolean;
   isLooped: boolean;
   navigate: boolean;
@@ -18,7 +18,6 @@ interface ISwiperProps {
 const Slider: FC<ISwiperProps> = ({
   slides,
   slidesPerVP,
-  breakPoints,
   autoPlay,
   isLooped,
   navigate,
@@ -32,7 +31,6 @@ const Slider: FC<ISwiperProps> = ({
       navigation={navigate}
       scrollbar={{ draggable: true }}
       autoplay={autoPlay}
-      breakpoints={breakPoints}
     >
       {slides.map((slide) => {
         return <SwiperSlide key={crypto.randomUUID()}>{slide}</SwiperSlide>;

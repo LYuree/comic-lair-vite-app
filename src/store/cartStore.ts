@@ -49,6 +49,7 @@ export class CartStore {
     itemId: number,
     newAmount: number
   ) => {
+    console.log(userId);
     this.setCartLoading(true);
     const cartStr = localStorage.getItem("cart");
     const cart = cartStr ? JSON.parse(cartStr) : null;
@@ -71,6 +72,7 @@ export class CartStore {
   };
 
   deleteCartProduct = async (userId: string, id: number) => {
+    console.log(userId);
     // проверка на успешное удаление...
     this.setCartLoading(true);
     // вариант с рабочим бэком

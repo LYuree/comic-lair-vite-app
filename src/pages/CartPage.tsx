@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { rootStore } from "../store";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import Container from "../components/Container";
 import CartItem from "../components/CartItem/CartItem";
 import formatPrice from "../utils/formatPrice";
@@ -82,7 +82,6 @@ const CartPage = observer(() => {
                     autoPlay={false}
                     isLooped={false}
                     navigate={true}
-                    breakPoints={{}}
                   />
                 </div>
                 <div className="flex flex-col gap-2">
