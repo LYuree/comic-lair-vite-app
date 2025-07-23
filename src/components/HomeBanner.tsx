@@ -47,7 +47,6 @@ const HomeBanner = () => {
         <Slider
           slides={slideNodes}
           slidesPerVP={1}
-          breakPoints={[]}
           autoPlay={true}
           isLooped={true}
           navigate={false}
