@@ -17,7 +17,7 @@ const HomeBanner = () => {
     },
     {
       src: "https://iili.io/FOsmo22.webp",
-      src_360w: "/src/images/banner3_360w_mobile.webp",
+      src_360w: "https://iili.io/FeAdMml.webp",
 
       url: "/products",
     },
