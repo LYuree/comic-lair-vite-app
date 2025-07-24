@@ -13,7 +13,7 @@ export const register = (
   active: boolean,
   role: string
 ) => {
-  return axios.post(API_URL + "users/", {
+  return axios.post(API_URL + "/users/", {
     id: id,
     username,
     email,

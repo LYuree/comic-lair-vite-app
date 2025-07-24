@@ -91,7 +91,7 @@ const NavBar = () => {
             <Link to={"/"} className="flex items-center gap-3 p-2">
               <picture className="relative logo-shadow border-2 border-white">
                 <img
-                  src="/src/images/noveltown_logo_v2.png"
+                  src="https://iili.io/FOsbNe9.webp"
                   alt="The Novel Town Logo"
                   className="w-10 h-10 object-contain"
                 />

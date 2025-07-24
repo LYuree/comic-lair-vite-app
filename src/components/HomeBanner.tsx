@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 const HomeBanner = () => {
   const slides = [
     {
-      src: "/src/images/banner1.png",
-      src_360w: "/src/images/hero_banner_mobile.webp",
+      src: "https://iili.io/FOsmqBf.webp",
+      src_360w: "https://iili.io/FeuYGwB.webp",
 
       url: "/products",
     },
     {
-      src: "/src/images/banner2.png",
-      src_360w: "/src/images/hero_banner_2_mobile.webp",
+      src: "https://iili.io/FOsmx7S.webp",
+      src_360w: "https://iili.io/FeuYMZP.webp",
 
       url: "/products",
     },
     {
-      src: "/src/images/banner3.png",
+      src: "https://iili.io/FOsmo22.webp",
       src_360w: "/src/images/banner3_360w_mobile.webp",
 
       url: "/products",

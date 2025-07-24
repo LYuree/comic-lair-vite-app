@@ -13,7 +13,7 @@ const HomePage = observer(() => {
     productsStore: { products, fetchProducts, productsLoading },
   } = rootStore;
 
-  const [_, setVisibleSections] = useState<Record<string, boolean>>({});
+  const [, setVisibleSections] = useState<Record<string, boolean>>({});
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -122,7 +122,7 @@ const HomePage = observer(() => {
                 <picture>
                   <source />
                   <img
-                    src="/src/images/discount2.png"
+                    src="https://iili.io/FOsmuIe.webp"
                     alt="discount 15%"
                     className="homepage-discount-pic absolute right-0 lg:-top-[0px] lg:-translate-y-[20%] -translate-y-[50%]"
                   />
@@ -153,7 +153,7 @@ const HomePage = observer(() => {
                 <picture>
                   <source />
                   <img
-                    src="/src/images/spaceship.png"
+                    src="https://iili.io/FOsmFXs.webp"
                     alt="discount 15%"
                     className="
                         absolute

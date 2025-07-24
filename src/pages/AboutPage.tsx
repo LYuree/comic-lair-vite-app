@@ -9,18 +9,18 @@ const AboutPage = () => {
           <picture className="relative w-full h-full bg-center bg-cover">
             <source
               media="(min-width: 1280px)"
-              srcSet="/src/images/pile_of_comics_1920w.webp"
+              srcSet="https://iili.io/FOsm3In.webp"
             />
             <source
               media="(max-width: 1280px)"
-              srcSet="/src/images/pile_of_comics_1280w.webp"
+              srcSet="https://iili.io/FOsbm1R.webp"
             />
             <source
               media="(max-width: 750px)"
-              srcSet="/src/images/pile_of_comics_750w.webp"
+              srcSet="https://iili.io/FOsbrgV.webp"
             />
             <img
-              src="/src/images/pile_of_comics_1920w.webp" // Fallback image
+              src="https://iili.io/FOsm3In.webp" // Fallback image
               alt="A pile of comics"
               className="w-full h-auto" // Ensure the image is responsive
             />
