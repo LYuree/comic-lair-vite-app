@@ -124,7 +124,7 @@ const HomePage = observer(() => {
                   <img
                     src="https://iili.io/FOsmuIe.webp"
                     alt="discount 15%"
-                    className="homepage-discount-pic absolute right-0 lg:-top-[0px] lg:-translate-y-[20%] -translate-y-[50%]"
+                    className="homepage-discount-pic absolute right-0 lg:-top-[0px] -translate-y-[75%] sm:-translate-y-[50%] lg:-translate-y-[20%]"
                   />
                 </picture>
               </div>
