@@ -26,7 +26,9 @@ const CartItem: FC<CartItemProps> = observer(
             col-span-1
             cursor-pointer
             bg-white
-            flex flex-row
+            flex
+            flex-col
+            sm:flex-row
             pl-16
             "
         key={data.id}
