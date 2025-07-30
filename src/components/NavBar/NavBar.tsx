@@ -10,13 +10,26 @@ import { IProductItem } from "../../api/products/fetchProducts";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 // Define menu items for better maintainability
-const menuItems = [
+
+interface IMenuItem {
+  path: string;
+  label: string;
+  className?: string;
+}
+
+const {
+  profileStore: { currentUser },
+} = rootStore;
+
+const menuItems: IMenuItem[] = [
   { path: "/", label: "Главная" },
   { path: "/products", label: "Товары" },
   { path: "/about", label: "О нас" },
   { path: "#", label: "Купим у ВАС!" },
-  { path: "/signin", label: "ВОЙТИ", className: "font-bold" },
 ];
+
+if (!currentUser)
+  menuItems.push({ path: "/signin", label: "ВОЙТИ", className: "font-bold" });
 
 const NavBar = () => {
   const navigate = useNavigate();

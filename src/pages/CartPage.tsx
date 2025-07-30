@@ -25,6 +25,8 @@ const CartPage = observer(() => {
       isCheckoutPopupOpen,
       setCheckoutPopupOpen,
     },
+
+    profileStore: { currentUser },
   } = rootStore;
 
   useEffect(() => {
@@ -130,7 +132,7 @@ const CartPage = observer(() => {
                           type="submit"
                           className="btn w-full relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                           onClick={() => {
-                            const userId = localStorage.getItem("userId");
+                            const userId = currentUser?.id;
                             if (userId && cartProducts && email && phone) {
                               checkout(userId, phone, email, cartProducts);
                               localStorage.setItem("cart", JSON.stringify([]));

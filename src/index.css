@@ -100,6 +100,10 @@
   flex-basis: 43%;
 }
 
+.lin-gradient {
+  background: linear-gradient(to right, #ca238d, #ffbc13);
+}
+
 h2.timeline-header {
   border-top: 2px solid #97057c;
   border-bottom: 2px solid #97057c;

@@ -5,6 +5,9 @@ import { rootStore } from "../store";
 import { observer } from "mobx-react";
 import { Button } from "@mui/material";
 import formatPrice from "../utils/formatPrice";
+// import { addToCart } from "../api/products/addToCart";
+import { cartItem } from "../api/products/fetchCartProducts";
+// import { addToCart } from "../api/products/addToCart";
 
 const ProductDetails: React.FC = observer(() => {
   const { id } = useParams();
@@ -14,6 +17,7 @@ const ProductDetails: React.FC = observer(() => {
   const {
     productsStore: { products, fetchProducts },
     productDetailsStore: { productDetails, setProductDetails },
+    profileStore: { currentUser },
   } = rootStore;
 
   const getProductData = async (): Promise<IProductItem | null> => {
@@ -98,14 +102,6 @@ const ProductDetails: React.FC = observer(() => {
                 </span>
               )}
             </div>
-
-            {productDetails.description && (
-              <div className="mb-6">
-                <h2 className="text-xl font-semibold mb-2">Описание</h2>
-                <p className="text-gray-700">{productDetails.description}</p>
-              </div>
-            )}
-
             {productDetails.categories &&
               productDetails.categories.length > 0 && (
                 <div className="mb-6">
@@ -122,6 +118,12 @@ const ProductDetails: React.FC = observer(() => {
                   </div>
                 </div>
               )}
+            {productDetails.description && (
+              <div className="mb-6">
+                <h2 className="text-xl font-semibold mb-2">Описание</h2>
+                <p className="text-gray-700">{productDetails.description}</p>
+              </div>
+            )}
 
             <div className="mt-auto">
               <Button
@@ -134,6 +136,43 @@ const ProductDetails: React.FC = observer(() => {
                   // border: 2,
                   // borderColor: "primary.main",
                   // color: "black",
+                }}
+                onClick={() => {
+                  if (currentUser) {
+                    // addToCart(currentUser?.id, productDetails.id, 1);
+                    const cartStr = localStorage.getItem("cart");
+                    const cart = cartStr ? JSON.parse(cartStr) : null;
+                    if (!cart) {
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([
+                          {
+                            product_id: productDetails.id,
+                            quantity: 1,
+                          },
+                        ])
+                      );
+                      return;
+                    }
+                    if (
+                      cart &&
+                      !cart.some(
+                        (item: cartItem) =>
+                          item.product_id === productDetails.id
+                      )
+                    )
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([
+                          ...cart,
+                          { product_id: productDetails.id, quantity: 1 },
+                        ])
+                      );
+                    console.log(
+                      `local storage cart: `,
+                      localStorage.getItem("cart")
+                    );
+                  } else navigate("/signin");
                 }}
               >
                 Добавить в корзину

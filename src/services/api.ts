@@ -67,7 +67,7 @@ api.interceptors.response.use(
           role: decoded.role,
           sub: decoded.sub,
         });
-        alert(rootStore.profileStore.currentUserToken);
+        // alert(rootStore.profileStore.currentUserToken);
 
         // Update the Authorization header
         api.defaults.headers.common[
