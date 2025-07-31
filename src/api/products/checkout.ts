@@ -8,8 +8,6 @@ import { API_URL } from "../../utils/API_URL";
 // версия для бэкенда
 export const checkout = async (
   userId: string,
-  phone: string,
-  email: string,
   cartProducts: ProductsData
 ): Promise<boolean> => {
   const {
@@ -17,11 +15,7 @@ export const checkout = async (
   } = rootStore;
   try {
     // await validateSession();
-    const orderDetails = JSON.stringify({
-      phone,
-      email,
-      cartProducts,
-    });
+    // const orderDetails = JSON.stringify(cartProducts);
     console.log(userId);
     await axios.post(
       `${API_URL}/orders/`,
@@ -29,7 +23,7 @@ export const checkout = async (
         // user_id: userId,
         // требует integer
         user_id: userId,
-        order_products: orderDetails,
+        order_products: cartProducts,
       },
       {
         headers: authHeader(),

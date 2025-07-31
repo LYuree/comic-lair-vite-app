@@ -6,7 +6,6 @@ import CartItem from "../components/CartItem/CartItem";
 import formatPrice from "../utils/formatPrice";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import Slider from "../components/Slider/Slider";
-import PhoneNumberInput from "../components/PhoneNumberInput/PhoneNumberInput";
 import Popup from "../components/Popup/Popup";
 
 const CartPage = observer(() => {
@@ -19,9 +18,6 @@ const CartPage = observer(() => {
       deleteCartProduct,
       checkout,
       totalCost,
-      email,
-      phone,
-      setEmail,
       isCheckoutPopupOpen,
       setCheckoutPopupOpen,
     },
@@ -98,19 +94,12 @@ const CartPage = observer(() => {
                         Оформление заказа
                       </h2>
                       <div className="text-center sm:text-start">
-                        Пожалуйста, укажите Вашу почту и контактный номер
-                        телефона для оформления заказа. Заказ будет рассмотрен,
-                        после чего на указанный адрес почты будет выслано письмо
-                        с деталями.
+                        Для оформления нажмите на кнопку ниже. Мы рассмотрим Ваш
+                        заказ, после чего на указанный адрес почты будет выслано
+                        письмо с деталями.
                       </div>
                       <form>
-                        <div className="mb-4">
-                          {/* <label
-                            className="block text-gray-700 pt-4 text-center sm:text-start"
-                            htmlFor="email"
-                          >
-                            E-mail
-                          </label> */}
+                        {/* <div className="mb-4">
                           <input
                             className="mt-1 block w-full p-2 border border-gray-300"
                             type="text"
@@ -126,14 +115,14 @@ const CartPage = observer(() => {
 
                         <div className="mb-6">
                           <PhoneNumberInput />
-                        </div>
+                        </div> */}
                         <button
                           type="submit"
-                          className="btn w-full relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
+                          className="btn w-full relative inline-flex grow my-4 py-2 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
                           onClick={() => {
                             const userId = currentUser?.id;
-                            if (userId && cartProducts && email && phone) {
-                              checkout(userId, phone, email, cartProducts);
+                            if (userId && cartProducts) {
+                              checkout(userId, cartProducts);
                               localStorage.setItem("cart", JSON.stringify([]));
                             }
                           }}
