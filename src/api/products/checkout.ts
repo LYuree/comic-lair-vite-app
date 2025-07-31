@@ -29,7 +29,7 @@ export const checkout = async (
         // user_id: userId,
         // требует integer
         user_id: userId,
-        order_details: orderDetails,
+        order_products: orderDetails,
       },
       {
         headers: authHeader(),

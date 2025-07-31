@@ -74,7 +74,6 @@ const CartPage = observer(() => {
                             lg:flex-row
                             lg:gap-16
                             px-4 py-4
-                            mr-8
                             mt-24"
               >
                 <div>
@@ -87,18 +86,18 @@ const CartPage = observer(() => {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="total my-2 text-2xl font-semibold py-8 border-y-2 border-[gray]">
+                  <div className="total text-center sm:text-start my-2 text-2xl font-semibold py-8 border-y-2 border-[gray]">
                     СУММА ЗАКАЗА:{" "}
                     <span className="text-[green]">
                       {formatPrice(totalCost)}
                     </span>
                   </div>
                   <div className="flex py-8">
-                    <div className="bg-white w-96">
-                      <h2 className="text-2xl font-bold mb-6 text-start">
+                    <div className="bg-white w-96 mx-auto sm:mx-0">
+                      <h2 className="text-2xl font-bold mb-6 text-center sm:text-start">
                         Оформление заказа
                       </h2>
-                      <div className="text-start">
+                      <div className="text-center sm:text-start">
                         Пожалуйста, укажите Вашу почту и контактный номер
                         телефона для оформления заказа. Заказ будет рассмотрен,
                         после чего на указанный адрес почты будет выслано письмо
@@ -106,12 +105,12 @@ const CartPage = observer(() => {
                       </div>
                       <form>
                         <div className="mb-4">
-                          <label
-                            className="block text-gray-700 pt-4"
+                          {/* <label
+                            className="block text-gray-700 pt-4 text-center sm:text-start"
                             htmlFor="email"
                           >
                             E-mail
-                          </label>
+                          </label> */}
                           <input
                             className="mt-1 block w-full p-2 border border-gray-300"
                             type="text"
