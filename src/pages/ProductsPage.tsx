@@ -325,9 +325,10 @@ const ProductsPage = observer(() => {
                     sx={{ display: "flex", flexDirection: "column", gap: 2 }}
                   >
                     <FormControl fullWidth size="small">
-                      <InputLabel>Категории</InputLabel>
+                      <InputLabel id="categories-label">Категории</InputLabel>
                       <Select
                         multiple
+                        label="Категории"
                         value={selectedCategories}
                         onChange={handleCategoryChange}
                         renderValue={(selected) => (
@@ -352,8 +353,10 @@ const ProductsPage = observer(() => {
                     </FormControl>
 
                     <FormControl fullWidth size="small">
-                      <InputLabel>Обложка</InputLabel>
+                      <InputLabel id="cover-label">Обложка</InputLabel>
                       <Select
+                        labelId="cover-label"
+                        label="Обложка"
                         multiple
                         value={selectedCovers}
                         onChange={handleCoverChange}
@@ -376,8 +379,10 @@ const ProductsPage = observer(() => {
                     </FormControl>
 
                     <FormControl fullWidth size="small">
-                      <InputLabel>Бренд</InputLabel>
+                      <InputLabel id="brand-label">Бренд</InputLabel>
                       <Select
+                        labelId="brand-label"
+                        label="Бренд"
                         multiple
                         value={selectedBrands}
                         onChange={handleBrandChange}
@@ -426,8 +431,10 @@ const ProductsPage = observer(() => {
                     sx={{ display: "flex", flexDirection: "column", gap: 3 }}
                   >
                     <FormControl fullWidth size="small">
-                      <InputLabel>Категории</InputLabel>
+                      <InputLabel id="categories-label">Категории</InputLabel>
                       <Select
+                        labelId="categories-label"
+                        label="Категории"
                         multiple
                         value={selectedCategories}
                         onChange={handleCategoryChange}
@@ -452,8 +459,10 @@ const ProductsPage = observer(() => {
                       </Select>
                     </FormControl>
                     <FormControl fullWidth size="small">
-                      <InputLabel>Обложка</InputLabel>
+                      <InputLabel id="cover-label">Обложка</InputLabel>
                       <Select
+                        labelId="cover-label"
+                        label="Обложка"
                         multiple
                         value={selectedCovers}
                         onChange={handleCoverChange}
@@ -476,8 +485,10 @@ const ProductsPage = observer(() => {
                     </FormControl>
 
                     <FormControl fullWidth size="small">
-                      <InputLabel>Бренд</InputLabel>
+                      <InputLabel id="brand-label">Бренд</InputLabel>
                       <Select
+                        labelId="brand-label"
+                        label="Бренд"
                         multiple
                         value={selectedBrands}
                         onChange={handleBrandChange}
