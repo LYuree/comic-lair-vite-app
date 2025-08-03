@@ -201,7 +201,11 @@ const NavBar = observer(() => {
             ))}
             {!currentUser && (
               <li>
-                <Link to="/signin" className="font-bold hover:underline">
+                <Link
+                  to="/signin"
+                  className="font-bold hover:underline"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   ВОЙТИ
                 </Link>
               </li>
@@ -274,6 +278,7 @@ const NavBar = observer(() => {
                 <Link
                   to="/signin"
                   className="text-white text-xl font-bold hover:underline"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   ВОЙТИ
                 </Link>
