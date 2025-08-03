@@ -9,7 +9,6 @@ import { rootStore } from "../../store";
 import { IProductItem } from "../../api/products/fetchProducts";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { observer } from "mobx-react";
-// import api from "../../services/api";
 
 // Define menu items for better maintainability
 
@@ -19,26 +18,12 @@ interface IMenuItem {
   className?: string;
 }
 
-// const profileStore = rootStore.profileStore;
-
-// const staticMenuItems: IMenuItem[] = [
-//   { path: "/", label: "Главная" },
-//   { path: "/products", label: "Товары" },
-//   { path: "/about", label: "О нас" },
-//   { path: "#", label: "Купим у ВАС!" },
-// ];
-
 const menuItems: IMenuItem[] = [
   { path: "/", label: "Главная" },
   { path: "/products", label: "Товары" },
   { path: "/about", label: "О нас" },
   { path: "#", label: "Купим у ВАС!" },
 ];
-
-// if (!profileStore.currentUser) {
-//   console.log("user is falsy");
-//   menuItems.push({ path: "/signin", label: "ВОЙТИ", className: "font-bold" });
-// }
 
 const NavBar = observer(() => {
   const navigate = useNavigate();
@@ -54,17 +39,6 @@ const NavBar = observer(() => {
   const searchFormInputRef = useRef(null);
   const searchFormInputMobileRef = useRef(null);
 
-  // const verifyToken = async () => {
-  //   try {
-  //     await api.get("verify-token");
-  //   } catch (error) {
-  //     console.error("Token verification failed:", error);
-  //     // Optionally clear token here
-  //   } finally {
-  //     profileStore.setAuthChecked(true);
-  //   }
-  // };
-
   // Handle body overflow when menu is open
   useEffect(() => {
     if (isMenuOpen) {
@@ -77,26 +51,6 @@ const NavBar = observer(() => {
       document.body.style.overflow = "unset";
     };
   }, [isMenuOpen]);
-
-  // useEffect(() => {
-  //   if (!currentUser) {
-  //     try {
-  //       console.log("trying");
-  //       verifyToken();
-  //       // menuItems = staticMenuItems;
-  //       setMenuItems(staticMenuItems);
-  //     } catch (error) {
-  //       setMenuItems([
-  //         ...staticMenuItems,
-  //         { path: "/signin", label: "ВОЙТИ", className: "font-bold" },
-  //       ]);
-  //       // menuItems = [
-  //       //   ...staticMenuItems,
-  //       //   { path: "/signin", label: "ВОЙТИ", className: "font-bold" },
-  //       // ];
-  //     }
-  //   }
-  // }, [currentUser]);
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -271,16 +225,6 @@ const NavBar = observer(() => {
           ${isMenuOpen ? "translate-y-0" : "-translate-y-10"}
         `}
         >
-          {/* <div className="absolute top-9 right-4 cursor-pointer">
-            <button
-              className="text-white p-2 cursor-pointer z-100"
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <ImCross className="z-102" />
-            </button>
-          </div> */}
-
           {/* Mobile Search Form */}
           <form
             className="relative flex items-center w-4/5 mb-8"
@@ -325,6 +269,16 @@ const NavBar = observer(() => {
                 </Link>
               </li>
             ))}
+            {!currentUser && (
+              <li>
+                <Link
+                  to="/signin"
+                  className="text-white text-xl font-bold hover:underline"
+                >
+                  ВОЙТИ
+                </Link>
+              </li>
+            )}
           </ul>
 
           {/* Mobile Contact Info */}
