@@ -25,6 +25,7 @@ import {
   useTheme,
 } from "@mui/material";
 import GridProductCard from "../components/GridProductCard/GridProductCard";
+import formatPrice from "../utils/formatPrice";
 
 const ProductsPage = observer(() => {
   const {
@@ -53,6 +54,7 @@ const ProductsPage = observer(() => {
       minPrice,
       maxPrice,
       setMaxPrice,
+      setMinPrice,
       setPriceRange,
     },
   } = rootStore;
@@ -94,14 +96,18 @@ const ProductsPage = observer(() => {
     };
   });
 
-  const pricesAvailable = products.data.map((item) => item.price);
+  const pricesAvailable = products.data.map(
+    (item) => item.price * (1.0 - item.discount)
+  );
   const maxAvailablePrice = Math.max(...pricesAvailable);
+  const minAvailablePrice = Math.min(...pricesAvailable);
 
   useEffect(() => {
     setCategoryCheckboxes(uniqueCategoryCheckboxes);
     setCoverCheckboxes(uniqueCoverCheckboxes);
     setBrandCheckboxes(uniqueBrandCheckboxes);
     setMaxPrice(maxAvailablePrice);
+    setMinPrice(minAvailablePrice);
   }, [products]);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, newPage: number) => {
@@ -124,7 +130,7 @@ const ProductsPage = observer(() => {
     setCategoryCheckboxes(newCategoryCheckboxes);
     setCoverCheckboxes(newCoverCheckboxes);
     setBrandCheckboxes(newBrandCheckboxes);
-    setPriceRange(0, maxAvailablePrice);
+    setPriceRange(minAvailablePrice, maxAvailablePrice);
     setDisplayedProducts(products);
   };
 
@@ -167,7 +173,8 @@ const ProductsPage = observer(() => {
     // Filter by price range
     newDisplayedProducts.data = newDisplayedProducts.data.filter(
       (product: IProductItem) =>
-        product.price >= minPrice && product.price <= maxPrice
+        product.price * (1 - product.discount) >= minPrice &&
+        product.price * (1 - product.discount) <= maxPrice
     );
 
     setDisplayedProducts(newDisplayedProducts);
@@ -406,7 +413,8 @@ const ProductsPage = observer(() => {
 
                     <Box>
                       <Typography gutterBottom>
-                        Цена: от {minPrice} до {maxPrice}
+                        Цена: от {formatPrice(minPrice)} до{" "}
+                        {formatPrice(maxPrice)}
                       </Typography>
                       <Slider
                         value={[minPrice, maxPrice]}
@@ -417,7 +425,7 @@ const ProductsPage = observer(() => {
                           );
                         }}
                         valueLabelDisplay="auto"
-                        min={0}
+                        min={minAvailablePrice}
                         max={maxAvailablePrice}
                       />
                     </Box>
