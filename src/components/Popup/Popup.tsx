@@ -9,7 +9,7 @@ interface PopupProps {
 const Popup: React.FC<PopupProps> = ({ title, content, onClose }) => {
   return (
     <div className="fixed z-40 inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white shadow-lg p-5 w-1/3">
+      <div className="bg-white shadow-lg p-5 w-[80vw] lg:w-1/3">
         <h2 className="text-lg font-bold mb-4">{title}</h2>
         <p className="mb-4">{content}</p>
         <button

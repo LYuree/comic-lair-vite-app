@@ -15,20 +15,27 @@ const ProductDetails: React.FC = observer(() => {
   const [loading, setLoading] = useState(true);
 
   const {
-    productsStore: { products, fetchProducts },
+    productsStore: { fetchProducts },
     productDetailsStore: { productDetails, setProductDetails },
     profileStore: { currentUser },
   } = rootStore;
 
+  const productsStore = rootStore.productsStore;
+
   const getProductData = async (): Promise<IProductItem | null> => {
     try {
-      if (!products.data.length) {
+      if (productsStore.products.data.length === 0) {
+        console.log("zero");
         await fetchProducts();
       }
       if (id) {
-        const item = products.data.find(
-          (item: IProductItem) => item.id === +id
-        );
+        console.log("id is true");
+        console.log(productsStore.products.data.length);
+        const item = productsStore.products.data.find((item: IProductItem) => {
+          console.log(item.id, +id);
+          return item.id == +id;
+        });
+        console.log(item);
         return item || null;
       }
       return null;
@@ -40,14 +47,15 @@ const ProductDetails: React.FC = observer(() => {
 
   useEffect(() => {
     const fetchItemDetails = async () => {
+      console.log(id);
       setLoading(true);
       const result = await getProductData();
       setProductDetails(result);
       setLoading(false);
 
-      if (!result) {
-        navigate("/404");
-      }
+      // if (!result) {
+      //   navigate("/404");
+      // }
     };
 
     fetchItemDetails();

@@ -6,7 +6,7 @@ import { formatPrice } from "../../utils/formatPrice.ts";
 import { IProductItem } from "../../api/products/fetchProducts.ts";
 import { AiOutlineShopping } from "react-icons/ai";
 import { rootStore } from "../../store/index.ts";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cartItem } from "../../api/products/fetchCartProducts.ts";
 
 interface GridProductCardProps {
@@ -37,22 +37,26 @@ const GridProductCard: FC<GridProductCardProps> = ({ data, key }) => {
       key={key}
     >
       <div className="relative overflow-hidden flex justify-center">
-        <picture>
-          <source />
-          <img
-            src={data.cover_image}
-            alt={data.name}
-            className="hover:opacity-75 duration-500"
-          />
-        </picture>
+        <Link to={`/product_details/${data.id}`}>
+          <picture>
+            <source />
+            <img
+              src={data.cover_image}
+              alt={data.name}
+              className="hover:opacity-75 duration-500"
+            />
+          </picture>
+        </Link>
       </div>
       <div className="flex flex-col items-center">
         <div className="text-[gray] text-xs font-semibold mt-2">
           {data.digital ? "ЭЛЕКТРОННАЯ КНИГА" : "ПЕЧАТНАЯ КНИГА"}
         </div>
-        <div className="text-lg text-center font-bold">
-          {truncateText(data.name)}
-        </div>
+        <Link to={`/product_details/${data.id}`}>
+          <div className="text-lg text-center font-bold">
+            {truncateText(data.name)}
+          </div>
+        </Link>
         <div className="flex flex-col items-center text-sm mt-2 text-[gray] font-semibold max-w-[210px]">
           {data.discount ? (
             <>
