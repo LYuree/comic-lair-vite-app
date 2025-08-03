@@ -4,6 +4,10 @@ import { API_URL } from "../utils/API_URL";
 
 // const API_URL = "http://localhost:8000/";
 
+// const {
+//   profileStore: { currentUser },
+// } = rootStore;
+
 // регистрация
 export const register = (
   id: string,
