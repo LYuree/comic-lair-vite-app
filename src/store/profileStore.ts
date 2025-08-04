@@ -7,6 +7,7 @@ import IUser from "../types/user.type";
 
 export class ProfileStore {
   profileLoading: boolean = false;
+  authChecked: boolean = false;
   currentUser: IUser | null = null;
   currentUserToken: string | null = null;
   currentUserRefreshToken: string | null = null;
@@ -17,8 +18,6 @@ export class ProfileStore {
   constructor() {
     makeAutoObservable(this);
   }
-
-  authChecked: boolean = false;
 
   setAuthChecked = (value: boolean) => {
     this.authChecked = value;
@@ -34,9 +33,7 @@ export class ProfileStore {
 
   setCurrentUserToken = (token: string | null) => {
     if (this.currentUserToken === token) {
-      // alert(`Token unchanged: ${token}`);
     } else {
-      // alert(`Token changed from ${this.currentUserToken} to ${token}`);
       this.currentUserToken = token;
     }
   };

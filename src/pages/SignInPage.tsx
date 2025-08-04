@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import IUser from "../types/user.type";
 import api from "../services/api";
 import { API_URL } from "../utils/API_URL";
+
 const SignIn: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");

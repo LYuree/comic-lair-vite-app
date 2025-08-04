@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { rootStore } from "../../store";
-import api from "../../services/api";
 import { observer } from "mobx-react";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
+import api from "../../services/api";
 
 const ProtectedRoute: React.FC = observer(() => {
-  const profileStore = rootStore.profileStore;
   const navigate = useNavigate();
+
+  const profileStore = rootStore.profileStore;
 
   useEffect(() => {
     const verifyToken = async () => {

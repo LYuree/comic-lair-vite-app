@@ -16,7 +16,34 @@ import ProductDetails from "./pages/ProductDetails.tsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.tsx";
 import { observer } from "mobx-react";
 
+// const {
+//   profileStore: {
+//     setAuthChecked,
+//     setCurrentUser,
+//     setCurrentUserToken,
+//     setCurrentUserRefreshToken,
+//   },
+// } = rootStore;
+
+// const verifyToken = async () => {
+//   try {
+//     await api.get("verify-token");
+//   } catch (error) {
+//     console.error("Token verification failed:", error);
+//     setCurrentUser(null);
+//     setCurrentUserToken(null);
+//     setCurrentUserRefreshToken(null);
+//     // Optionally clear token here
+//   } finally {
+//     setAuthChecked(true);
+//   }
+// };
+
 const App = observer(() => {
+  // useEffect(() => {
+  //   verifyToken();
+  // }, []);
+
   return (
     <div className="app">
       <ScrollToTop />
