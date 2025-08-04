@@ -1,9 +1,16 @@
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import { BrowserRouter } from "react-router-dom"
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import { BrowserRouter } from "react-router-dom";
+import customTheme from "./utils/theme.ts";
+import { ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
 
-createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
+createRoot(document.getElementById("root")!).render(
+  <BrowserRouter>
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline>
         <App />
-    </BrowserRouter>
-)
+      </CssBaseline>
+    </ThemeProvider>
+  </BrowserRouter>
+);

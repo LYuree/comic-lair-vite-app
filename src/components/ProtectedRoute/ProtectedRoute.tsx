@@ -1,37 +1,38 @@
-import React, { useEffect } from 'react';
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
-import { rootStore } from '../../store';
+import React, { useEffect } from "react";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { rootStore } from "../../store";
+import { observer } from "mobx-react";
+import LoadingScreen from "../LoadingScreen/LoadingScreen";
+import api from "../../services/api";
 
-const ProtectedRoute: React.FC = () => {
-    const navigate = useNavigate();
-    const token = localStorage.getItem('token');
+const ProtectedRoute: React.FC = observer(() => {
+  const navigate = useNavigate();
 
-    const {
-      profileStore: { setCurrentUser, currentUserToken, setCurrentUserToken }
-    } = rootStore;
+  const profileStore = rootStore.profileStore;
 
-    useEffect(() => {
-        const verifyToken = async () => {
-            // const token = localStorage.getItem('token');
-            try {
-                const response = await fetch(`http://localhost:8000/verify-token/${currentUserToken}`);
-                if (!response.ok) {
-                    throw new Error('Token verification failed');
-                }
-            } catch (error) {
-                // localStorage.removeItem('token');
-                setCurrentUser(null);
-                setCurrentUserToken(null);
-                navigate('/signin');
-            }
-        };
-        verifyToken();
-    }, [navigate]);
-    
+  useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        await api.get("verify-token");
+      } catch (error) {
+        console.error("Token verification failed:", error);
+        // Optionally clear token here
+      } finally {
+        profileStore.setAuthChecked(true);
+      }
+    };
 
-    // If authorized, return an outlet that will render child elements
-    // If not, return element that will navigate to login page
-    return token ? <Outlet /> : <Navigate to="/login" />;
-}
+    if (!profileStore.authChecked) {
+      verifyToken();
+    }
+  }, [profileStore, navigate]);
+
+  if (!profileStore.authChecked) {
+    // Show loading spinner or nothing until auth check completes
+    return <LoadingScreen />;
+  }
+
+  return profileStore.currentUserToken ? <Outlet /> : <Navigate to="/signin" />;
+});
 
 export default ProtectedRoute;

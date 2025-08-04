@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL } from "../../utils/API_URL";
 
 export interface ICoverImage {
   image: string;
@@ -6,7 +7,6 @@ export interface ICoverImage {
 
 // Определение интерфейса для данных
 export interface IProductItem {
-  // id: string,
   id: number;
   name: string;
   description: string;
@@ -32,20 +32,19 @@ export interface ProductsData {
 export const fetchProducts = async (): Promise<ProductsData> => {
   try {
     const fetchResponse = { data: [] };
-    await axios
-      .get<ProductsData>("http://127.0.0.1:8000/products/")
-      .then((response) => {
-        // оборачиваем данные с сервера в объект,
-        // присваивая их в качестве значения ключа data
-        Object.defineProperty(fetchResponse, "data", {
-          // на всякий случай делаю deep copy
-          // с помощью JSON-api
-          // (возможно, это излишне)
-          value: JSON.parse(JSON.stringify(response.data)),
-          writable: false,
-        });
-        return fetchResponse;
+    await axios.get<ProductsData>(`${API_URL}/products/`).then((response) => {
+      // оборачиваем данные с сервера в объект,
+      // присваивая их в качестве значения ключа data
+      Object.defineProperty(fetchResponse, "data", {
+        // на всякий случай делаю deep copy
+        // с помощью JSON-api
+        // (возможно, это излишне)
+        value: JSON.parse(JSON.stringify(response.data)),
+        writable: false,
       });
+      return fetchResponse;
+    });
+
     return fetchResponse;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -53,9 +52,3 @@ export const fetchProducts = async (): Promise<ProductsData> => {
     return Promise.resolve({ data: [] });
   }
 };
-
-// Версия для моков
-// export const fetchProducts = async (): Promise<ProductsData> =>
-//     await new Promise(resolve => {
-//             resolve(products)
-//     })

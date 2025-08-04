@@ -1,30 +1,79 @@
-import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
-import Container from "../components/Container";
-import AboutPageTimelineDouble from "./AboutPageTimelineDouble";
+import { Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const AboutPage = () => {
-    return (
-        <>
-        <Breadcrumbs />
-        <div style={{backgroundImage: `url("/src/images/comic-city-1920-2.jpg")`}}
-            className="mt-0 max-w-[1920] h-[650px] bg-cover bg-center">
-            <Container>
-                <div className="max-w-[1160px] w-full flex items-center justify-center mx-auto">
-                    <div className="px-8 pt-8 w-full">
-                        <h1 className="mx-auto text-4xl text-center font-bold text-white text-drop-shadow bg-[maroon] w-[75%] py-2">THE NOVEL TOWN</h1>
-                        <p className="mx-auto text-xl text-center text-white text-drop-shadow bg-[maroon] mt-4 py-2 w-[85%]">
-                            Ваше окно в мир рисованных историй!
-                        </p>
-                    </div>
-                </div>
-            </Container>
+  return (
+    <>
+      <Box sx={{ padding: "40px", maxWidth: "1060px", mx: "auto" }}>
+        <div className="max-w-[1060px] mx-auto mt-4 relative">
+          <picture className="relative w-full h-full bg-center bg-cover">
+            {/* <source
+              width={1280}
+              media="(min-width: 1280px)"
+              srcSet="https://iili.io/FOsm3In.webp"
+            />
+            <source
+              width={1280}
+              media="(max-width: 1280px)"
+              srcSet="https://iili.io/FOsbm1R.webp"
+            /> */}
+            <source
+              media="min-width: 751px"
+              srcSet="https://iili.io/F4cr9n9.webp"
+            />
+            <source
+              media="(max-width: 750px)"
+              srcSet="https://iili.io/FOsbrgV.webp"
+            />
+            <img
+              src="https://iili.io/FOsm3In.webp" // Fallback image
+              alt="A pile of comics"
+              className="w-full h-auto" // Ensure the image is responsive
+            />
+          </picture>
         </div>
-        <div className="ml-4 font-bold ml-auto text-slate-100">designed by freepik</div>
-        <Container>
-         <AboutPageTimelineDouble/>
-        </Container>
-        </>
-        );
-}
- 
+        <div className="ml-4 font-bold ml-auto text-slate-100">
+          picture source: Unsplash
+        </div>
+        <Typography sx={{ textAlign: "center" }}>
+          Наша история началась в 2019 году за несколькими пинтами крафтового
+          эля. Четверо парней обсуждали, как было бы здорово собирать и
+          продавать свои любимые вещи в одном месте! Из этой идеи The Novel Town
+          стал реальностью! С несколькими десятками лет покупки и чтения
+          комиксов. Наша цель — стать вашим надежным независимым продавцом
+          комиксов и графических новелл - как новых, так и давно вышедших из
+          печати, всех возможных жанров и форматов. Мы будем продавать то, что
+          нравится читать нашему сообществу, и обсуждать, почему мы считаем это
+          крутым! Мы обещаем вам работать особенно усердно, чтобы подарить вам
+          незабываемые впечатления, которые захочется пережить снова и снова!
+          Сегодня у нас есть сообщества VK, Telegram и Discord The Novel Town
+          стал реальностью #thenoveltown
+        </Typography>
+        <Typography
+          sx={{ fontSize: "1.5em", fontWeight: "bold", textAlign: "center" }}
+        >
+          Мы - THE NOVEL TOWN
+        </Typography>
+        <Typography sx={{ textAlign: "center" }}>
+          И мы обеспечим вам наилучшие впечатления от путешествия по бескрайнему
+          миру рисованных историй
+        </Typography>
+        <Link to="/profile">
+          <Typography
+            sx={{
+              fontSize: "1.5em",
+              fontWeight: "bold",
+              color: "maroon",
+              textAlign: "center",
+              ":hover": {},
+            }}
+          >
+            Чего же вы ждёте? ПРИСОЕДИНЯЙТЕСЬ!
+          </Typography>
+        </Link>
+      </Box>
+    </>
+  );
+};
+
 export default AboutPage;
