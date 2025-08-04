@@ -44,6 +44,7 @@ export const fetchProducts = async (): Promise<ProductsData> => {
       });
       return fetchResponse;
     });
+
     return fetchResponse;
   } catch (error) {
     console.error("Error fetching data:", error);
