@@ -82,3 +82,18 @@ export const refreshToken = async (): Promise<string> => {
     throw error;
   }
 };
+
+export const deleteRefreshToken = async (): Promise<void> => {
+  try {
+    await axios.post(
+      `${API_URL}/users/logout-cookie`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    console.error("Deleting refresh token cookie failed:", error);
+    throw error;
+  }
+};

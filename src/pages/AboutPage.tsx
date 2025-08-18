@@ -7,18 +7,8 @@ const AboutPage = () => {
       <Box sx={{ padding: "40px", maxWidth: "1060px", mx: "auto" }}>
         <div className="max-w-[1060px] mx-auto mt-4 relative">
           <picture className="relative w-full h-full bg-center bg-cover">
-            {/* <source
-              width={1280}
-              media="(min-width: 1280px)"
-              srcSet="https://iili.io/FOsm3In.webp"
-            />
             <source
-              width={1280}
-              media="(max-width: 1280px)"
-              srcSet="https://iili.io/FOsbm1R.webp"
-            /> */}
-            <source
-              media="min-width: 751px"
+              media="(min-width: 751px)"
               srcSet="https://iili.io/F4cr9n9.webp"
             />
             <source
@@ -26,7 +16,7 @@ const AboutPage = () => {
               srcSet="https://iili.io/FOsbrgV.webp"
             />
             <img
-              src="https://iili.io/FOsm3In.webp" // Fallback image
+              src="https://iili.io/F4cr9n9.webp" // Fallback image
               alt="A pile of comics"
               className="w-full h-auto" // Ensure the image is responsive
             />
