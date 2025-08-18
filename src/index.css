@@ -11,6 +11,9 @@
   font-family: "Montserrat", "Arial", "sans-serif";
 }
 
+footer {
+}
+
 .text-drop-shadow {
   filter: drop-shadow(0 8px 8px rgba(135, 98, 4, 0.75));
 }
@@ -42,73 +45,17 @@
   color: gray;
 }
 
-.timeline {
-  position: relative;
-}
-.timeline::before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 0;
-  height: 100%;
-  border-left: 2px dashed #ca238d;
-}
-
-.bound-layout {
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  width: calc(100% - 60px);
-  max-width: 1080px;
-}
-
-.bound-layout::before,
-.bound-layout::after {
-  display: table;
-}
-
-.timeline-row {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  margin: 5rem 0;
-}
-
-.timeline-row.reverse {
-  flex-direction: row-reverse;
-}
-
-.timeline-row::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 38px;
-  left: calc(
-    50% - 12px
-  ); /*минус половина ширины, но это оказалось многовато, на мой вкус*/
-  width: 26px;
-  height: 26px;
-  border-radius: 13px;
-  border: 2px solid #97057c;
-  background: linear-gradient(#ca238d, #ffbc13);
-}
-
-.timeline-row > * {
-  flex-basis: 43%;
+body {
+  background: black;
 }
 
 .lin-gradient {
-  background: linear-gradient(to right, #ca238d, #ffbc13);
-}
+  /* background: linear-gradient(to right, #ca238d, #ffbc13); */
+  /* background: linear-gradient(135deg, #8b5fbf 0%, #00d9ff 50%, #ff6b9d 100%); */
+  /* background: linear-gradient(135deg, #cd0074 0%, #ff0000 50%, #7109aa 100%); */
+  background: linear-gradient(to right, #b043b6 0%, #e93633 50%, #fba03c 100%);
 
-h2.timeline-header {
-  border-top: 2px solid #97057c;
-  border-bottom: 2px solid #97057c;
-  padding: 2rem 0;
-  margin-bottom: 1rem;
+  /* #CD0074, #FF0000 и #7109AA; */
 }
 
 .products-page-grid {

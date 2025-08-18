@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { IOrderJSON } from "../api/products/fetchOrderDetails";
+import { deleteRefreshToken } from "../services/auth.service";
 
 // interface Order {
 //   id: string;
@@ -424,7 +425,7 @@ const ProfilePage: FC = observer(() => {
                           mb: 2,
                           bgcolor: "primary.main",
                         }}
-                        // className="lin-gradient border-2 border-solid border-black"
+                        className="lin-gradient border-2 border-solid border-black"
                       >
                         <IoPersonCircleOutline />
                       </Avatar>
@@ -639,11 +640,13 @@ const ProfilePage: FC = observer(() => {
                 size="large"
                 sx={{ width: { xs: "100%", sm: "50%", borderRadius: 0 } }}
                 onClick={() => {
+                  deleteRefreshToken();
                   setCurrentUser(null);
                   setCurrentUserToken(null);
                   setCurrentUserRefreshToken(null);
                   navigate("/signin");
                 }}
+                className="lin-gradient border-2 border-solid border-white"
               >
                 Выйти
               </Button>
