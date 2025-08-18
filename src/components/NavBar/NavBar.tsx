@@ -68,12 +68,8 @@ const NavBar = observer(() => {
 
   // Initialize user data
   useEffect(() => {
-    const uuid = crypto.randomUUID();
     if (!localStorage.getItem("cart"))
       localStorage.setItem("cart", JSON.stringify([]));
-    if (!localStorage.getItem("userId")) localStorage.setItem("userId", uuid);
-    if (!localStorage.getItem("user"))
-      localStorage.setItem("user", JSON.stringify({ id: uuid }));
   }, []);
 
   const handleSearch = (inputText: string) => {
