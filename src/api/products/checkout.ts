@@ -3,7 +3,9 @@ import { ProductsData } from "./fetchProducts";
 import authHeader from "../../services/auth-header";
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
-import { API_URL } from "../../utils/API_URL";
+// import { API_URL } from "../../utils/API_URL";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 // версия для бэкенда
 export const checkout = async (

@@ -3,8 +3,10 @@ import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
 import axios from "axios";
 import authHeader from "../../services/auth-header";
-import { API_URL } from "../../utils/API_URL";
+// import { API_URL } from "../../utils/API_URL";
 import { ProductsData } from "./fetchProducts";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 // export interface IOrdersData {
 //   data: IOrderDetails[];

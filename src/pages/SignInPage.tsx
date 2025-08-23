@@ -5,7 +5,9 @@ import { rootStore } from "../store";
 import { jwtDecode } from "jwt-decode";
 import IUser from "../types/user.type";
 import api from "../services/api";
-import { API_URL } from "../utils/API_URL";
+// import { API_URL } from "../utils/API_URL";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const SignIn: React.FC = () => {
   const [userName, setUserName] = useState("");

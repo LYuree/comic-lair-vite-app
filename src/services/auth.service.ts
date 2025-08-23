@@ -1,6 +1,8 @@
 import axios from "axios";
 import { rootStore } from "../store";
-import { API_URL } from "../utils/API_URL";
+// import { API_URL } from "../utils/API_URL";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 // const API_URL = "http://localhost:8000/";
 
