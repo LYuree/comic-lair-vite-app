@@ -4,7 +4,8 @@ import { rootStore } from "../store";
 import { jwtDecode } from "jwt-decode";
 
 import type { JwtPayload } from "jsonwebtoken";
-import { API_URL } from "../utils/API_URL";
+// import { API_URL } from "../utils/API_URL";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface MyJwtPayload extends JwtPayload {
   id: string;

@@ -2,7 +2,9 @@ import axios from "axios";
 import authHeader from "../../services/auth-header";
 import * as AuthService from "../../services/auth.service";
 import { rootStore } from "../../store";
-import { API_URL } from "../../utils/API_URL";
+// import { API_URL } from "../../utils/API_URL";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 // вариант с рабочим бэкендом
 export const addToCart = async (
@@ -14,6 +16,8 @@ export const addToCart = async (
     profileStore: { setCurrentUser },
   } = rootStore;
   try {
+    console.log(API_URL);
+
     // await validateSession();
     await axios.post(
       `${API_URL}/carts/${userId}/add`,
