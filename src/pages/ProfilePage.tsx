@@ -5,18 +5,16 @@ import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
 import { observer } from "mobx-react";
 import { adminCreateProduct } from "../api/products/adminCreateProduct";
 import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Divider,
-  Pagination,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Divider from "@mui/material/Divider";
+import Pagination from "@mui/material/Pagination";
+import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { IOrderJSON } from "../api/products/fetchOrderDetails";
 import { deleteRefreshToken } from "../services/auth.service";

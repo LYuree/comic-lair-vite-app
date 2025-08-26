@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IProductItem } from "../api/products/fetchProducts";
 import { rootStore } from "../store";
 import { observer } from "mobx-react";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import formatPrice from "../utils/formatPrice";
 // import { addToCart } from "../api/products/addToCart";
 import { cartItem } from "../api/products/fetchCartProducts";
