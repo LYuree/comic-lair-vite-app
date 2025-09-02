@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { TbHeartPlus } from "react-icons/tb";
 import { truncateText } from "../../utils/truncateText.ts";
 import { formatPrice } from "../../utils/formatPrice.ts";
@@ -14,7 +14,7 @@ interface GridProductCardProps {
   key: number | string;
 }
 
-const GridProductCard: FC<GridProductCardProps> = ({ data, key }) => {
+const GridProductCard: FC<GridProductCardProps> = memo(({ data, key }) => {
   const navigate = useNavigate();
 
   const {
@@ -122,6 +122,6 @@ const GridProductCard: FC<GridProductCardProps> = ({ data, key }) => {
       </div>
     </div>
   );
-};
+});
 
 export default GridProductCard;

@@ -1,7 +1,8 @@
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/20/solid";
+import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const Breadcrumbs = () => {
+const Breadcrumbs = memo(() => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
@@ -67,6 +68,6 @@ const Breadcrumbs = () => {
       </ol>
     </div>
   );
-};
+});
 
 export default Breadcrumbs;

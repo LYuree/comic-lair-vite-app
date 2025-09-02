@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 interface PopupProps {
   title: string;
@@ -6,7 +6,7 @@ interface PopupProps {
   onClose: () => void;
 }
 
-const Popup: React.FC<PopupProps> = ({ title, content, onClose }) => {
+const Popup: React.FC<PopupProps> = memo(({ title, content, onClose }) => {
   return (
     <div className="fixed z-40 inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white shadow-lg p-5 w-[80vw] lg:w-1/3">
@@ -21,6 +21,6 @@ const Popup: React.FC<PopupProps> = ({ title, content, onClose }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Popup;
