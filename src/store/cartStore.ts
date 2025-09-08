@@ -5,7 +5,8 @@ import { cartItem } from "../api/products/fetchCartProducts.ts";
 import { checkout } from "../api/products/checkout.ts";
 import authHeader from "../services/auth-header.ts";
 import axios from "axios";
-import { API_URL } from "../utils/API_URL.ts";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export class CartStore {
   cartProducts: ProductsData = {

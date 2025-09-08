@@ -22,7 +22,7 @@ const CartPage = observer(() => {
       setCheckoutPopupOpen,
     },
 
-    profileStore: { currentUser },
+    profileStore: { currentUser, profileLoading },
   } = rootStore;
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const CartPage = observer(() => {
 
   return (
     <>
-      {cartLoading ? (
+      {profileLoading || cartLoading ? (
         <LoadingScreen />
       ) : (
         <>

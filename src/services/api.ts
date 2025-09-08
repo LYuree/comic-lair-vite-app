@@ -1,7 +1,7 @@
 import axios from "axios";
 import { refreshToken } from "./auth.service";
 import { rootStore } from "../store";
-import { jwtDecode } from "jwt-decode";
+// import { jwtDecode } from "jwt-decode";
 
 import type { JwtPayload } from "jsonwebtoken";
 // import { API_URL } from "../utils/API_URL";
@@ -18,9 +18,9 @@ const api = axios.create({
   withCredentials: true,
 });
 
-const {
-  profileStore: { setCurrentUserToken, setCurrentUserRefreshToken },
-} = rootStore;
+// const {
+//   profileStore: { setCurrentUserToken, setCurrentUserRefreshToken },
+// } = rootStore;
 
 api.interceptors.request.use(
   (config) => {
@@ -61,13 +61,13 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const newAccessToken = await refreshToken();
-        setCurrentUserToken(newAccessToken);
-        const decoded = jwtDecode<MyJwtPayload>(newAccessToken);
-        rootStore.profileStore.setCurrentUser({
-          id: decoded.id,
-          role: decoded.role,
-          sub: decoded.sub,
-        });
+        // setCurrentUserToken(newAccessToken);
+        // const decoded = jwtDecode<MyJwtPayload>(newAccessToken);
+        // rootStore.profileStore.setCurrentUser({
+        //   id: decoded.id,
+        //   role: decoded.role,
+        //   sub: decoded.sub,
+        // });
         // alert(rootStore.profileStore.currentUserToken);
 
         // Update the Authorization header
@@ -80,8 +80,9 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch (refreshError) {
         // Refresh token failed - logout user
-        setCurrentUserToken(null);
-        setCurrentUserRefreshToken(null);
+
+        // setCurrentUserToken(null);
+        // setCurrentUserRefreshToken(null);
         return Promise.reject(refreshError);
       }
     }

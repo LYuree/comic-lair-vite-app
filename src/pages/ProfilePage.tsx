@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useState } from "react";
+import { FC, useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { rootStore } from "../store";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
@@ -30,6 +30,7 @@ import { deleteRefreshToken } from "../services/auth.service";
 const ordersPerPage = 5;
 
 const ProfilePage: FC = observer(() => {
+  console.log("profile page renders");
   const navigate = useNavigate();
 
   const {
@@ -43,6 +44,8 @@ const ProfilePage: FC = observer(() => {
       setCurrentUserRefreshToken,
     },
   } = rootStore;
+
+  // CHECK for user role = ADMIN?
 
   // State for product creation form
   const [productName, setProductName] = useState("");
@@ -94,8 +97,10 @@ const ProfilePage: FC = observer(() => {
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    console.log("Mounted! useeffect's been called, yo");
     fetchOrderDetails();
+    return () => console.log("Unmounted");
   }, []);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
@@ -107,9 +112,7 @@ const ProfilePage: FC = observer(() => {
     console.log("Submitted loyalty card ID:", loyaltyCardId);
   };
 
-  if (profileLoading) {
-    return <LoadingScreen />;
-  }
+  if (profileLoading) return <LoadingScreen />;
 
   if (!currentUser) return <div>Error. User is null or undefined.</div>;
 
@@ -571,10 +574,10 @@ const ProfilePage: FC = observer(() => {
                                       {order.order_products?.data?.map(
                                         (product) => (
                                           <Link
+                                            key={product.id}
                                             to={`/product_details/${product.id}`}
                                           >
                                             <Avatar
-                                              key={product.id}
                                               src={product.cover_image}
                                               alt={product.name}
                                               variant="rounded"

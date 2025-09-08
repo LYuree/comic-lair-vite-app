@@ -18,7 +18,11 @@ const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   const {
-    profileStore: { setCurrentUser, setCurrentUserToken },
+    profileStore: {
+      setCurrentUser,
+      setCurrentUserToken,
+      setCurrentUserRefreshToken,
+    },
   } = rootStore;
 
   const validateForm = () => {
@@ -68,6 +72,8 @@ const SignIn: React.FC = () => {
       } else {
         setError("An unexpected error occurred.");
       }
+      setCurrentUserToken(null);
+      setCurrentUserRefreshToken(null);
     }
   };
 
