@@ -16,7 +16,6 @@ import ProductDetails from "./pages/ProductDetails.tsx";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
 import { rootStore } from "./store/index.ts";
-import LoadingScreen from "./components/LoadingScreen/LoadingScreen.tsx";
 
 // const verifyToken = async () => {
 //   try {
