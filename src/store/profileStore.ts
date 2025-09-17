@@ -37,7 +37,7 @@ export class ProfileStore {
           role: decoded.role,
           sub: decoded.sub,
         });
-
+        this.setCurrentUserToken(accessToken);
         console.log(this.currentUser);
       });
     } catch {

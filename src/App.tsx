@@ -14,7 +14,7 @@ import ProfilePage from "./pages/ProfilePage.tsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
 import ProductDetails from "./pages/ProductDetails.tsx";
 import { observer } from "mobx-react";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { rootStore } from "./store/index.ts";
 
 // const verifyToken = async () => {
@@ -35,7 +35,7 @@ const App = observer(() => {
   const {
     profileStore: { verifyAuth, currentUser },
   } = rootStore;
-  useEffect(() => {
+  useLayoutEffect(() => {
     verifyAuth();
   }, []);
 
