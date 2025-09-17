@@ -60,14 +60,15 @@ const App = observer(() => {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckOutPage />} />
+            <Route path="*" element={<PageNotFound />} />
           </>
         ) : (
           <>
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="*" element={<PageNotFound />} />
           </>
         )}
-        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
     </div>
