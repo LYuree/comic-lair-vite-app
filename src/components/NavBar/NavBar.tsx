@@ -142,10 +142,10 @@ const NavBar = observer(() => {
             {/* Icons Section */}
             <div className="flex items-center gap-3">
               <AiOutlineHeart className="cursor-pointer text-2xl hover:text-slate-400 hidden md:block" />
-              <Link to={"/cart"}>
+              <Link to={currentUser ? "/cart" : "/signin"}>
                 <AiOutlineShopping className="cursor-pointer text-2xl hover:text-slate-400" />
               </Link>
-              <Link to={"/profile"}>
+              <Link to={currentUser ? "/profile" : "/signin"}>
                 <FaRegUser className="cursor-pointer text-2xl hover:text-slate-400" />
               </Link>
               <Link

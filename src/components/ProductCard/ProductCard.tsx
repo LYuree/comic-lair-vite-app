@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { TbHeartPlus } from "react-icons/tb";
 import { truncateText } from "../../utils/truncateText.ts";
 import { formatPrice } from "../../utils/formatPrice.ts";
@@ -12,7 +12,7 @@ export interface ProductCardProps {
   key: number | string;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ data }) => {
+const ProductCard: FC<ProductCardProps> = memo(({ data }) => {
   return (
     <div
       className="
@@ -107,6 +107,6 @@ const ProductCard: FC<ProductCardProps> = ({ data }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ProductCard;

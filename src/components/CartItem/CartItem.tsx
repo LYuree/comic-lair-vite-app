@@ -5,10 +5,10 @@ import { formatPrice } from "../../utils/formatPrice.ts";
 import { IProductItem } from "../../api/products/fetchProducts.ts";
 import { TbHeartPlus } from "react-icons/tb";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { getCurrentUser } from "../../services/auth.service.ts";
 import { observer } from "mobx-react";
 import { cartItem } from "../../api/products/fetchCartProducts.ts";
 import { Link } from "react-router-dom";
+import { rootStore } from "../../store/index.ts";
 
 export interface CartItemProps {
   data: IProductItem;
@@ -19,7 +19,10 @@ export interface CartItemProps {
 
 const CartItem: FC<CartItemProps> = observer(
   ({ data, setAmount, deleteItem }) => {
-    const [itemAmount] = useState(data.amount);
+    const {
+      profileStore: { currentUser },
+    } = rootStore;
+    const [localItemAmount] = useState(data.amount);
     console.log(data);
     return (
       <div
@@ -77,13 +80,15 @@ const CartItem: FC<CartItemProps> = observer(
               type="number"
               name=""
               id=""
-              value={itemAmount}
+              value={localItemAmount}
               min={1}
               // max={}
               className="max-w-[50px] mr-2 border-0
                           outline outline-1 outline-grey px-1"
               onChange={(e) => {
-                setAmount(getCurrentUser().id, data.id, +e.target.value);
+                if (!currentUser) return;
+                // setLocalItemAmount(+e.target.value);
+                setAmount(currentUser?.id, data.id, +e.target.value);
                 const cartStr = localStorage.getItem("cart");
                 const cart = cartStr ? JSON.parse(cartStr) : null;
                 if (cart) {
@@ -101,7 +106,8 @@ const CartItem: FC<CartItemProps> = observer(
               type="submit"
               className="btn relative inline-flex grow py-1 items-center justify-center overflow-hidden font-medium transition-all bg-indigo-100 hover:bg-white group py-1.5 px-2.5"
               onClick={() => {
-                deleteItem(getCurrentUser().id, data.id);
+                if (!currentUser) return;
+                deleteItem(currentUser.id, data.id);
                 const cartStr = localStorage.getItem("cart");
                 const cart = cartStr ? JSON.parse(cartStr) : null;
                 if (cart) {

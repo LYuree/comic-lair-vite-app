@@ -3,8 +3,9 @@ import FooterList from "./FooterList/FooterList.tsx";
 import { FaTelegramPlane } from "react-icons/fa";
 import { AiFillYoutube } from "react-icons/ai";
 import { SiDiscord, SiVk } from "react-icons/si";
+import { memo } from "react";
 
-const Footer = () => {
+const Footer = memo(() => {
   return (
     <footer className="bg-black text-white text-sm mt-16">
       <div className="bg-[maroon]">
@@ -69,6 +70,6 @@ const Footer = () => {
       </Container>
     </footer>
   );
-};
+});
 
 export default Footer;

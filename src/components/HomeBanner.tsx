@@ -1,7 +1,8 @@
+import { memo } from "react";
 import Slider from "./Slider/Slider";
 import { Link } from "react-router-dom";
 
-const HomeBanner = () => {
+const HomeBanner = memo(() => {
   const slides = [
     {
       src: "https://iili.io/FOsmqBf.webp",
@@ -54,6 +55,6 @@ const HomeBanner = () => {
       </div>
     </>
   );
-};
+});
 
 export default HomeBanner;

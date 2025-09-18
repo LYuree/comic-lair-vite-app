@@ -7,23 +7,22 @@ import { observer } from "mobx-react";
 import { rootStore } from "../store";
 import { useEffect } from "react";
 import LoadingScreen from "../components/LoadingScreen/LoadingScreen";
-import {
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Pagination,
-  SelectChangeEvent,
-  TextField,
-  Box,
-  Grid,
-  Typography,
-  Button,
-  Slider,
-  Chip,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Pagination from "@mui/material/Pagination";
+import { SelectChangeEvent } from "@mui/material/Select"; // Types imported from relevant module
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Slider from "@mui/material/Slider";
+import Chip from "@mui/material/Chip";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
 import GridProductCard from "../components/GridProductCard/GridProductCard";
 import formatPrice from "../utils/formatPrice";
 

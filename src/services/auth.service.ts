@@ -1,5 +1,6 @@
 import axios from "axios";
 import { rootStore } from "../store";
+import api from "./api";
 // import { API_URL } from "../utils/API_URL";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -71,6 +72,17 @@ export const login = async (
   );
 
   return response.data;
+};
+
+export const verifyToken = async (): Promise<TokenResponse | null> => {
+  try {
+    const response = await api.post("verify-token");
+    return response.data;
+  } catch (error) {
+    console.error("Token verification failed:", error);
+    return null;
+    // Optionally clear token here
+  }
 };
 
 export const refreshToken = async (): Promise<string> => {
