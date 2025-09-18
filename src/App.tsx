@@ -14,8 +14,9 @@ import ProfilePage from "./pages/ProfilePage.tsx";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
 import ProductDetails from "./pages/ProductDetails.tsx";
 import { observer } from "mobx-react";
-import { useLayoutEffect } from "react";
+import { Suspense, useLayoutEffect } from "react";
 import { rootStore } from "./store/index.ts";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen.tsx";
 
 // const verifyToken = async () => {
 //   try {
@@ -48,28 +49,30 @@ const App = observer(() => {
     <div className="app">
       <ScrollToTop />
       <NavBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        {/* <Route path="/signin" element={<SignInPage />} />
+      <Suspense fallback={<LoadingScreen />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          {/* <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} /> */}
-        <Route path="/product_details/:id" element={<ProductDetails />} />
-        {currentUser ? (
-          <>
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckOutPage />} />
-            <Route path="*" element={<PageNotFound />} />
-          </>
-        ) : (
-          <>
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="*" element={<PageNotFound />} />
-          </>
-        )}
-      </Routes>
+          <Route path="/product_details/:id" element={<ProductDetails />} />
+          {currentUser ? (
+            <>
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckOutPage />} />
+              <Route path="*" element={<PageNotFound />} />
+            </>
+          ) : (
+            <>
+              <Route path="/signin" element={<SignInPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="*" element={<PageNotFound />} />
+            </>
+          )}
+        </Routes>
+      </Suspense>
       <Footer />
     </div>
   );

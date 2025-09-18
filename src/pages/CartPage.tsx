@@ -29,14 +29,18 @@ const CartPage = observer(() => {
     fetchCartProducts();
   }, []);
 
-  const slides = cartProducts.data.map((item) => (
-    <CartItem
-      key={item.id}
-      data={item}
-      setAmount={setCartProductAmount}
-      deleteItem={deleteCartProduct}
-    />
-  ));
+  const slides = cartProducts.data.map((item) => {
+    console.log(item);
+
+    return (
+      <CartItem
+        key={item.id}
+        data={item}
+        setAmount={setCartProductAmount}
+        deleteItem={deleteCartProduct}
+      />
+    );
+  });
 
   const handleClosePopup = () => {
     setCheckoutPopupOpen(false);

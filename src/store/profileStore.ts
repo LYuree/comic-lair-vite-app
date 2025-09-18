@@ -48,7 +48,7 @@ export class ProfileStore {
     } finally {
       runInAction(() => {
         this.setProfileLoading(false);
-        this.authChecked = true;
+        this.setAuthChecked(true);
         console.log(this);
       });
     }
@@ -56,6 +56,9 @@ export class ProfileStore {
 
   logout() {
     this.currentUser = null;
+    this.setCurrentUserToken(null);
+    this.setCurrentUserRefreshToken(null);
+    this.setAuthChecked(false);
     // Additional logout logic like clearing tokens
   }
 
