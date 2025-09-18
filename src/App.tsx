@@ -2,21 +2,23 @@ import "./index.css";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage.tsx";
-import AboutPage from "./pages/AboutPage.tsx";
-import ProductsPage from "./pages/ProductsPage.tsx";
-import CartPage from "./pages/CartPage.tsx";
-import SignInPage from "./pages/SignInPage.tsx";
-import SignUpPage from "./pages/SignUpPage.tsx";
-import PageNotFound from "./pages/PageNotFound.tsx";
-import CheckOutPage from "./pages/CheckoutPage.tsx";
-import ProfilePage from "./pages/ProfilePage.tsx";
+
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.tsx";
 import ProductDetails from "./pages/ProductDetails.tsx";
 import { observer } from "mobx-react";
-import { Suspense, useLayoutEffect } from "react";
+import React, { Suspense, useLayoutEffect } from "react";
 import { rootStore } from "./store/index.ts";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.tsx";
+
+const HomePage = React.lazy(() => import("./pages/HomePage.tsx"));
+const AboutPage = React.lazy(() => import("./pages/AboutPage.tsx"));
+const ProductsPage = React.lazy(() => import("./pages/ProductsPage.tsx"));
+const CartPage = React.lazy(() => import("./pages/CartPage.tsx"));
+const SignInPage = React.lazy(() => import("./pages/SignInPage.tsx"));
+const SignUpPage = React.lazy(() => import("./pages/SignUpPage.tsx"));
+const PageNotFound = React.lazy(() => import("./pages/PageNotFound.tsx"));
+const CheckOutPage = React.lazy(() => import("./pages/CheckoutPage.tsx"));
+const ProfilePage = React.lazy(() => import("./pages/ProfilePage.tsx"));
 
 // const verifyToken = async () => {
 //   try {
