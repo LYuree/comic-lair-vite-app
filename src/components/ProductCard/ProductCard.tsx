@@ -48,7 +48,7 @@ const ProductCard: FC<ProductCardProps> = memo(({ data }) => {
             webpSrc={webpCoverImage}
             alt={data.name}
             height="320px"
-            className="p-8 rounded-t-lg"
+            className=""
             onError={() =>
               console.warn(`Failed to load image for product: ${data.name}`)
             }
