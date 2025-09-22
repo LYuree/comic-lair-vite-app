@@ -6,6 +6,8 @@ import { IProductItem } from "../../api/products/fetchProducts.ts";
 import { cartItem } from "../../api/products/fetchCartProducts.ts";
 import { Link } from "react-router-dom";
 import { AiOutlineShopping } from "react-icons/ai";
+import { getWebPUrl } from "../../utils/optimizeImage.ts";
+import LazyImage from "../LazyImage/LazyImage.tsx";
 
 export interface ProductCardProps {
   data: IProductItem;
@@ -13,6 +15,8 @@ export interface ProductCardProps {
 }
 
 const ProductCard: FC<ProductCardProps> = memo(({ data }) => {
+  const webpCoverImage = getWebPUrl(data.cover_image);
+
   return (
     <div
       className="
@@ -30,7 +34,7 @@ const ProductCard: FC<ProductCardProps> = memo(({ data }) => {
     >
       <div className="relative overflow-hidden flex justify-center">
         <Link to={`/product_details/${data.id}`}>
-          <picture>
+          {/* <picture>
             <source />
             <img
               // src={data.images[0].image}
@@ -38,7 +42,28 @@ const ProductCard: FC<ProductCardProps> = memo(({ data }) => {
               alt={data.name}
               className="hover:opacity-75 duration-500"
             />
-          </picture>
+          </picture> */}
+          <LazyImage
+            src={data.cover_image}
+            webpSrc={webpCoverImage}
+            alt={data.name}
+            height="320px"
+            className="p-8 rounded-t-lg"
+            onError={() =>
+              console.warn(`Failed to load image for product: ${data.name}`)
+            }
+          />
+          {/* <DelayedImage
+            delayMs={2000}
+            src={data.cover_image}
+            webpSrc={webpCoverImage}
+            alt={data.name}
+            height="320px"
+            className="p-8 rounded-t-lg"
+            onError={() =>
+              console.warn(`Failed to load image for product: ${data.name}`)
+            }
+          /> */}
         </Link>
       </div>
       <div className="flex flex-col items-center">

@@ -41,7 +41,8 @@ export const fetchProducts = async (): Promise<ProductsData> => {
         // на всякий случай делаю deep copy
         // с помощью JSON-api
         // (возможно, это излишне)
-        value: JSON.parse(JSON.stringify(response.data)),
+        // value: JSON.parse(JSON.stringify(response.data)),
+        value: structuredClone(response.data),
         writable: false,
       });
       return fetchResponse;

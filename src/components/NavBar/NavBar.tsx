@@ -76,7 +76,8 @@ const NavBar = observer(() => {
     setSearchFormValue(inputText);
     if (!products) return;
 
-    const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+    // const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+    const newDisplayedProducts = structuredClone(products);
     if (inputText) {
       newDisplayedProducts.data = newDisplayedProducts.data.filter(
         (product: IProductItem) =>

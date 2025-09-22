@@ -50,7 +50,8 @@ export class ProductsStore {
     }
     // фокусы с JSON здесь заменяют функцию structuredClone,
     // которая почему-то не работает
-    const sortedProducts = JSON.parse(JSON.stringify(this.displayedProducts));
+    // const sortedProducts = JSON.parse(JSON.stringify(this.displayedProducts));
+    const sortedProducts = structuredClone(this.displayedProducts);
     switch (sortingMethod) {
       case "popular_first":
         console.log("Сортировка по популярности ещё не внедрена...");

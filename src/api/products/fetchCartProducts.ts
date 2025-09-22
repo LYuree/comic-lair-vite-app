@@ -53,7 +53,8 @@ export const fetchCartProducts = async (): Promise<ProductsData> => {
         );
         console.log(cartProductDetails);
         Object.defineProperty(fetchResponse, "data", {
-          value: JSON.parse(JSON.stringify(cartProductDetails)),
+          // value: JSON.parse(JSON.stringify(cartProductDetails)),
+          value: structuredClone(cartProductDetails),
           writable: false,
         });
       });

@@ -153,7 +153,8 @@ export class CartStore {
         // на всякий случай делаю deep copy
         // с помощью JSON-api
         // (возможно, это излишне)
-        value: JSON.parse(JSON.stringify(cartProductsData)),
+        // value: JSON.parse(JSON.stringify(cartProductsData)),
+        value: structuredClone(cartProductsData),
         writable: false,
       });
       this.setCartProducts(result);

@@ -134,7 +134,8 @@ const ProductsPage = observer(() => {
   };
 
   const applyFilters = function () {
-    const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+    // const newDisplayedProducts = JSON.parse(JSON.stringify(products));
+    const newDisplayedProducts = structuredClone(products);
 
     // Filter by categories
     const selectedCategories = categoryCheckboxes
