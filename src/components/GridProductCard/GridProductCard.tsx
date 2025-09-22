@@ -8,6 +8,8 @@ import { AiOutlineShopping } from "react-icons/ai";
 import { rootStore } from "../../store/index.ts";
 import { Link, useNavigate } from "react-router-dom";
 import { cartItem } from "../../api/products/fetchCartProducts.ts";
+import LazyImage from "../LazyImage/LazyImage.tsx";
+import { getWebPUrl } from "../../utils/optimizeImage.ts";
 
 interface GridProductCardProps {
   data: IProductItem;
@@ -15,6 +17,7 @@ interface GridProductCardProps {
 }
 
 const GridProductCard: FC<GridProductCardProps> = memo(({ data, key }) => {
+  const webpCoverImage = getWebPUrl(data.cover_image);
   const navigate = useNavigate();
 
   const {
@@ -38,14 +41,24 @@ const GridProductCard: FC<GridProductCardProps> = memo(({ data, key }) => {
     >
       <div className="relative overflow-hidden flex justify-center">
         <Link to={`/product_details/${data.id}`}>
-          <picture>
+          {/* <picture>
             <source />
             <img
               src={data.cover_image}
               alt={data.name}
               className="hover:opacity-75 duration-500"
             />
-          </picture>
+          </picture> */}
+          <LazyImage
+            src={data.cover_image}
+            webpSrc={webpCoverImage}
+            alt={data.name}
+            height="320px"
+            className=""
+            onError={() =>
+              console.warn(`Failed to load image for product: ${data.name}`)
+            }
+          />
         </Link>
       </div>
       <div className="flex flex-col items-center">

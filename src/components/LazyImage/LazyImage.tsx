@@ -95,7 +95,7 @@ const LazyImage: FC<LazyImageProps> = memo(
               variant="rectangular"
               width="100%"
               height={height || "200px"}
-              animation="wave"
+              animation="pulse"
             />
           ))}
 
@@ -106,7 +106,7 @@ const LazyImage: FC<LazyImageProps> = memo(
                 variant="rectangular"
                 width="100%"
                 height={height || "200px"}
-                animation="wave"
+                animation="pulse"
                 sx={{ position: "absolute", top: 0, left: 0 }}
               />
             )}
