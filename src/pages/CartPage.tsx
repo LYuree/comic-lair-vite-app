@@ -18,6 +18,7 @@ const CartPage = observer(() => {
       deleteCartProduct,
       checkout,
       totalCost,
+      isCartEmpty,
       isCheckoutPopupOpen,
       setCheckoutPopupOpen,
     },
@@ -52,9 +53,7 @@ const CartPage = observer(() => {
         <LoadingScreen />
       ) : (
         <>
-          {!cartLoading &&
-          Array.isArray(cartProducts.data) &&
-          !cartProducts.data.length ? (
+          {!cartLoading && Array.isArray(cartProducts.data) && !isCartEmpty ? (
             <div className="w-full h-[80vh] flex flex-col justify-center items-center gap-4">
               <span className="text-2xl font-bold">Ваша корзина пуста.</span>
               <a

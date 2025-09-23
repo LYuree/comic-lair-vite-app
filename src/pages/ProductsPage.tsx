@@ -35,6 +35,9 @@ const ProductsPage = observer(() => {
       sortingMethod,
       setSortingMethod,
       displayedProducts,
+      minAvailablePrice,
+      maxAvailablePrice,
+      uniqueCategories,
       setDisplayedProducts,
     },
     gridPageStore: {
@@ -66,8 +69,8 @@ const ProductsPage = observer(() => {
   }, []);
 
   const numberOfPages = Math.ceil(displayedProducts.data.length / itemsPerPage);
-  const itemCategories = products.data.map((item) => item.categories).flat();
-  const uniqueCategories = [...new Set(itemCategories)];
+  // const itemCategories = products.data.map((item) => item.categories).flat();
+  // const uniqueCategories = [...new Set(itemCategories)];
   const uniqueCategoryCheckboxes = uniqueCategories.map((category) => {
     return {
       id: crypto.randomUUID(),
@@ -94,12 +97,6 @@ const ProductsPage = observer(() => {
       checked: false,
     };
   });
-
-  const pricesAvailable = products.data.map(
-    (item) => item.price * (1.0 - item.discount)
-  );
-  const maxAvailablePrice = Math.max(...pricesAvailable);
-  const minAvailablePrice = Math.min(...pricesAvailable);
 
   useEffect(() => {
     setCategoryCheckboxes(uniqueCategoryCheckboxes);
@@ -133,9 +130,10 @@ const ProductsPage = observer(() => {
     setDisplayedProducts(products);
   };
 
-  const applyFilters = function () {
-    // const newDisplayedProducts = JSON.parse(JSON.stringify(products));
-    const newDisplayedProducts = structuredClone(products);
+  const applyFilters = (): void => {
+    // structured clone здесь не работает - видимо,
+    // есть неклонируемые поля объекта
+    const newDisplayedProducts = JSON.parse(JSON.stringify(products));
 
     // Filter by categories
     const selectedCategories = categoryCheckboxes
@@ -531,7 +529,7 @@ const ProductsPage = observer(() => {
                           );
                         }}
                         valueLabelDisplay="auto"
-                        min={0}
+                        min={minAvailablePrice}
                         max={maxAvailablePrice}
                       />
                     </Box>

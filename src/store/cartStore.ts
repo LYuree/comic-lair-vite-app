@@ -30,6 +30,41 @@ export class CartStore {
     );
   }
 
+  // New computed values
+  get totalItems(): number {
+    return this.cartProducts.data.reduce(
+      (total, product) => total + product.amount,
+      0
+    );
+  }
+
+  get totalSavings(): number {
+    return this.cartProducts.data.reduce(
+      (total, product) =>
+        total + product.price * product.discount * product.amount,
+      0
+    );
+  }
+
+  get isCartEmpty(): boolean {
+    return this.cartProducts.data.length === 0;
+  }
+
+  get averageItemPrice(): number {
+    if (this.isCartEmpty) return 0;
+    return this.totalCost / this.totalItems;
+  }
+
+  get cartSummary() {
+    return {
+      totalItems: this.totalItems,
+      totalCost: this.totalCost,
+      totalSavings: this.totalSavings,
+      averagePrice: this.averageItemPrice,
+      isEmpty: this.isCartEmpty,
+    };
+  }
+
   constructor() {
     makeAutoObservable(this);
   }

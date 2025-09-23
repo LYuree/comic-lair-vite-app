@@ -118,4 +118,59 @@ export class ProductsStore {
       this.setFieldsLoading(false);
     }
   };
+
+  get minAvailablePrice(): number {
+    if (this.products.data.length === 0) return 0;
+    return Math.min(
+      ...this.products.data.map(
+        (product) => product.price * (1 - product.discount)
+      )
+    );
+  }
+
+  get maxAvailablePrice(): number {
+    if (this.products.data.length === 0) return 0;
+    return Math.max(
+      ...this.products.data.map(
+        (product) => product.price * (1 - product.discount)
+      )
+    );
+  }
+
+  get availableCategories(): string[] {
+    const categories = new Set<string>();
+    this.products.data.forEach((product) => {
+      product.categories.forEach((category) => categories.add(category));
+    });
+    return Array.from(categories).sort();
+  }
+
+  get uniqueCategories(): string[] {
+    const brands = new Set(this.products.data.map((product) => product.brand));
+    return Array.from(brands).sort();
+  }
+
+  get availableCoverTypes(): string[] {
+    const coverTypes = new Set(
+      this.products.data.map((product) => product.cover_type)
+    );
+    return Array.from(coverTypes).sort();
+  }
+
+  // Product statistics
+  get productStats() {
+    const digital = this.products.data.filter((p) => p.digital);
+    const physical = this.products.data.filter((p) => !p.digital);
+    const discounted = this.products.data.filter((p) => p.discount > 0);
+
+    return {
+      total: this.products.data.length,
+      digital: digital.length,
+      physical: physical.length,
+      discounted: discounted.length,
+      averagePrice:
+        this.products.data.reduce((sum, p) => sum + p.price, 0) /
+          this.products.data.length || 0,
+    };
+  }
 }
